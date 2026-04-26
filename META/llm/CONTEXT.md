@@ -1,158 +1,170 @@
 # Algo Engineer OS — LLM Maintenance Context
 
-你正在维护一个算法工程师的个人知识库。用户不会直接维护知识库结构，而是把学习痕迹丢进 INBOX/，由你负责整理到正确的位置。
+你正在维护一个算法工程师的个人知识库。用户不直接维护知识库结构，而是把学习痕迹丢进 INBOX，由你整理到正确位置。
 
-**读完本文件后，你需要再读两个文件才能开始工作：**
-1. `META/REGISTRY.md` — 了解当前已有什么内容
-2. `META/llm/triage.md` — 了解如何处理 INBOX 内容
+**读完本文件后，再读这两个：**
+1. `META/REGISTRY.md` — 当前已有什么
+2. `META/llm/triage.md` — INBOX 处理流程 + Triage Report 模板
 
 ---
 
-## 1. 仓库结构
+## 1. Ownership Matrix（最重要 —— 必须严格遵守）
 
-```
-algo-engineer-os/
-├── INBOX/          # 用户随手丢学习痕迹的地方（你的输入源）
-├── RAW_SOURCES/    # 原始资料（论文、文档、粗读笔记、LLM 聊天记录）
-├── KNOWLEDGE/      # 结构化知识节点（核心层）
-├── PROBLEMS/       # 问题驱动页（为什么需要某个方法）
-├── PROJECTS/       # 有边界的执行单元（项目）
-├── WORK/           # 可复用工程实践（playbook、SOP、design note）
-├── CAREER/         # 职业资产（简历、面试、技能差距）
-├── REPRO_INDEX/    # 外部代码仓库索引
-├── TRACKS/         # 学习主线追踪（todo list、进度、路线图）
-└── META/           # 规则、模板、索引（你正在读的地方）
-```
+### 🧑 用户纯私有 surface（你只读，绝不写）
 
-每个目录的判断标准：
+- `INBOX/` 下所有内容
+- `TRACKS/active/*` 和 `TRACKS/roadmap/*`（结构 + 勾选都用户来）
+- `CAREER/cv.md`
+- `CAREER/skill-gap.md`
+- `CAREER/target-roles/*.md`（用户填，或他和你对话后从 dialogue_log 走 triage 长出来——但**最终编辑权属于用户**）
+- `META/` 下所有规则文件（CONTEXT、policies、templates、triage、README）
 
-| 内容本质 | 放哪里 |
+### 🤖 你的写入区（从对话 log / 用户 drop 的内容触发）
+
+- `KNOWLEDGE/*` — 全自动从 `INBOX/<topic>/dialogue_logs/*.md` 长出
+- `PROBLEMS/*` — 当 log 出现"横向对比 N 方案"时触发
+- `PROJECTS/*` — 当 log 是项目复盘 / 实习挖掘 / 论文复现时触发
+- `RAW_SOURCES/*` — 当 INBOX 出现论文 / 完整文档时
+- `REPRO_INDEX/*` — 当 INBOX 出现外部 repo 信息时
+- `CAREER/interview-bank/*` — 用户丢面经到 INBOX，你 triage
+- `WORK/playbooks/*` 等 — 当用户和你对话明确说"这个流程要沉淀成 SOP"时
+- `META/REGISTRY.md` — 每次 triage 后同步
+
+### 🔔 你只建议、用户执行（写进 Triage Report，不直接动文件）
+
+- TRACKS 里"建议勾掉"的 checkbox
+- `CAREER/skill-gap.md` 的更新建议（diff 形式）
+- 实习挖掘 nudge（"PROJECTS/work/qiniu-... 还没建，要不要开对话挖掘？"）
+- 横向对比触发（"本次 log 出现 N 方案对比，建议建 PROBLEMS/x 页"）
+
+### 用户编辑 = ground truth
+
+如果用户手动改了你写的文件，下次读时把它当作事实，**不要覆盖**。如果你的整理结果和用户编辑冲突，在 Triage Report 里指出冲突，让用户决定。
+
+---
+
+## 2. 入库源唯一规则
+
+**`INBOX/<topic>/dialogue_logs/*.md` 是唯一的知识入库源**。
+
+- 课件（`ppts/`）、笔记（`notes/`、`notes_zh/`）、tutorial（`tutorials/`）、cheat sheet 等都是**参考材料**。你可以读它们做事实核对，**但不从这里提取知识入 KNOWLEDGE**。
+- 论文 / 完整文档可能 triage 到 `RAW_SOURCES/`，但即使如此，KNOWLEDGE 节点也只能从对话 log 长出来，不能从 RAW_SOURCES 直接生成。
+- 例外：用户丢面经到 INBOX → 进 `CAREER/interview-bank/`（这是用户的真实输入，不是参考材料）
+
+理由：用户哲学是"学习的痕迹是和 LLM 的对话过程，不是 LLM 给的整理成品"。看了/抄了 ≠ 学会了。
+
+---
+
+## 3. 节点稀疏度规则
+
+**节点宁稀疏不饱满**：
+
+- KNOWLEDGE 节点只写对话 log 实际覆盖到的部分
+- 论文 / 课件里写但用户没在对话里推导/纠正/澄清过的内容 ≠ 用户学过，**不要补全**
+- 如果对话 log 只覆盖了 self-attention 的 QKV 计算但没涉及 multi-head，节点里就只写 QKV，不要"为完整性"补 multi-head
+- 节点的状态可以反映稀疏度（status: learning，checklist 大多数 false）
+
+不要用 README 模板的 section 数量作为强制目标。section 没内容就删掉，不要凑。
+
+---
+
+## 4. 自检题来源限定
+
+KNOWLEDGE 节点的"自检问题" section 来源**严格限定**：
+
+- ✅ 对话 log 中用户**实际卡住**的位置（用户问了 2 次以上、被纠正过、要求复述过）
+- ✅ 用户在对话里主动说"这部分我还不熟"的点
+- ❌ 你拍脑袋出的"标准考点"
+- ❌ 论文 / 课件目录里看起来该问的题
+
+`CAREER/interview-bank/` 同理：题目来源是用户丢进 INBOX 的真实面经，不是你生成。
+
+---
+
+## 5. 引用方向规则（tracks → knowledge 单向）
+
+| 方向 | 允许 |
 |---|---|
-| 原始论文、文档、网页、粗读笔记 | RAW_SOURCES/ |
-| 稳定的、可复用的主题/方法/机制 | KNOWLEDGE/ |
-| 要解决的问题、失败模式、方案比较 | PROBLEMS/ |
-| 有明确目标和边界的一次执行 | PROJECTS/ |
-| 反复可用的 SOP、playbook、debug 经验 | WORK/ |
-| 简历、面试准备、岗位分析 | CAREER/ |
-| 外部 repo、toy 实现、实验索引 | REPRO_INDEX/ |
-| 与 LLM 的学习聊天记录 | INBOX/（标注来源课程/主题，triage 时作为 RAW_SOURCES 处理） |
+| TRACKS → KNOWLEDGE | ✓ tracks 可以写"完成此项对应 KNOWLEDGE/x" |
+| **KNOWLEDGE → TRACKS** | ✗ 禁止。knowledge 不感知 tracks 存在 |
+| CAREER → KNOWLEDGE | ✓ |
+| **KNOWLEDGE → CAREER** | ✗ |
+| PROBLEMS ↔ KNOWLEDGE | ✓ 双向 |
+| KNOWLEDGE ↔ KNOWLEDGE | ✓ |
+
+理由：稳定层（KNOWLEDGE）不依赖不稳定层（TRACKS / CAREER）。tracks 增删改不能污染 knowledge。
 
 ---
 
-## 2. Source of Truth 优先级
+## 6. Source of Truth 优先级
 
-信息冲突时，按此顺序判断谁对：
+冲突时按此判断：
 
-1. **RAW_SOURCES/** — 原始证据，最高优先
-2. **KNOWLEDGE/\*/meta.yaml** — 结构关系
-3. **KNOWLEDGE/\*/README.md** — 节点解释
-4. **PROBLEMS/** — 问题框架
-5. 其他目录都是派生内容
+1. `RAW_SOURCES/` — 原始证据，最高
+2. `INBOX/<topic>/dialogue_logs/` — 用户实际学习痕迹
+3. `KNOWLEDGE/*/meta.yaml` — 结构关系
+4. `KNOWLEDGE/*/README.md` — 节点解释
+5. `PROBLEMS/` — 问题框架
+6. 其它派生层（CAREER stories、WORK playbooks 等）
 
-**规则：**
-- 不能发明原始资料中不存在的引用
-- 不能把猜测写成事实
-- 不确定的内容必须标记为 `[待确认]` 或放在 `open_questions` 中
-- 高层内容不能覆盖低层证据
+不能发明 INBOX / RAW_SOURCES 中不存在的事实。不确定的内容标 `[待确认]`。
 
 ---
 
-## 3. 你的角色
+## 7. 你的角色边界
 
-你是**受约束的维护者**，不是自由发挥的作者。
+### 允许做
 
-### 允许做的事
-
-- 把 INBOX 内容整理到正确的目录
-- 创建新的知识节点（按模板）
-- 更新已有节点的内容和关系
-- 起草问题页、项目页
-- 改善跨节点链接
+- 把 INBOX 内容整理到正确目录（在你的写入区内）
+- 创建 / 更新 KNOWLEDGE 节点（按模板 + 稀疏原则）
+- 起草 PROBLEMS / PROJECTS 页（按触发条件）
 - 暴露 open questions
-- 更新 REGISTRY.md
+- 在 Triage Report 里给用户建议
+- 同步 `META/REGISTRY.md`
 
-### 不允许做的事
+### 禁止做
 
-- 发明 INBOX 和 RAW_SOURCES 中不存在的事实
-- 把个人判断写成 paper claim
-- 未经指示修改 meta.yaml 中的 depends_on / related_nodes 关系
+- 写入用户私有 surface（看 §1）
+- 发明 INBOX / RAW_SOURCES 中不存在的事实
+- 拍脑袋生成自检题或面试题
+- 自动勾掉 TRACKS 的 checkbox
+- 自动改 `CAREER/skill-gap.md`
 - 删除已有内容（除非用户明确要求）
-- 跳过 REGISTRY.md 的更新
+- 跳过 REGISTRY 更新
 
 ---
 
-## 4. 知识节点结构（KNOWLEDGE）
+## 8. 节点结构
 
-### 最小结构（新建节点只需要这些）
-
-```
-KNOWLEDGE/{domain}/{node-name}/
-├── README.md      # 定义 + 要点 + 关联
-└── meta.yaml      # 结构化元数据
-```
-
-### 可选扩展（内容足够时再加）
+最小：
 
 ```
-├── math/README.md      # 公式、推导、符号
-├── code/README.md      # 实现笔记、伪代码、坑
-├── refs/README.md      # 来源：论文、文档、博客
-└── thoughts/README.md  # 个人判断、比较、open questions
+KNOWLEDGE/{domain}/{node}/
+├── README.md     按 META/templates/node_README.template.md
+└── meta.yaml     结构化关系
 ```
 
-**原则：不要创建空文件。只在有内容写的时候才创建子目录。**
+按需扩展（有内容才建）：`math/`、`code/`、`refs/`、`thoughts/` 各自的 README.md。
 
-### README.md 最小模板
+**不创建空文件。**
 
-```markdown
-# {Node Name}
-
-## 是什么
-
-一两句话定义。
-
-## 为什么重要
-
-在什么场景下需要它，解决什么问题。
-
-## 核心要点
-
-- 要点 1
-- 要点 2
-- 要点 3
-
-## 关联
-
-- 前置依赖：{nodes}
-- 相关问题：{problems}
-- 替代方案：{nodes}
-- 下游用途：{nodes}
-
-## 当前状态
-
-concept: ✅ / math: ❌ / code: ❌ / reproduction: ❌
-
-## Open Questions
-
-- 待解决的问题
-```
-
-### meta.yaml 最小模板
+### meta.yaml 最小字段
 
 ```yaml
 id: {node-id}
 title: "{Node Title}"
 type: concept | method | mechanism | system | capability | tool
 status: learning | stable | review | stale
-created_at: {YYYY-MM-DD}
-last_reviewed_at: {YYYY-MM-DD}
+created_at: YYYY-MM-DD
+last_reviewed_at: YYYY-MM-DD
 
 tags: []
-
 depends_on: []
 related_nodes: []
 related_problems: []
-related_projects: []
+
+source_dialogue_logs:
+  - INBOX/.../dialogue_logs/xxx.md   # 必填，节点的真实来源
 
 evidence_level:
   concept: paper_claim | verified | self_reasoned | unverified
@@ -164,125 +176,56 @@ checklist:
   math: false
   code: false
   reproduction: false
-  personal_insight: false
+  self_check_questions: false
 ```
 
 ---
 
-## 5. 问题页结构（PROBLEMS）
+## 9. 命名
 
-### 最小模板
+- 目录 / 文件：lowercase kebab-case
+- 节点：canonical 领域术语（`kv-cache`、`rope`、`rag`）
+- 问题页：问题空间名（`long-context-degradation`），不是方法名
+- 项目：反映目标（`qiniu-supervisor-agent`）
 
-```markdown
-# {Problem Name}
-
-## 问题定义
-
-一两句话描述这个问题是什么。
-
-## 为什么重要
-
-在什么场景下会遇到这个问题。
-
-## 候选方案
-
-| 方案 | 核心思路 | 优势 | 劣势 | 来源 |
-|---|---|---|---|---|
-| ... | ... | ... | ... | ... |
-
-## 相关知识节点
-
-- {node links}
-
-## Open Questions
-
-- 待解决的问题
-```
+详细规则：`META/policies/naming_convention.md`。
 
 ---
 
-## 6. 项目页结构（PROJECTS）
+## 10. 节点粒度
 
-### 最小模板
+新建前问 4 个问题（`META/policies/node_granularity.md`）：
 
-```markdown
-# {Project Name}
+1. 有稳定独立 identity？
+2. 一句话能说清为什么重要？
+3. 会被多个项目 / 问题 / track 引用？
+4. 有自己的前置依赖、替代方案、下游用途？
 
-## 目标
-
-一句话说清楚要做什么。
-
-## 动机
-
-为什么要做这个项目。
-
-## 范围
-
-- 包含：...
-- 不包含：...
-
-## 相关知识 / 问题
-
-- KNOWLEDGE: {links}
-- PROBLEMS: {links}
-
-## 当前状态
-
-{active | paused | done | archived}
-
-## 关键决策与收获
-
-- ...
-
-## 下一步
-
-- ...
-```
+3 个"是"才建独立节点。
 
 ---
 
-## 7. 编辑规则
+## 11. 编辑规则
 
-1. **先查 REGISTRY.md** — 不要重复创建已有的节点或页面
-2. **尊重分层** — 原始资料去 RAW_SOURCES，结构化知识去 KNOWLEDGE，别放反
-3. **增量编辑** — 更新已有页面优先于创建新页面；添加内容优先于重写
-4. **事实与判断分离** — 论文里说的是 paper claim，你的分析放 thoughts/，不要混在一起
-5. **保持不确定性可见** — 不确定就标 `[待确认]`，不要删掉疑问
-6. **不要创建空壳** — 没有内容就不要创建文件或 section
-7. **每次编辑后更新 REGISTRY.md** — 新增或删除内容必须同步索引
-
----
-
-## 8. 审查清单
-
-每次整理完成后，用这个清单快速自查：
-
-- [ ] 内容放对层了吗？（RAW_SOURCES vs KNOWLEDGE vs PROBLEMS）
-- [ ] 有没有发明 INBOX 中不存在的事实？
-- [ ] 不确定的内容有没有标注？
-- [ ] 新建的节点是否真的值得独立存在？（能复用吗？有独立 identity 吗？）
-- [ ] meta.yaml 的关系是否正确？
-- [ ] REGISTRY.md 是否已更新？
-- [ ] 跟已有内容有没有重复或冲突？
+1. 先查 `META/REGISTRY.md` —— 不重复创建
+2. 尊重 ownership matrix —— 不写用户私有 surface
+3. 增量编辑 > 重写 —— 更新已有页面优先
+4. 事实与判断分离 —— paper claim 进主体，个人判断进 `thoughts/`
+5. 保持不确定性可见 —— `[待确认]` 不要删
+6. 不创建空壳
+7. 每次编辑后更新 REGISTRY
+8. 整理结束输出 Triage Report（格式见 `triage.md`）
 
 ---
 
-## 9. 命名规范
+## 12. 审查清单
 
-- 目录名：小写 kebab-case（如 `self-attention`、`kv-cache`）
-- 节点名：应该是可复用的概念/方法名，不是项目名或问题名
-- 问题页名：描述问题空间（如 `long-context-degradation`），不是方法名
-- 项目名：反映目标（如 `qwen3-vl-reproduction`），不是 `experiment1`
+每次整理完自查：
 
----
-
-## 10. 节点粒度判断
-
-创建新节点前问自己：
-
-1. 它有稳定的独立 identity 吗？
-2. 能用一句话说清为什么重要吗？
-3. 会被多个项目或问题引用吗？
-4. 它有自己的前置依赖、替代方案或下游用途吗？
-
-如果 4 个问题中有 3 个答案是"是"，就值得创建独立节点。否则应该作为已有节点的一部分。
+- [ ] 内容放对层了？
+- [ ] 引用方向合规（tracks → knowledge 单向）？
+- [ ] 节点稀疏度合理（没"为完整性"补内容）？
+- [ ] 自检题来源是 dialogue_log 中用户卡住/被纠正的位置？
+- [ ] 没发明 INBOX 中不存在的事实？
+- [ ] REGISTRY 已更新？
+- [ ] Triage Report 输出了 4 类联动建议？

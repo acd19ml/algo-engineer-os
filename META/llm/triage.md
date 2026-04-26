@@ -1,159 +1,210 @@
 # INBOX Triage Rules
 
-这个文件定义你如何处理 INBOX/ 中的内容。用户把学习痕迹丢进 INBOX，你负责把它们整理到知识库的正确位置。
+定义你如何处理 INBOX 内容并输出 Triage Report。
+
+> 前置：先读 `CONTEXT.md`（含 ownership matrix、入库源唯一规则、引用方向、节点稀疏度），再读 `REGISTRY.md`（当前已有什么），再来这里。
 
 ---
 
-## 整体流程
+## 流程
 
 ```
-1. 读 META/REGISTRY.md        → 了解已有内容
-2. 读 INBOX/ 所有文件          → 了解待处理内容
-3. 对每个 INBOX 项目执行分类    → 判断属于哪一层
-4. 执行整理                    → 创建或更新目标文件
-5. 更新 META/REGISTRY.md       → 同步索引
-6. 标记 INBOX 项目为已处理      → 避免重复处理
-```
-
----
-
-## Step 1: 读取现状
-
-读 `META/REGISTRY.md`，确认：
-- 已有哪些 KNOWLEDGE 节点
-- 已有哪些 PROBLEMS 页面
-- 已有哪些 PROJECTS
-- 已有哪些 RAW_SOURCES
-
-**目的：避免重复创建，优先更新已有内容。**
-
----
-
-## Step 2: 读取 INBOX
-
-读取 INBOX/ 下所有文件。忽略 README.md。
-
-对每个文件，提取：
-- 主题是什么
-- 内容类型（论文笔记、代码片段、问题、链接、想法、工作经验...）
-- 涉及哪些已有节点/问题/项目
-
----
-
-## Step 3: 分类
-
-对每个 INBOX 项目，按以下决策树判断：
-
-```
-这个内容是...
-
-├── 原始资料（论文链接、文档、网页、粗读笔记）
-│   → RAW_SOURCES/
-│
-├── 关于一个可复用的概念/方法/机制的学习
-│   ├── 已有对应节点？ → 更新该 KNOWLEDGE 节点
-│   └── 没有？ → 判断是否值得新建节点（见粒度判断）
-│       ├── 值得 → 新建 KNOWLEDGE 节点（最小结构）
-│       └── 不值得 → 作为已有节点的补充内容
-│
-├── 关于一个问题/挑战/失败模式的思考
-│   ├── 已有对应问题页？ → 更新该 PROBLEMS 页面
-│   └── 没有？ → 新建 PROBLEMS 页面（最小结构）
-│
-├── 关于一个具体项目的进展/决策/记录
-│   ├── 已有对应项目？ → 更新该 PROJECTS 页面
-│   └── 没有？ → 新建 PROJECTS 页面
-│
-├── 可复用的工程实践/SOP/debug 经验
-│   → WORK/
-│
-├── 简历素材/面试准备/岗位分析
-│   → CAREER/
-│
-├── 外部代码仓库/实验 repo
-│   → REPRO_INDEX/
-│
-└── 无法归类或太碎片
-    → 看能否附加到已有节点的 thoughts/README.md
-    → 如果完全无法归类，保留在 INBOX 并标注 [待归类]
+1. 读 META/REGISTRY.md         了解已有内容
+2. 读 INBOX/                   识别每个文件的类型（dialogue_log / 参考材料 / 论文 / 面经 / repo / ...）
+3. 对每个 INBOX 项目分类       按下方决策树
+4. 执行整理                    创建 / 更新目标文件（仅在你的写入区，看 CONTEXT §1）
+5. 更新 META/REGISTRY.md
+6. 标记已处理 INBOX 项目       文件顶加 <!-- PROCESSED: YYYY-MM-DD -->
+7. 输出 Triage Report          固定 4 个 section（见末尾模板）
 ```
 
 ---
 
-## Step 4: 执行整理
+## INBOX 文件夹约定（强制）
 
-### 创建新内容时
+```
+INBOX/<topic>/
+├── dialogue_logs/        ← ✅ 入库主源。从这里提炼 KNOWLEDGE 节点 + 自检题
+├── notes/                ← ⚠️ 参考材料。可读，不入库
+├── notes_zh/             ← ⚠️ 同上
+├── ppts/                 ← ⚠️ 课件，参考材料
+├── tutorials/            ← ⚠️ 教程，参考材料
+└── *.pdf / *.md          ← 看内容判断，论文 → RAW_SOURCES，杂物保留
+```
 
-- KNOWLEDGE 节点：只创建 README.md + meta.yaml，不要创建空的子目录
-- PROBLEMS 页面：只创建 README.md，包含问题定义、候选方案、open questions
-- PROJECTS 页面：只创建 README.md，包含目标、范围、状态
-- RAW_SOURCES：创建对应目录和 README.md，保留原始链接和关键信息
+**关键约束**：
 
-模板参考 `META/llm/CONTEXT.md` 中的第 4-6 节。
-
-### 更新已有内容时
-
-- 增量添加，不要重写整个文件
-- 新的 paper claim 和个人判断要分开标注
-- 如果新信息与已有信息冲突，在 open questions 中暴露冲突，不要静默覆盖
-- 更新 meta.yaml 中的 last_reviewed_at 日期
-
-### 内容拆分
-
-一个 INBOX 项目可能涉及多个目标：
-- 一篇论文笔记 → RAW_SOURCES（原文信息）+ KNOWLEDGE（方法节点）+ PROBLEMS（问题页）
-- 一段工作经验 → WORK（SOP）+ CAREER（故事素材）+ KNOWLEDGE（技术点）
-
-按内容本质拆分到各自的正确位置。
+- ✅ 只有 `dialogue_logs/*.md` 能产出 KNOWLEDGE 节点
+- ❌ 不要从 `notes/`、`ppts/`、`tutorials/` 提取知识入 KNOWLEDGE。这些是用户学习辅助材料，"看了 ≠ 学会了"
+- ❌ 即使 `notes/` 里有完整的概念解释，也不能据此建节点。节点必须有 `source_dialogue_logs` 字段指向真实对话
 
 ---
 
-## Step 5: 更新 REGISTRY.md
+## 分类决策树
 
-每次整理后，把新增/修改的条目更新到 `META/REGISTRY.md`：
-- 新建节点 → 加到 KNOWLEDGE nodes 表
-- 新建问题页 → 加到 PROBLEMS 表
-- 新建项目 → 加到 PROJECTS 表
-- 新建原始资料 → 加到 RAW_SOURCES 表
+```
+INBOX 项目是...
+
+├── 对话 log（dialogue_logs/*.md）
+│   → 提炼 KNOWLEDGE 节点（按稀疏原则） + 自检题（来源限定）
+│   → 检测是否有"横向对比 N 方案"内容 → 触发 PROBLEMS 建议
+│   → 检测是否项目复盘 → 触发 PROJECTS 建议
+│
+├── 论文 / 完整文档（PDF / 长 .md）
+│   → RAW_SOURCES/<type>/<slug>/（建条目，保留 URL + 元信息）
+│   → 不直接生成 KNOWLEDGE 节点
+│
+├── 面经 / 面试题（用户标注 [面经] 或内容明显是题）
+│   → CAREER/interview-bank/technical/ 或 behavioral/
+│   → 链回相关 KNOWLEDGE 节点（如已存在）；不存在则在题目里标 [未学]
+│
+├── 外部 repo URL / 实验代码
+│   → REPRO_INDEX/ 加条目
+│
+├── 课件 / 笔记 / cheat sheet / tutorial
+│   → 留在 INBOX 不动。Triage Report 提一句"这些是参考材料，未入库"
+│
+├── 用户讨论目标岗位 / JD / 找工作的对话 log
+│   → CAREER/target-roles/{role}.md（如已存在则 update；否则建草稿，注明"待用户审"）
+│
+├── 用户讨论实习经历的对话 log
+│   → PROJECTS/work/{company}-{project}/
+│   → 提示用户是否要派生 interview-bank/behavioral/ STAR 故事
+│
+└── 太碎片 / 无法归类
+    → 保留在 INBOX，加 <!-- PENDING: 待补充 --> 标注
+```
 
 ---
 
-## Step 6: 标记已处理
+## 创建 KNOWLEDGE 节点的硬规则
 
-处理完的 INBOX 文件，在文件顶部加一行：
+1. **来源必填**：`meta.yaml` 的 `source_dialogue_logs` 必须指向具体 `INBOX/.../dialogue_logs/*.md` 路径
+2. **稀疏 > 饱满**：只写对话 log 实际覆盖到的部分。论文里有但对话没碰到的内容，**留白** + 在 Open Questions 里标"对话未覆盖"
+3. **自检题来源限定**：从对话 log 中用户**卡住 / 问错 / 被纠正 / 被要求复述**的位置提炼。不允许：从课件目录推断、按"标准考点"出题、自己编一个看起来合理的问题
+4. **粒度判断**：4 题 3 是才建独立节点（`META/policies/node_granularity.md`）。不够格的内容并入相关节点的 thoughts/ 或 README 补充段
+5. **不动用户私有 surface**：不在节点里写 "用于完成 TRACKS/x"。引用方向 tracks → knowledge 单向
+
+---
+
+## 更新已有节点
+
+- 增量添加，不重写
+- paper claim 与个人判断分开：前者进主体（标来源），后者进 `thoughts/`
+- 冲突显式暴露：新对话 log 与已有节点冲突 → 在 Open Questions 暴露，不静默覆盖
+- 更新 `meta.yaml` 的 `last_reviewed_at`
+
+---
+
+## 跨层联动检测（Triage Report 的输入）
+
+整理过程中持续记录这 4 类信号：
+
+### 1. TRACKS 进度建议
+对于本次新建/更新的 KNOWLEDGE 节点，扫描 `TRACKS/active/*` 和 `TRACKS/roadmap/*`，找出可能被本次入库覆盖的 checkbox，列入 Report。**不要自己勾**。
+
+### 2. skill-gap 更新建议
+对照 `CAREER/skill-gap.md` 的 Gap 表，看本次入库的能力是否能从 gap 移到"已具备"。给出 diff 形式建议。**不要自己改**。
+
+### 3. 实习挖掘 nudge
+检查 `PROJECTS/work/` 是否有 README 已列但还没建项目页的实习（如 `qiniu-supervisor-agent/`、`neo-deepresearch-and-react-agent/`）。如果距上次提醒已过一段时间或本次 INBOX 涉及相关技术，提醒用户开对话挖掘。
+
+### 4. 横向对比触发
+检测本次对话 log 是否包含 N 个方案的横向对比（关键词：vs、比较、trade-off、几种方案、A 还是 B）。如有，建议建对应 `PROBLEMS/x` 页。
+
+---
+
+## Triage Report 模板（每次整理结束必须输出）
+
+```markdown
+# Triage Report — {YYYY-MM-DD HH:MM}
+
+## ✅ 已建 / 已改
+
+### 新建
+- `KNOWLEDGE/llm/x/` — 来源：`INBOX/.../dialogue_logs/y.md`，覆盖范围：...
+- ...
+
+### 更新
+- `KNOWLEDGE/llm/z/README.md` — 加了 self-check Q3-Q5
+- `META/REGISTRY.md` — 同步
+- ...
+
+### 留在 INBOX 不动（参考材料）
+- `INBOX/CS6487.../ppts/*.pdf` — 参考材料，不入库
+- `INBOX/CS6487.../notes/week3.md` — 参考材料，不入库
+
+---
+
+## 🔔 建议你执行（4 类联动）
+
+### 1. 建议勾 TRACKS
+- `TRACKS/active/final-exam-prep.md` 的 "Topics in ML > 用对话 log 把每周关键概念问透" — 本次覆盖了 week3 (`KNOWLEDGE/llm/x/`)
+- ...
+
+### 2. 建议改 skill-gap
+- 把 "长程记忆系统" 从 Gap 移到"已具备"，理由：本次入库 `KNOWLEDGE/llm/long-term-memory/` 已有自检题且你都答出了
+- diff:
+  ```
+  - | 长程记忆系统 | summer-intern-agent | 用过 mem0 未深入 | P1 | ... |
+  + （移到"已具备"段）长程记忆系统 — KNOWLEDGE/llm/long-term-memory/
+  ```
+
+### 3. 实习挖掘 nudge
+- `PROJECTS/work/qiniu-supervisor-agent/` 还没建。本次 log 涉及了 supervisor agent 概念，是开对话挖掘的好时机。建议下次开 session 时说"挖掘七牛云实习"
+- `PROJECTS/work/neo-deepresearch-and-react-agent/` 同上
+
+### 4. 横向对比触发
+- 本次 log 第 N 段出现了 "RoPE vs ALiBi vs StreamingLLM" 三种方案对比，建议建 `PROBLEMS/long-context-degradation/`
+- （如无，写 "本次未检测到横向对比"）
+
+---
+
+## ⚠️ 冲突 / 待确认
+
+- 用户编辑了 `KNOWLEDGE/x/README.md` 的 Open Questions，与本次入库内容冲突。建议你审：...
+- 本次 log 第 X 段提到的 "Y 算法复杂度是 O(n)"，但已有节点写的是 O(n log n)。我标了 [待确认]，请确认
+- （如无，写 "无冲突"）
+
+---
+
+## 📊 本次整理统计
+
+- 新建节点：N 个
+- 更新节点：M 个
+- 处理 INBOX 文件：K 个
+- 留在 INBOX 不动：J 个
+```
+
+---
+
+## 标记已处理
+
+每个被处理的 INBOX 文件顶部加：
 
 ```
 <!-- PROCESSED: YYYY-MM-DD -->
 ```
 
-或者，如果用户允许，直接删除已处理的 INBOX 文件。
+参考材料文件（ppts、notes、tutorials）**不加**这个标记，因为它们不算"被处理"，只是被读过。
 
-默认行为：**加标记，不删除**。除非用户说"处理完可以删"。
+默认行为：加标记，不删除。除非用户明确说"处理完可以删"。
 
 ---
 
-## 特殊情况处理
+## 特殊情况
 
-### INBOX 项目是纯链接
-→ 创建 RAW_SOURCES 条目，记录链接和上下文。如果能判断主题，同时更新对应 KNOWLEDGE 节点的 refs。
+### 用户编辑了你写过的文件
+当作 ground truth，不覆盖。如果与新对话 log 冲突，在 Triage Report "冲突 / 待确认" 段暴露。
 
-### INBOX 项目是一个问题/困惑
-→ 判断是已有问题的补充还是新问题。如果是已有节点的 open question，加到该节点的 thoughts/README.md 或 README.md 的 Open Questions 中。
+### 对话 log 信息冲突
+保留双方观点 + 标 `[待确认]`，让用户决定。
 
-### INBOX 项目内容太碎片无法归类
-→ 保留在 INBOX，加标注 `<!-- PENDING: 内容太碎片，待后续补充后再归类 -->`。
+### 对话 log 太短或没有实质内容
+不建节点。在 Report 中说明 "INBOX/.../x.md 内容不足以建节点，建议补充对话后再处理"。
 
-### INBOX 项目跨多个主题
-→ 拆分内容到各自的正确位置，每个位置只包含与该位置相关的部分。
+### 用户标注 `[未来再处理]` 的 INBOX 项
+跳过，不处理。
 
-### 你不确定某内容是否正确
-→ 整理时标注 `[待确认]`，放在 open questions 中，不要当成已验证的事实。
-
-### INBOX 项目是与 LLM 的聊天记录
-→ 聊天记录本身作为 RAW_SOURCES 保存（保留原始对话上下文）。从中提取的知识点正常 triage 到 KNOWLEDGE/PROBLEMS 等。
-
-### INBOX 项目带有 track 标签（如 `[TML]` `[AI]` `[NLP]`）
-��� 这些是临时 track（如 final 备考）的学习痕迹。正常 triage 知识内容，但注意：
-- 过程性内容（cheat sheet 策略、做题技巧、考试安排）**不入库**，标记后丢弃
-- 只有**值得长期复用的知识点**才整理到 KNOWLEDGE/
-- 参考 `TRACKS/` 目录了解当前活跃的 track 和处理规则
+### 你不确定是否该建独立节点
+按粒度判断（4 题 3 是）。不确定就**先并入相关节点**，等内容积累再拆。

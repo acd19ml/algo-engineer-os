@@ -1,43 +1,17 @@
-# LLM
+# KNOWLEDGE / llm
 
-`KNOWLEDGE/llm/` 用于组织与 large language models 相关的知识节点。
+LLM 相关知识节点的域分组。
 
-这一层更关注：
+> **注意**：目录分组只是组织方式，不表示依赖关系。真实依赖写在每个节点的 `meta.yaml` 的 `depends_on` 字段里。
 
-- 基础架构
-- 训练与推理机制
-- 长上下文与效率问题
-- 模型变体
-- 与多模态系统的连接
+## 当前节点
 
-这个目录的作用，不是把所有 LLM 内容揉成一页，  
-而是逐步拆出可复用、可链接、可被路径与项目反复调用的 nodes。
+（暂无。Final 结束后会从对话 log 长出来）
 
----
+## 适合放这里的主题示例
 
-## 这个目录适合放什么
-
-当前优先建立的第一批 nodes：
-
-- [Transformer](./transformer/README.md)
-- [Self-Attention](./self-attention/README.md)
-- [Positional Encoding](./positional-encoding/README.md)
-
----
-
-## 维护原则
-
-- 保持 node 粒度清晰
-- family overview 尽量放到 `WIKI/`
-- 结构关系优先写入 `meta.yaml`
-- 数学、实现、资料、个人判断尽量分层
-
----
-
-## 当前示例
-
-当前目录下的第一批标准样板节点是：
-
-- [Transformer](/Users/mac/studyspace/algo-engineer-os/KNOWLEDGE/llm/transformer/README.md)
-- [Self-Attention](/Users/mac/studyspace/algo-engineer-os/KNOWLEDGE/llm/self-attention/README.md)
-- [Positional Encoding](/Users/mac/studyspace/algo-engineer-os/KNOWLEDGE/llm/positional-encoding/README.md)
+- 架构层：transformer、attention 变体、moe、kv-cache、rope
+- 训练：pretrain、sft、dpo、grpo、rlvr
+- 推理：speculative decoding、prefix caching、vllm、sglang
+- agent 基础：function calling、tool retrieval、memory architectures
+- 长上下文 / 效率：long-context-extension、quantization、flash-attention

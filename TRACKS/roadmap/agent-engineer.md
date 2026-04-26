@@ -1,12 +1,16 @@
 # Agent 算法工程师成长路线
 
-> 长期 track。按能力层组织，看全景、看路径、避免遗漏。不是学习计划，是能力地图。
+> ⚠️ **本文件待重写**：当前内容是基于"虚构新手"的层级模板，与你 CV（七牛云 supervisor agent + Neo deepresearch / 区块链 agent）的实际起点不匹配。
+>
+> 重写触发条件：你提供 `CAREER/target-roles/summer-intern-agent-engineer.md` 和 `newgrad-agent-engineer.md` 的目标方向后。新版本应包含：当前 focus（≤3 项）/ 暑期目标态 / 秋招目标态 / gap → 对应 KNOWLEDGE 节点 / 已掌握（链 cv.md bullet）。
+>
+> 在重写前，下方内容仅供参考，不要按它推进学习。
 
 ## 当前阶段 Focus
 
 （根据实际进展更新这里，指向当前最该优先补的 2-3 项）
 
-- [ ] TBD — 等 final 结束后启动
+- [ ] TBD — 等 final 结束后、target-roles 填完后启动重写
 
 ---
 
