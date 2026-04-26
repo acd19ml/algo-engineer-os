@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+._*
+
+# 临时草稿
+tmp/
+
+# 编辑器 / IDE
+.vscode/
+.idea/
+*.swp
+*~
