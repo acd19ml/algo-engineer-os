@@ -1,0 +1,26 @@
+id: multi-agent
+title: "Multi-Agent: When to Use, When Not to"
+type: capability
+status: stable
+created_at: 2026-05-09
+last_reviewed_at: 2026-05-09
+
+tags: [agent, multi-agent, architecture, decision-framework]
+depends_on: []
+related_nodes:
+  - context-engineering
+  - harness
+  - harness-practice
+  - agent-engineer-ability
+related_problems: []
+
+evidence_level:
+  concept: self_reasoned
+  math: not_verified
+  code: not_verified
+
+checklist:
+  concept: true
+  math: false
+  code: false
+  reproduction: false

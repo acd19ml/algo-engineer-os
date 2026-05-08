@@ -1,0 +1,27 @@
+id: harness-practice
+title: "Harness Practice: GAN-Inspired Three-Agent System"
+type: system
+status: stable
+created_at: 2026-05-09
+last_reviewed_at: 2026-05-09
+
+tags: [agent, harness, anthropic, multi-agent, evaluation]
+depends_on:
+  - harness
+related_nodes:
+  - harness
+  - context-engineering
+  - multi-agent
+  - agent-engineer-ability
+related_problems: []
+
+evidence_level:
+  concept: self_reasoned
+  math: not_verified
+  code: not_verified
+
+checklist:
+  concept: true
+  math: false
+  code: false
+  reproduction: false

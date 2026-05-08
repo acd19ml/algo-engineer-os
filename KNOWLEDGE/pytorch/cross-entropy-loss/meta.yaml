@@ -1,0 +1,24 @@
+id: cross-entropy-loss
+title: "Cross Entropy Loss"
+type: concept
+status: learning
+created_at: 2026-05-08
+last_reviewed_at: 2026-05-08
+
+tags: [pytorch, loss, softmax, classification]
+depends_on:
+  - classification-training-loop
+related_nodes:
+  - neural-language-model
+related_problems: []
+
+evidence_level:
+  concept: self_reasoned
+  math: verified
+  code: partially_verified
+
+checklist:
+  concept: true
+  math: true
+  code: true
+  reproduction: false

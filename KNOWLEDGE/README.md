@@ -7,9 +7,11 @@
 `KNOWLEDGE/` 不是笔记堆放区，也不是百科。它是这个 repo 的 **backbone**：每个节点对应一个稳定、可复用、可被多次引用的主题单元。
 
 它的核心约束：
-- **入库源唯一** = `INBOX/<topic>/dialogue_logs/*.md`。课件、ppt、tutorial 等参考材料不入库
-- **稀疏 > 饱满**：节点只写对话 log 实际覆盖到的部分。论文里写但你没在对话里推导/纠正/澄清过 ≠ 你学过
-- **自检题来源限定**：来自对话 log 中你**实际卡住/问错/被纠正/被要求复述**的位置。LLM 不许拍脑袋出题
+- **入库源限定** = `INBOX/<topic>/dialogue_logs/` 和 `internalized/`。课件、ppt、tutorial 等参考材料不入库（详见 `META/llm/triage.md`）
+- **节点是自含 artifact**：节点 / `meta.yaml` 不引用 INBOX 路径——INBOX 是临时层，可删
+- **形态：因果叙述 + 反事实推导**：不是 bullet 摘要。读者完全忘了能从节点重新学回来。详见 `META/policies/node_form.md`
+- **稀疏 > 饱满**：节点只写来源材料实际推导/澄清/纠正过的内容
+- **自检题独立于节点**：在 `KNOWLEDGE/_self_check/<domain>.md`，浅 → 深排序、链接到节点
 
 ## 节点结构
 
@@ -17,8 +19,8 @@
 
 ```
 KNOWLEDGE/{domain}/{node}/
-├── README.md     定义 + 要点 + 自检问题 + 关联 + 来源
-└── meta.yaml     结构化元数据
+├── README.md     因果叙述形态的节点正文（详见 META/policies/node_form.md）
+└── meta.yaml     结构化元数据（不含 INBOX 路径）
 ```
 
 按需扩展（有内容才建）：
@@ -32,9 +34,15 @@ KNOWLEDGE/{domain}/{node}/
 
 **不要建空文件**。没有内容就不建。
 
-## 模板
+自检题不在节点内——在 `KNOWLEDGE/_self_check/<domain>.md`。
 
-参考 `META/templates/node_README.template.md`。
+## 形态规则 + 模板
+
+写节点前必读：
+
+- 抽象规则：`META/policies/node_form.md`
+- 具体范例：`META/llm/few_shots/node_form.example.md`
+- 占位骨架：`META/templates/node_README.template.md`
 
 ## 节点和其它层的引用关系
 
@@ -43,11 +51,13 @@ KNOWLEDGE/{domain}/{node}/
 | KNOWLEDGE → KNOWLEDGE | ✓ 节点之间正常互引 |
 | KNOWLEDGE → PROBLEMS | ✓ 写"服务的问题页" |
 | KNOWLEDGE → RAW_SOURCES | ✓ 写来源 |
-| KNOWLEDGE → INBOX/dialogue_logs | ✓ 必填来源 |
-| **KNOWLEDGE → TRACKS** | ✗ 禁止。tracks 单向引用 knowledge，knowledge 不感知 tracks |
+| **KNOWLEDGE → INBOX** | ✗ 禁止（artifact 必须自含，INBOX 可删） |
+| **KNOWLEDGE → TRACKS** | ✗ 禁止。tracks 单向引用 knowledge |
 | **KNOWLEDGE → CAREER** | ✗ 禁止。CAREER 引用 knowledge |
+| **KNOWLEDGE → _self_check** | ✗ 禁止。_self_check 单向链接到 KNOWLEDGE |
+| **KNOWLEDGE → PODCAST** | ✗ 禁止。PODCAST 单向 mirror KNOWLEDGE |
 
-> 这个约束是 source-of-truth 设计的一部分：稳定层（KNOWLEDGE）不依赖不稳定层（TRACKS / CAREER）。
+> 这个约束是 source-of-truth 设计的一部分：稳定层（KNOWLEDGE）不依赖不稳定层（TRACKS / CAREER / PODCAST / _self_check / INBOX）。
 
 ## 节点粒度
 
@@ -65,5 +75,13 @@ lowercase kebab-case。canonical term 优先（`kv-cache`、`rope`、`rag`）。
 
 ```
 KNOWLEDGE/
-└── llm/    （目前为空，等 final 结束后从对话 log 长出来）
+├── _self_check/        自检题 deck（按 domain 组织）
+├── llm/
+├── methodology/        学习 / 答题方法这类 meta-skill
+├── ml/
+├── nlp/
+├── optimization/
+├── pytorch/
+├── transformer/
+└── vision/
 ```

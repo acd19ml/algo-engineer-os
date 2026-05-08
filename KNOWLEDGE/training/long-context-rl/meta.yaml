@@ -1,0 +1,25 @@
+id: long-context-rl
+title: "Long-Context RL Training"
+type: method
+status: stable
+created_at: 2026-05-09
+last_reviewed_at: 2026-05-09
+
+tags: [training, rl, long-context, lost-in-the-middle, curriculum-learning]
+depends_on:
+  - sft-rl-relationship
+related_nodes:
+  - sft-rl-relationship
+  - context-engineering
+related_problems: []
+
+evidence_level:
+  concept: self_reasoned
+  math: not_verified
+  code: not_verified
+
+checklist:
+  concept: true
+  math: false
+  code: false
+  reproduction: false

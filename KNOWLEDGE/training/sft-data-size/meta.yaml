@@ -1,0 +1,24 @@
+id: sft-data-size
+title: "SFT Data Size: How Much is Enough"
+type: methodology
+status: stable
+created_at: 2026-05-09
+last_reviewed_at: 2026-05-09
+
+tags: [training, sft, data-engineering, finetune]
+depends_on: []
+related_nodes:
+  - sft-rl-relationship
+  - continue-pretrain-vs-finetune
+related_problems: []
+
+evidence_level:
+  concept: self_reasoned
+  math: not_verified
+  code: not_verified
+
+checklist:
+  concept: true
+  math: false
+  code: false
+  reproduction: false

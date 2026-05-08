@@ -1,0 +1,24 @@
+id: nlp-pipeline-tokenization
+title: "NLP Pipeline and Tokenization"
+type: concept
+status: learning
+created_at: 2026-05-08
+last_reviewed_at: 2026-05-08
+
+tags: [nlp, tokenization, representation]
+depends_on: []
+related_nodes:
+  - bpe-tokenization
+  - classification-training-loop
+related_problems: []
+
+evidence_level:
+  concept: self_reasoned
+  math: partially_verified
+  code: partially_verified
+
+checklist:
+  concept: true
+  math: false
+  code: true
+  reproduction: false
