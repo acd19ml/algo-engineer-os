@@ -1,0 +1,2957 @@
+% A1
+\subsection{Step-Level Breakdown Evidence}\label{app:A1}
+
+This appendix supports step-level claims about where AWM gains and
+losses come from in \texttt{C1}. The evidence below is drawn from the
+audited step-level decomposition of the \texttt{C1} sites.
+
+\subsubsection{Representative step-level deltas from the source
+output}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.14\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}>{\raggedleft\arraybackslash}p{0.14\linewidth}>{\raggedleft\arraybackslash}p{0.14\linewidth}>{\raggedleft\arraybackslash}p{0.14\linewidth}>{\raggedleft\arraybackslash}p{0.18\linewidth}@{}}
+\toprule\noalign{}
+Website & Condition & \texttt{CLICK\ dElem\ /\ dStepSR} &
+\texttt{TYPE\ dElem\ /\ dActF1\ /\ dStepSR} &
+\texttt{first\_half\ dStepSR} & \texttt{second\_half\ dStepSR} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{budget} & \texttt{offline\_wf\ -\ no\_workflow} &
+\texttt{-12.1\ /\ -12.1} & \texttt{+0.0\ /\ +8.4\ /\ +9.1} &
+\texttt{-1.9} & \texttt{-10.9} \\
+\texttt{kayak} & \texttt{offline\_wf\ -\ no\_workflow} &
+\texttt{+10.7\ /\ +10.7} & \texttt{+0.0\ /\ +1.4\ /\ +0.0} &
+\texttt{+0.0} & \texttt{+13.0} \\
+\texttt{newegg} & \texttt{offline\_wf\ -\ no\_workflow} &
+\texttt{+9.1\ /\ +6.1} & \texttt{+33.3\ /\ +50.0\ /\ +33.3} &
+\texttt{+4.4} & \texttt{+7.1} \\
+\texttt{sixflags} & \texttt{offline\_wf\ -\ no\_workflow} &
+\texttt{-6.1\ /\ -6.1} & \texttt{+0.0\ /\ +0.0\ /\ +0.0} & \texttt{-5.9}
+& \texttt{-3.3} \\
+\texttt{united} & \texttt{offline\_wf\ -\ no\_workflow} &
+\texttt{+3.6\ /\ +3.6} & \texttt{+16.7\ /\ +2.8\ /\ +0.0} &
+\texttt{+3.0} & \texttt{+0.0} \\
+\texttt{yellowpages} & \texttt{offline\_wf\ -\ no\_workflow} &
+\texttt{+0.0\ /\ +0.0} & \texttt{+28.6\ /\ +19.5\ /\ +28.6} &
+\texttt{+0.0} & \texttt{+7.1} \\
+\end{longtable}
+}
+
+\subsubsection{Source excerpts}
+
+\paragraph{Kayak}
+
+\begin{verbatim}
+[Delta: offline_wf - no_workflow] by action_type
+  CLICK                   +10.7%     +3.6%    +10.7%
+  SKIP                     +0.0%     +0.0%     +0.0%
+  TYPE                     +0.0%     +1.4%     +0.0%
+
+[Delta: offline_wf - no_workflow] by step_half
+  first_half               +0.0%     +0.3%     +0.0%
+  second_half             +13.0%     +4.3%    +13.0%
+\end{verbatim}
+
+\paragraph{Budget}
+
+\begin{verbatim}
+[Delta: offline_wf - no_workflow] by action_type
+  CLICK                   -12.1%     -1.7%    -12.1%
+  SELECT                   +0.0%     +0.0%     +0.0%
+  SKIP                     +0.0%     +0.0%     +0.0%
+  TYPE                     +0.0%     +8.4%     +9.1%
+
+[Delta: offline_wf - no_workflow] by step_half
+  first_half               -3.8%     +3.6%     -1.9%
+  second_half             -10.9%     -4.3%    -10.9%
+\end{verbatim}
+
+\paragraph{Newegg}
+
+\begin{verbatim}
+[Delta: offline_wf - no_workflow] by action_type
+  CLICK                    +9.1%     -3.0%     +6.1%
+  SELECT                   +0.0%    +20.0%    +25.0%
+  SKIP                     +0.0%     +0.0%     +0.0%
+  TYPE                    +33.3%    +50.0%    +33.3%
+\end{verbatim}
+
+\subsubsection{Interpretation limits}
+
+\begin{itemize}
+\tightlist
+\item
+  This appendix supports direction-of-effect claims, not causal proof.
+\item
+  \texttt{TYPE} counts are small on several sites, so the main robust
+  use is qualitative: \texttt{TYPE} gains are often non-negative while
+  \texttt{CLICK} varies sharply by site.
+\item
+  Later-step accumulation is strongest on \texttt{kayak}; other sites
+  show weaker or mixed support.
+\end{itemize}
+
+
+% A2
+\clearpage
+\subsection{Paired-Case Summary Evidence}\label{app:A2}
+
+This appendix supports claims about how often workflow actually changes
+behavior, and whether changed steps are net positive or net negative.
+The evidence below summarizes the audited paired-case distributions over
+the seven \texttt{C1} sites.
+
+\subsubsection{\texorpdfstring{A2.1 Corrected overall totals for the seven
+\texttt{C1}
+websites}{A2.1 Corrected overall totals for the seven C1 websites}}
+
+This table corrects the earlier erroneous denominator \texttt{523}.\\
+The total paired-step count for the seven audited \texttt{C1} sites is
+\texttt{475}.
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.28\linewidth}>{\raggedright\arraybackslash}p{0.46\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}@{}}
+\toprule\noalign{}
+Category & Count & Pct of all paired steps \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{positive} & 26 & \texttt{5.5\%} \\
+\texttt{negative} & 24 & \texttt{5.1\%} \\
+\texttt{ineffective} & 252 & \texttt{53.1\%} \\
+\texttt{redundant} & 173 & \texttt{36.4\%} \\
+\texttt{changed\ =\ positive\ +\ negative} & 50 & \texttt{10.5\%} \\
+\end{longtable}
+}
+
+Among changed steps only:
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.36\linewidth}>{\centering\arraybackslash}p{0.60\linewidth}@{}}
+\toprule\noalign{}
+Metric & Value \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{positive\ /\ (positive\ +\ negative)} &
+\texttt{26\ /\ 50\ =\ 52.0\%} \\
+\texttt{net\ gain} & \texttt{+2\ steps} \\
+\end{longtable}
+}
+
+\subsubsection{\texorpdfstring{A2.2 Site-wise evidence from
+\texttt{C1}}{A2.2 Site-wise evidence from C1}}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.12\linewidth}>{\raggedleft\arraybackslash}p{0.20\linewidth}>{\raggedleft\arraybackslash}p{0.11\linewidth}>{\raggedleft\arraybackslash}p{0.11\linewidth}>{\raggedleft\arraybackslash}p{0.11\linewidth}>{\raggedleft\arraybackslash}p{0.11\linewidth}>{\raggedright\arraybackslash}p{0.20\linewidth}@{}}
+\toprule\noalign{}
+Website & Total & Positive & Negative & Ineffective & Redundant &
+Verdict pattern \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{budget} & 99 & 6 & 12 & 53 & 28 & negative-dominated \\
+\texttt{kayak} & 48 & 3 & 0 & 22 & 23 & reproduced, no negatives \\
+\texttt{kohls} & 53 & 2 & 2 & 33 & 16 & mixed \\
+\texttt{newegg} & 87 & 5 & 0 & 56 & 26 & reproduced, no negatives \\
+\texttt{sixflags} & 64 & 3 & 6 & 23 & 32 & negative-dominated \\
+\texttt{united} & 63 & 3 & 2 & 35 & 23 & slight positive edge \\
+\texttt{yellowpages} & 61 & 4 & 2 & 30 & 25 & slight positive edge \\
+\end{longtable}
+}
+
+\subsubsection{Source excerpts}
+
+\paragraph{Kayak}
+
+\begin{verbatim}
+[Overall Distribution]
+  positive             3    6.2%
+  negative             0    0.0%
+  ineffective         22   45.8%
+  redundant           23   47.9%
+
+[Workflow Impact]
+  Positive / (Positive + Negative) = 3/3 = 100.0%
+  Net gain (positive - negative)   = +3 steps
+\end{verbatim}
+
+\paragraph{Newegg}
+
+\begin{verbatim}
+[Overall Distribution]
+  positive             5    5.7%
+  negative             0    0.0%
+  ineffective         56   64.4%
+  redundant           26   29.9%
+\end{verbatim}
+
+\paragraph{Budget}
+
+\begin{verbatim}
+[Overall Distribution]
+  positive             6    6.1%
+  negative            12   12.1%
+  ineffective         53   53.5%
+  redundant           28   28.3%
+\end{verbatim}
+
+\paragraph{Sixflags}
+
+\begin{verbatim}
+[Overall Distribution]
+  positive             3    4.7%
+  negative             6    9.4%
+  ineffective         23   35.9%
+  redundant           32   50.0%
+\end{verbatim}
+
+\subsubsection{Interpretation limits}
+
+\begin{itemize}
+\tightlist
+\item
+  This appendix supports statements about behavioral footprint and sign
+  of net change.
+\item
+  It should not be used to claim that all changed steps are equally
+  important.
+\item
+  The corrected denominator \texttt{475} should be used consistently
+  wherever these \texttt{C1} distributions are discussed.
+\end{itemize}
+
+
+% A3
+\clearpage
+\subsection{First-Run Target-Site Result Note}\label{app:A3}
+
+This appendix records the first-run result facts on the two target
+sites and preserves the corresponding diagnostic output as exploratory
+tracing material. The note below is based on the audited target-site
+error summaries and their associated negative-case review.
+
+\subsubsection{Summary table}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.12\linewidth}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedleft\arraybackslash}p{0.11\linewidth}>{\raggedleft\arraybackslash}p{0.11\linewidth}>{\raggedleft\arraybackslash}p{0.11\linewidth}>{\raggedleft\arraybackslash}p{0.11\linewidth}>{\raggedright\arraybackslash}p{0.20\linewidth}@{}}
+\toprule\noalign{}
+Target & Model / setup & Positive & Negative & Skip-rate shift vs source
+& CLICK share of negatives & Safe reading \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{tripadvisor} & \texttt{qwen/qwen3.5-397b-\allowbreak a17b\ /\ online\_wf} &
+4 & 18 & \texttt{+16pp} (\texttt{44.9\%} vs \texttt{29.2\%}) &
+\texttt{78\%} & first-run underperformance with weaker baseline
+candidate quality \\
+\texttt{reddit} & \texttt{qwen/qwen3.5-397b-\allowbreak a17b\ /\ online\_wf} & 2 & 5
+& \texttt{+4.7pp} (\texttt{33.9\%} vs \texttt{29.2\%}) & \texttt{80\%} &
+first-run underperformance without obvious baseline collapse \\
+\end{longtable}
+}
+
+\subsubsection{Source excerpts}
+
+\paragraph{Reddit}
+
+\begin{verbatim}
+[Degradation Profile: online_wf]
+  Positive: 2, Negative: 5, Ineffective: 87, Redundant: 86
+
+[Hypothesis B: Element grounding collapse]
+  Skip rate (target baseline): 33.9%
+  Skip rate (source baseline): 29.2%
+  CLICK Elem Acc (target baseline): 84.2%
+  CLICK Elem Acc (source baseline): 75.0%
+  -> No strong B evidence (baseline performs similarly)
+
+[Hypothesis A: Workflow content mismatch]
+  Negative steps: 5
+    CLICK: 4  TYPE: 1
+    CLICK share of negatives: 80%
+  -> A evidence: Negatives dominated by CLICK (element-level mismatch, not value mismatch)
+
+[Preliminary Verdict]
+  -> Primarily Hypothesis A: workflow content is mismatched
+\end{verbatim}
+
+\paragraph{Tripadvisor}
+
+\begin{verbatim}
+[Degradation Profile: online_wf]
+  Positive: 4, Negative: 18, Ineffective: 131, Redundant: 72
+
+[Hypothesis B: Element grounding collapse]
+  Skip rate (target baseline): 44.9%
+  Skip rate (source baseline): 29.2%
+  CLICK Elem Acc (target baseline): 81.2%
+  CLICK Elem Acc (source baseline): 75.0%
+  -> B evidence: Skip rate +16pp higher on target site
+
+[Hypothesis A: Workflow content mismatch]
+  Negative steps: 18
+    CLICK: 14  TYPE: 4
+    CLICK share of negatives: 78%
+  -> A evidence: Negatives dominated by CLICK (element-level mismatch, not value mismatch)
+
+[Preliminary Verdict]
+  -> Mixed: both element grounding degradation AND workflow mismatch
+\end{verbatim}
+
+\subsubsection{Interpretation limits}
+
+\begin{itemize}
+\tightlist
+\item
+  This appendix is best used as first-run result tracing, not as a
+  report-level mechanism proof.
+\item
+  The diagnostic labels in the underlying output are useful for
+  internal inspection, but they should not be promoted to workflow
+  provenance claims or full causal decomposition.
+\item
+  The strongest safe summary is:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{tripadvisor}: first-run underperformance plus weaker
+    baseline candidate quality
+  \item
+    \texttt{reddit}: first-run underperformance without obvious
+    baseline collapse
+  \end{itemize}
+\end{itemize}
+
+
+% A4
+\clearpage
+\subsection{C4 Result Table}\label{app:A4}
+
+This appendix supports \texttt{C4} claims about \texttt{NL\ vs\ HTML}
+and \texttt{code\ vs\ text\ workflow}. The tables below consolidate the
+audited first-run \texttt{C4} representation results.
+
+\subsubsection{\texorpdfstring{A4.1 \texttt{NL\ vs\ HTML} first-run
+results}{A4.1 NL vs HTML first-run results}}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.14\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}>{\raggedleft\arraybackslash}p{0.14\linewidth}>{\raggedleft\arraybackslash}p{0.14\linewidth}>{\raggedleft\arraybackslash}p{0.14\linewidth}>{\raggedleft\arraybackslash}p{0.18\linewidth}@{}}
+\toprule\noalign{}
+Website & Condition & Element Acc & Action F1 & Step SR & SR \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{kayak} & \texttt{desc\_only} & 54.8 & 61.2 & 45.3 & 0.0 \\
+\texttt{kayak} & \texttt{html\_only} & 52.4 & 63.5 & 48.0 & 0.0 \\
+\texttt{kayak} & \texttt{desc\_html} & 54.8 & 63.5 & 50.3 & 0.0 \\
+\texttt{united} & \texttt{desc\_only} & 57.9 & 61.9 & 55.9 & 33.3 \\
+\texttt{united} & \texttt{html\_only} & 61.2 & 64.5 & 60.6 & 33.3 \\
+\texttt{united} & \texttt{desc\_html} & 57.9 & 61.1 & 51.7 & 16.7 \\
+\texttt{newegg} & \texttt{desc\_only} & 42.0 & 44.3 & 30.5 & 0.0 \\
+\texttt{newegg} & \texttt{html\_only} & 36.2 & 42.6 & 23.9 & 0.0 \\
+\texttt{newegg} & \texttt{desc\_html} & 38.0 & 42.4 & 30.3 & 0.0 \\
+\end{longtable}
+}
+
+\subsubsection{\texorpdfstring{A4.2 \texttt{code\ vs\ text\ workflow}
+first-run
+result}{A4.2 code vs text workflow first-run result}}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.14\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}>{\raggedleft\arraybackslash}p{0.14\linewidth}>{\raggedleft\arraybackslash}p{0.14\linewidth}>{\raggedleft\arraybackslash}p{0.14\linewidth}>{\raggedleft\arraybackslash}p{0.18\linewidth}@{}}
+\toprule\noalign{}
+Website & Condition & Element Acc & Action F1 & Step SR & SR \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{kayak} & \texttt{text\_wf} & 55.3 & 60.8 & 45.8 & 0.0 \\
+\texttt{kayak} & \texttt{code\_wf} & 52.4 & 63.4 & 48.0 & 0.0 \\
+\end{longtable}
+}
+
+\subsubsection{Interpretive summary}
+
+The three-site \texttt{NL\ vs\ HTML} comparison does not support the
+paper's directional claim on Mind2Web. Under the current prompt-level
+code representation, the first \texttt{kayak} run suggests only modest
+differences between \texttt{code\ workflow} and
+\texttt{text\ workflow}.
+
+\subsubsection{Interpretation limits}
+
+\begin{itemize}
+\tightlist
+\item
+  This appendix supports first-run result claims only.
+\item
+  \texttt{code\ vs\ text\ workflow} currently has one audited site
+  (\texttt{kayak}), not a three-site result.
+\end{itemize}
+
+
+% A5
+\clearpage
+\subsection{C5 Workflow Quality Table}\label{app:A5}
+
+This appendix supports \texttt{C5} claims about workflow compactness,
+overlap, and prompt-level usage proxies. The table below summarizes the
+audited first-run workflow-quality statistics under the current
+approximation.
+
+\subsubsection{First-run quality
+table}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.12\linewidth}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedleft\arraybackslash}p{0.11\linewidth}>{\raggedleft\arraybackslash}p{0.11\linewidth}>{\raggedleft\arraybackslash}p{0.11\linewidth}>{\raggedleft\arraybackslash}p{0.11\linewidth}>{\raggedright\arraybackslash}p{0.20\linewidth}@{}}
+\toprule\noalign{}
+Website & Condition & \#workflows & coverage & function overlap &
+utility rate & Current verdict \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{kayak} & \texttt{lm\_wf} & 7 & 1.0 & 0.0 & 1.0 &
+\texttt{reproduced\ (first\ run)} \\
+\texttt{newegg} & \texttt{lm\_wf} & 5 & 1.0 & 0.0333 & 1.0 &
+\texttt{reproduced\ (first\ run)} \\
+\texttt{united} & \texttt{lm\_wf} & 5 & 1.0 & 0.0 & 1.0 &
+\texttt{reproduced\ (first\ run)} \\
+\end{longtable}
+}
+
+\subsubsection{Interpretive summary}
+
+Across the three audited sites, the first-run evidence supports the
+directional workflow-quality conclusion under the current approximation:
+the workflow libraries are compact, pairwise overlap is low, and the
+prompt-level usage proxies are high. The main caveat is that
+\texttt{utility\ rate} remains a broad proxy rather than a strict
+adherence measure.
+
+\subsubsection{Interpretation limits}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{coverage\ =\ 1.0} and \texttt{utility\ rate\ =\ 1.0} here are
+  prompt-level proxies.
+\item
+  These values should not be reworded as ``the model always followed the
+  workflow.''
+\item
+  The safest wording is: the workflow text was consistently present and
+  detectable in the prompt context under the current approximation.
+\end{itemize}
+
+
+% A6
+\clearpage
+\subsection{Alignment-Rate Note}\label{app:A6}
+
+This appendix provides a traceable source block for the exploratory
+alignment-rate numbers used in \texttt{§10.2}. The heuristic below is
+reconstructed from the alignment-rate analysis used during the audit.
+
+\subsubsection{What this metric is}
+
+The alignment-rate audit computes a workflow-target alignment heuristic
+using keyword overlap between:
+
+\begin{itemize}
+\tightlist
+\item
+  workflow pattern descriptions
+\item
+  target-element context extracted from the observation HTML
+\end{itemize}
+
+It is explicitly \textbf{not} a semantic-match metric.
+
+\subsubsection{Current site-wise
+values}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.28\linewidth}>{\raggedleft\arraybackslash}p{0.46\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}@{}}
+\toprule\noalign{}
+Website & Alignment rate & C1 status \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{budget} & 97.2\% & not reproduced \\
+\texttt{sixflags} & 94.2\% & not reproduced \\
+\texttt{newegg} & 90.9\% & reproduced \\
+\texttt{kayak} & 70.6\% & reproduced \\
+\end{longtable}
+}
+
+\subsubsection{Safe interpretation}
+
+\begin{itemize}
+\tightlist
+\item
+  The metric is suitable for supporting the claim that \textbf{surface
+  alignment does not reliably predict performance}.
+\item
+  It is \textbf{not} strong enough to support semantic-fit claims on its
+  own.
+\item
+  \texttt{newegg} is an explicit exception to any monotonic ``higher
+  alignment = worse performance'' story.
+\end{itemize}
+
+\subsubsection{Source excerpt}
+
+\begin{verbatim}
+Heuristic: keyword overlap between workflow pattern descriptions
+           and observation element context for each target action.
+Limitations: label-lag, keyword ambiguity, placeholder fallback,
+             no value-level matching for TYPE/SELECT.
+
+SUMMARY TABLE
+  kayak               17      6     34       24    70.6%
+  newegg              14      7     44       40    90.9%
+  budget              35     10     71       69    97.2%
+  sixflags            18      7     52       49    94.2%
+\end{verbatim}
+
+
+% A7
+\clearpage
+\subsection{Offline-vs-Online Trade-Off}\label{app:A7}
+
+\subsubsection{Overview}
+
+This appendix is retained as an exploratory rereading of existing
+Mind2Web outputs. It should not be used as a primary final-report
+appendix for target-site mechanism claims.
+
+The goal here is not to introduce a new experiment. It is to re-read
+existing outputs from a mechanism perspective and ask:
+
+\begin{itemize}
+\tightlist
+\item
+  what kinds of step-level gains does \texttt{offline\_wf} produce on
+  \texttt{kayak}?
+\item
+  what kinds of step-level gains does \texttt{online\_wf} produce on the
+  same site?
+\item
+  what first-run result pattern appears on the farther targets
+  \texttt{tripadvisor} and \texttt{reddit}?
+\end{itemize}
+
+This appendix is based on four source types: audited step-level
+summaries, audited paired-case summaries, workflow texts from
+\texttt{kayak}, and manually verified negative cases from the
+\texttt{tripadvisor} and \texttt{reddit} target-site runs.
+
+\subsubsection{\texorpdfstring{A7.1 Same-Site Comparison on
+\texttt{kayak}}{A7.1 Same-Site Comparison on kayak}}
+
+\paragraph{Aggregate outcome}
+
+From the audited step-level summary:
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedleft\arraybackslash}p{0.30\linewidth}>{\raggedleft\arraybackslash}p{0.22\linewidth}>{\raggedleft\arraybackslash}p{0.24\linewidth}@{}}
+\toprule\noalign{}
+condition & Elem Acc & Act F1 & Step SR \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+no\_workflow & 52.1\% & 60.9\% & 47.9\% \\
+offline\_wf & 58.3\% & 63.2\% & 54.2\% \\
+online\_wf & 56.2\% & 65.4\% & 54.2\% \\
+\end{longtable}
+}
+
+Observation:
+
+\begin{itemize}
+\tightlist
+\item
+  both \texttt{offline\_wf} and \texttt{online\_wf} improve
+  \texttt{Step\ SR} by \texttt{+6.3pp} over baseline on \texttt{kayak}
+\item
+  \texttt{offline\_wf} has slightly higher \texttt{Elem\ Acc}
+\item
+  \texttt{online\_wf} has slightly higher \texttt{Act\ F1}
+\end{itemize}
+
+This already suggests that the two conditions are not helping in exactly
+the same way.
+
+\paragraph{Action-type
+decomposition}
+
+From the audited step-level summary:
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedleft\arraybackslash}p{0.30\linewidth}>{\raggedleft\arraybackslash}p{0.22\linewidth}>{\raggedleft\arraybackslash}p{0.24\linewidth}@{}}
+\toprule\noalign{}
+delta vs no\_workflow & CLICK dStepSR & TYPE dActF1 & TYPE dStepSR \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+offline\_wf & +10.7\% & +1.4\% & +0.0\% \\
+online\_wf & +7.1\% & +19.2\% & +16.7\% \\
+\end{longtable}
+}
+
+Reading:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{offline\_wf} contributes more on \texttt{CLICK} grounding
+\item
+  \texttt{online\_wf} contributes much more on \texttt{TYPE}
+  formatting/value guidance
+\end{itemize}
+
+This is the clearest quantitative sign of a trade-off rather than a
+simple dominance relation.
+
+\paragraph{\texorpdfstring{Direct paired comparison:
+\texttt{online\_wf} vs
+\texttt{offline\_wf}}{Direct paired comparison: online\_wf vs offline\_wf}}
+
+From the direct offline-vs-online paired comparison:
+
+\begin{center}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.28\linewidth}>{\raggedright\arraybackslash}p{0.46\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}@{}}
+\toprule
+category & count & pct \\
+\midrule
+positive & 1 & 2.1\% \\
+negative & 1 & 2.1\% \\
+ineffective & 21 & 43.8\% \\
+redundant & 25 & 52.1\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+By action type:
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedleft\arraybackslash}p{0.30\linewidth}>{\raggedleft\arraybackslash}p{0.22\linewidth}>{\raggedleft\arraybackslash}p{0.24\linewidth}@{}}
+\toprule\noalign{}
+type & pos & neg & total \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+CLICK & 0 & 1 & 28 \\
+TYPE & 1 & 0 & 6 \\
+\end{longtable}
+}
+
+The only positive case for \texttt{online\_wf} over \texttt{offline\_wf}
+is a TYPE-format correction:
+
+\begin{itemize}
+\tightlist
+\item
+  task: \texttt{Find\ a\ cheapest\ SUV\ in\ Brooklyn\ for\ 1\ day}
+\item
+  target: \texttt{TYPE\ {[}35686{]}\ {[}PENN\ STATION{]}}
+\item
+  offline-side prediction: \texttt{Penn\ Station}
+\item
+  online-side prediction: \texttt{PENN\ STATION}
+\end{itemize}
+
+The only negative case for \texttt{online\_wf} against
+\texttt{offline\_wf} is a CLICK choice on the same task:
+
+\begin{itemize}
+\tightlist
+\item
+  target: \texttt{CLICK\ {[}59393{]}}
+\item
+  offline-side prediction: \texttt{CLICK\ {[}59393{]}}
+\item
+  online-side prediction: \texttt{CLICK\ {[}63241{]}}
+\end{itemize}
+
+So the direct pair is internally consistent with the aggregate
+decomposition above:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{online\_wf} helps on local value formatting
+\item
+  \texttt{offline\_wf} is slightly steadier on result-page clicking
+\end{itemize}
+
+\subsubsection{Workflow-Text
+Difference}
+
+The workflow texts show a structural contrast.
+
+\paragraph{Offline workflow text}
+
+The audited \texttt{kayak} offline workflow contains broader reusable
+search primitives:
+
+\begin{itemize}
+\tightlist
+\item
+  enter location for car or hotel search
+\item
+  select travel dates
+\item
+  select one-way flight
+\item
+  search vacation packages
+\item
+  search flights
+\item
+  select flight filters
+\item
+  select hotel filters
+\item
+  view and select deals
+\end{itemize}
+
+These are relatively general travel-site routines. They are not tied to
+one exact successful task sequence.
+
+\paragraph{Online workflow text}
+
+The audited \texttt{kayak} online workflow is narrower and more
+trajectory-shaped:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{search\_for\_cars\_kayak}
+\item
+  \texttt{select\_location\_kayak}
+\item
+  \texttt{select\_dates\_for\_rental\_kayak}
+\item
+  \texttt{search\_flights\_kayak}
+\item
+  \texttt{browse\_car\_type\_kayak}
+\end{itemize}
+
+Compared with the offline library, the online library is:
+
+\begin{itemize}
+\tightlist
+\item
+  more site-specific
+\item
+  more task-family-specific
+\item
+  more tightly coupled to the successful test-time routines that
+  generated it
+\end{itemize}
+
+This supports the interpretation that \texttt{online\_wf} is closer to
+the current test distribution, but also less robust as a general
+reusable library.
+
+\subsubsection{\texorpdfstring{A7.3 First-Run Target-Site
+Underperformance for \texttt{online\_wf}}{A7.3 First-Run Target-Site Underperformance for online\_wf}}
+
+The same logged setting that helps on \texttt{kayak} does not carry over
+as a positive first-run result on the two target sites available here.
+
+\paragraph{Tripadvisor}
+
+From the audited paired-case summary:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{positive\ =\ 4}
+\item
+  \texttt{negative\ =\ 18}
+\item
+  \texttt{net\ =\ -14}
+\end{itemize}
+
+From the manually verified tripadvisor negative cases:
+
+\begin{itemize}
+\tightlist
+\item
+  multiple step-0 failures convert a required \texttt{CLICK} into an
+  early \texttt{TYPE}
+\item
+  example tasks that should begin by entering a category or opening
+  navigation are pushed into location search instead
+\item
+  example wrong values include \texttt{Eiffel\ Tower\ Paris},
+  \texttt{Jaipur}, \texttt{San\ Francisco}, and \texttt{Egypt}
+\end{itemize}
+
+This is consistent with a recorded prompt-level mismatch pattern, but
+not by itself a controlled causal proof.
+
+\paragraph{Reddit}
+
+From the audited paired-case summary:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{positive\ =\ 2}
+\item
+  \texttt{negative\ =\ 5}
+\item
+  \texttt{net\ =\ -3}
+\end{itemize}
+
+From the manually verified reddit negative cases:
+
+\begin{itemize}
+\tightlist
+\item
+  the failures are mostly \texttt{CLICK} substitutions
+\item
+  the induced workflow assumes a small menu of Reddit-specific routines
+  such as search, join, sort, and time filter
+\item
+  these routines are not broadly transferable once the target task
+  diverges from the learned community/search template
+\end{itemize}
+
+This is weaker than the Tripadvisor case and should be read only as
+same-direction exploratory evidence.
+
+\subsubsection{Exploratory
+reading}
+
+The evidence supports only a cautious exploratory reading.
+
+\paragraph{Offline workflow}
+
+\begin{itemize}
+\tightlist
+\item
+  derived from training data rather than from the
+  model\textquotesingle s own recent test-time trajectories
+\item
+  broader and more reusable at the text level
+\item
+  steadier on \texttt{CLICK} grounding and later-stage navigation on
+  \texttt{kayak}
+\item
+  potentially vulnerable when the learned library is semantically
+  misaligned with the evaluated task/site
+\end{itemize}
+
+\paragraph{Online workflow}
+
+\begin{itemize}
+\tightlist
+\item
+  induced from same-run trajectories in the current implementation, so
+  it is closer to the immediate test distribution
+\item
+  stronger at local TYPE/value guidance on \texttt{kayak}
+\item
+  narrower and more routine-shaped
+\item
+  more likely to encode local biases or wrong subroutines that later
+  appear in prompt-level mismatch cases
+\end{itemize}
+
+\subsubsection{Interpretive summary}
+
+Taken together, the evidence suggests a trade-off rather than a simple
+ranking: \texttt{offline\_wf} is broader and steadier on CLICK-side
+grounding on \texttt{kayak}, while \texttt{online\_wf} is more
+test-proximate and stronger on local TYPE/value guidance there. The
+additional target-site readings should be treated as exploratory
+context, not as a standalone causal mechanism claim.
+
+\subsubsection{Interpretation limits}
+
+This is still first-run evidence, not a repeated-estimate claim.
+
+In particular:
+
+\begin{itemize}
+\tightlist
+\item
+  the direct \texttt{offline\_wf} vs \texttt{online\_wf} comparison here
+  is only on \texttt{kayak}
+\item
+  the target-site underperformance evidence comes from \texttt{tripadvisor} and
+  \texttt{reddit}
+\item
+  the mechanism reading remains weaker than controlled causal
+  identification and should be treated as exploratory
+\end{itemize}
+
+
+% A8
+\clearpage
+\subsection{Online Small-Data Efficiency}\label{app:A8}
+
+\subsubsection{Overview}
+
+This appendix is retained as an exploratory prefix-level rereading of
+logged online results. It should not be used as a primary appendix for
+a standalone mechanism claim.
+
+The paper\textquotesingle s online-memory narrative implies that a small
+number of trajectories may already be enough to make the induced
+workflow useful.
+
+This appendix checks that implication without adding any new experiment.
+It asks:
+
+\begin{itemize}
+\tightlist
+\item
+  when \texttt{induce\_steps=1}, does \texttt{online\_wf} show
+  measurable gains after only a few induced examples?
+\item
+  is that early-gain pattern stable across source and target settings?
+\end{itemize}
+
+This appendix is derived from the reconstructed online prefix curves,
+cross-checked against the audited step-level and paired-case summaries.
+
+\subsubsection{Method}
+
+For each online setting, define:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{budget\ =\ i}
+\item
+  where \texttt{i} is the number of prior examples already used for
+  workflow induction when evaluating sample \texttt{i}
+\end{itemize}
+
+Under \texttt{induce\_steps=1}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{budget=0} means the very first sample, still without induced
+  workflow
+\item
+  \texttt{budget=1} means one prior example has already been folded
+  into the workflow
+\item
+  \texttt{budget=2} means two prior examples have already been folded in
+\end{itemize}
+
+For each site, we compare:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{online\_wf}
+\item
+  against the matching \texttt{no\_workflow}
+\end{itemize}
+
+and compute cumulative prefix deltas for:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{Elem\ Acc}
+\item
+  \texttt{Action\ F1}
+\item
+  \texttt{Step\ SR}
+\end{itemize}
+
+\subsubsection{Main result}
+
+\paragraph{\texorpdfstring{Prefix-level \texttt{Step\ SR}
+deltas}{Prefix-level Step SR deltas}}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedright\arraybackslash}p{0.30\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}>{\raggedright\arraybackslash}p{0.24\linewidth}@{}}
+\toprule\noalign{}
+site & earliest positive prefix & best prefix & final prefix \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+kayak & \texttt{budget=1}, \texttt{+5.00pp} & \texttt{budget=5},
+\texttt{+5.63pp} & \texttt{+5.63pp} \\
+tripadvisor & none & best observed still negative (\texttt{budget=1},
+\texttt{-3.57pp}) & \texttt{-11.74pp} \\
+reddit & \texttt{budget=10}, \texttt{+2.02pp} & \texttt{budget=10},
+\texttt{+2.02pp} & \texttt{-2.16pp} \\
+\end{longtable}
+}
+
+The shortest reading of the prefix table is:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{yes on \texttt{kayak}}
+\item
+  \textbf{no on the harder target-site first run (\texttt{tripadvisor})}
+\item
+  \textbf{only weakly and temporarily on \texttt{reddit}}
+\end{itemize}
+
+So the current evidence does not support a benchmark-wide small-data
+claim. It supports a narrower descriptive reading:
+\textbf{very-small-budget gains appear on \texttt{kayak}, but the same
+pattern is not reproduced on the two available target-site first
+runs.}
+
+\subsubsection{Site-by-Site Reading}
+
+\paragraph{\texorpdfstring{\texttt{kayak}}{kayak}}
+
+From the audited online prefix curve:
+
+\begin{itemize}
+\tightlist
+\item
+  after only \textbf{one} induced example, cumulative \texttt{Step\ SR}
+  is already \texttt{+5.00pp}
+\item
+  the gain remains positive throughout the available prefix
+\item
+  the final prefix reaches \texttt{+5.63pp}
+\end{itemize}
+
+This is real early gain, not just a late-stage effect.
+
+Combined with Appendix~\ref{app:A7},
+a cautious reading is:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{online\_wf} quickly learns a locally useful routine
+\item
+  on \texttt{kayak}, that routine is close enough to the test
+  distribution to help early
+\end{itemize}
+
+\paragraph{\texorpdfstring{\texttt{tripadvisor}}{tripadvisor}}
+
+\begin{itemize}
+\tightlist
+\item
+  the first induced example already yields cumulative
+  \texttt{Step\ SR\ =\ -3.57pp}
+\item
+  no positive prefix appears at any small budget
+\item
+  the full prefix ends at \texttt{-11.74pp}
+\end{itemize}
+
+This is the opposite of a small-data efficiency story.
+
+One exploratory explanation is not simply "too little data", but
+\textbf{wrong early pattern acquisition}:
+
+\begin{itemize}
+\tightlist
+\item
+  a few early induced trajectories are enough to create a workflow
+\item
+  but that workflow is already semantically mismatched to the target
+  navigation structure
+\item
+  so small data does not produce early benefit; it produces early bias
+\end{itemize}
+
+\paragraph{\texorpdfstring{\texttt{reddit}}{reddit}}
+
+\begin{itemize}
+\tightlist
+\item
+  there is no early gain at budgets \texttt{1,\ 2,\ 3,\ 5}
+\item
+  the first positive cumulative \texttt{Step\ SR} appears only at
+  \texttt{budget=10}
+\item
+  that gain is small (\texttt{+2.02pp}) and disappears by the final
+  prefix
+\end{itemize}
+
+So \texttt{reddit} is not a clean "small-data works" case either.
+
+The more cautious interpretation is:
+
+\begin{itemize}
+\tightlist
+\item
+  online induction may need more than a handful of examples before any
+  net benefit appears
+\item
+  even then, the benefit may be unstable
+\end{itemize}
+
+\subsubsection{Mechanism
+reading}
+
+This pattern is consistent with a broader exploratory reading developed
+elsewhere in the project:
+
+\begin{itemize}
+\tightlist
+\item
+  on \texttt{kayak}, \texttt{online\_wf} can acquire a useful local
+  routine quickly
+\item
+  on the two target-site first runs here, the same small-budget pattern
+  is not stable
+\end{itemize}
+
+So the small-data question should be answered conditionally:
+
+Online workflow induction can show early gains under very small budgets,
+but the current first-run evidence does not show the same pattern on
+\texttt{tripadvisor} or \texttt{reddit}.
+
+\subsubsection{Interpretive summary}
+
+Under the current Mind2Web first-run evidence, online memory shows
+genuine early gains on \texttt{kayak} after only one induced example,
+but this very-small-budget benefit is not reproduced on the available
+target-site first runs \texttt{tripadvisor} and \texttt{reddit}.
+
+\subsubsection{Interpretation limits}
+
+\begin{itemize}
+\tightlist
+\item
+  This is still a first-run analysis.
+\item
+  The prefix curve is reconstructed from logged online results, not from
+  repeated random seeds.
+\item
+  The comparison is strongest as a descriptive small-budget pattern, not
+  as a formal learning-curve estimate.
+\end{itemize}
+
+
+% B1
+\clearpage
+\subsection{Positive Case: Kayak Date-Selection Correction}\label{app:B1}
+
+This appendix provides a clean positive case where the workflow
+corrects a late-stage click on a matched site. The case was manually
+verified against the paired baseline/workflow trajectory logs and the
+audited case notes.
+
+\subsubsection{Case metadata}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedright\arraybackslash}p{0.76\linewidth}@{}}
+\toprule\noalign{}
+Field & Value \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Website & \texttt{kayak} \\
+Setting & \texttt{gpt-4o}, \texttt{test\_task}, \texttt{offline\_wf} vs
+\texttt{no\_workflow} \\
+Task id & \texttt{4} \\
+Raw step index & \texttt{6} \\
+Case-study step label & \texttt{8\ /\ 14} \\
+Task &
+\texttt{check\ cheap\ flights\ from\ NYC\ to\ London\ on\ 23rd\ of\ April\ for\ students\ over\ 18\ years.} \\
+\end{longtable}
+}
+
+Note: the case-study file uses a different step numbering convention
+(\texttt{step=8/14}), while the raw JSON pair index corresponds to raw
+step index \texttt{6}.\\
+This appendix uses the raw JSON indexing to avoid ambiguity.
+
+\subsubsection{Claim supported}
+
+This case supports a narrow prompt-level claim: under the recorded
+\texttt{offline\_wf} condition, workflow memory was already present in
+the prompt before raw step \texttt{6}, and the workflow condition
+selected the correct date element where the baseline selected a nearby
+wrong element.
+
+This case does not by itself isolate workflow insertion as the only
+changed factor between control and treatment, so it should be read as
+mechanism-consistent evidence rather than strict causal identification.
+
+\subsubsection{What is verified here}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item the case belongs to the official \texttt{gpt-4o / test\_task / kayak / offline\_wf} comparison setting;
+\item the \texttt{offline\_wf} prompt already contains workflow memory at raw step \texttt{6};
+\item the baseline predicts the wrong date element, while the workflow condition predicts the correct one;
+\item the corrected action is locally consistent with the date-selection routine visible in the injected workflow text.
+\end{enumerate}
+
+\subsubsection{Target and
+predictions}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.28\linewidth}>{\raggedright\arraybackslash}p{0.46\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}@{}}
+\toprule\noalign{}
+Condition & Prediction & Correct? \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Target & \texttt{CLICK\ {[}59393{]}} & --- \\
+Baseline (\texttt{no\_workflow}) & \texttt{CLICK\ {[}63241{]}} & No \\
+Workflow (\texttt{offline\_wf}) & \texttt{CLICK\ {[}59393{]}} & Yes \\
+\end{longtable}
+}
+
+\subsubsection{Observation excerpt from raw
+JSON}
+
+\begin{verbatim}
+Observation: `<html> <div menu> <div tab start date calendar input use> ... <div id=63241 button wednesday may 3, 2023> 3 </div> ... <div id=59393 button wednesday may 3, 2023> 3 </div> ... </div> </div> </html>`
+\end{verbatim}
+
+\subsubsection{Workflow excerpt present in the
+prompt}
+
+\begin{verbatim}
+## Workflow 2: Select Travel Dates
+Given that you are on the search page for flights, cars, or hotels, this workflow selects the travel dates.
+- [generic/button] Start date/End date -> CLICK
+- [div/gridcell] {start-date} -> CLICK
+- [div/gridcell] {end-date} -> CLICK
+\end{verbatim}
+
+\subsubsection{Raw action outputs}
+
+\paragraph{Baseline}
+
+\begin{verbatim}
+Action: `CLICK [63241]` ([div] 3 -> CLICK)
+\end{verbatim}
+
+\paragraph{Workflow condition}
+
+\begin{verbatim}
+Action: `CLICK [59393]` ([button]  May 3, 2023 -> CLICK)
+\end{verbatim}
+
+\subsubsection{Interpretation}
+
+Here the baseline selects a nearby distractor with the same visible date
+text, while the workflow-conditioned run selects the correct calendar
+target. The case therefore illustrates how workflow guidance can
+stabilize late-stage element choice when multiple visually similar date
+options are present.
+
+\subsubsection{Limitation}
+
+This appendix supports step-level element grounding improvement on a
+matched site. It should not be read as evidence that all \texttt{kayak}
+gains come from the same workflow fragment.
+
+
+% B2
+\clearpage
+\subsection{Positive Case: United Action-Mode Redirection}\label{app:B2}
+
+This appendix provides a clean positive case where workflow changes the
+action mode from an incorrect \texttt{CLICK} to a correct
+\texttt{TYPE}. The case was manually verified against the paired
+baseline/workflow trajectory logs and the audited case notes.
+
+\subsubsection{Case metadata}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedright\arraybackslash}p{0.76\linewidth}@{}}
+\toprule\noalign{}
+Field & Value \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Website & \texttt{united} \\
+Setting & \texttt{qwen/qwen3.5-397b-a17b}, \texttt{test\_task},
+\texttt{lm\_wf} vs \texttt{no\_workflow} \\
+Task id & \texttt{3} \\
+Raw step index & \texttt{3} \\
+Case-study label & \texttt{5\ /\ 27} \\
+Task &
+\texttt{Find\ a\ basic\ economy\ flight\ +\ hotel\ for\ an\ award\ travel\ from\ las\ vegas\ to\ san\ francisco\ leaving\ and\ returning\ on\ any\ date\ on\ april\ for\ 1\ traveler\ and\ one\ room} \\
+\end{longtable}
+}
+
+\subsubsection{Claim supported}
+
+This case supports a narrow prompt-level claim: under the recorded
+\texttt{lm\_wf} condition, workflow memory was already present in the
+prompt before raw step \texttt{3}, and the workflow condition produced
+the correct \texttt{TYPE} where the baseline produced an incorrect
+\texttt{CLICK}.
+
+This case does not by itself establish workflow insertion as the sole
+causal difference between the two conditions, so it should be read as
+mechanism-consistent evidence rather than strict causal identification.
+
+\subsubsection{What is verified here}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item the case belongs to the official \texttt{qwen/qwen3.5-397b-a17b / test\_task / united / lm\_wf} comparison setting;
+\item the \texttt{lm\_wf} prompt already contains workflow memory at raw step \texttt{3};
+\item the baseline predicts an incorrect \texttt{CLICK}, while the workflow condition predicts the correct \texttt{TYPE};
+\item the corrected \texttt{TYPE} is locally consistent with the location-entry routine visible in the injected workflow text.
+\end{enumerate}
+
+\subsubsection{Target and
+predictions}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.28\linewidth}>{\raggedright\arraybackslash}p{0.46\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}@{}}
+\toprule\noalign{}
+Condition & Prediction & Correct? \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Target & \texttt{TYPE\ {[}10892{]}\ {[}las\ vegas{]}} & --- \\
+Baseline (\texttt{no\_workflow}) & \texttt{CLICK\ {[}10978{]}} & No \\
+Workflow (\texttt{lm\_wf}) &
+\texttt{TYPE\ {[}10892{]}\ {[}las\ vegas{]}} & Yes \\
+\end{longtable}
+}
+
+\subsubsection{Observation excerpt from raw
+JSON}
+
+\begin{verbatim}
+Observation: `<html> <div> <div radiogroup package-type> <label id=10978> <div> <input radio hotel + flight /> <svg img /> </div> Hotel + Flight </label> <label> Hotel + Flight + Car </label> <label> Flight + Car </label> </div> <div> <svg img /> <input id=10892 combobox text where to? /> </div> <div> <div> <svg id=11159 img /> <input id=11161 departing - returning /> </div> <button id=11164 button select traveler information> <div> <svg img /> 2 Adults, 1 Room </div> </button> </div> </div> </html>`
+\end{verbatim}
+
+\subsubsection{Workflow excerpt present in the
+prompt}
+
+\begin{verbatim}
+## enter_flight_locations
+Given that you are on the United Airlines booking or search page, this workflow enters the departure and destination city/airport for your flight.
+[combobox]  Enter your departing city, airport name, or airpor... -> TYPE: {origin-city}
+[button]  {origin-option} -> CLICK
+[combobox]  Enter your destination city, airport name, or airp... -> TYPE: {destination-city}
+[button]  {destination-option} -> CLICK
+\end{verbatim}
+
+\subsubsection{Raw action outputs}
+
+\paragraph{Baseline}
+
+\begin{verbatim}
+Action: `CLICK [10978]` ([label]  Hotel + Flight -> CLICK)
+\end{verbatim}
+
+\paragraph{Workflow condition}
+
+\begin{verbatim}
+Action: `TYPE [10892] [las vegas]` ([combobox]  Where to? -> TYPE: las vegas)
+\end{verbatim}
+
+\subsubsection{Interpretation}
+
+Here the baseline clicks a package-type control, while the
+workflow-conditioned run types into the correct origin-city combobox.
+The case therefore illustrates action-mode redirection: the workflow is
+useful not because it changes a value, but because it steers the model
+toward the right kind of action.
+
+\subsubsection{Limitation}
+
+This is evidence for step-level action-mode correction. It should not be
+used to claim that all positive cases are driven by the same mechanism.
+
+
+% B4
+\clearpage
+\subsection{Negative Case: Sixflags Workflow-Content Mismatch}\label{app:B4}
+
+This appendix provides a clean negative case where a semantically
+mismatched workflow harms performance. The case was manually verified
+against the paired baseline/workflow trajectory logs and the audited
+case notes.
+
+\subsubsection{Case metadata}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedright\arraybackslash}p{0.76\linewidth}@{}}
+\toprule\noalign{}
+Field & Value \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Website & \texttt{sixflags} \\
+Setting & \texttt{gpt-4o}, \texttt{test\_task}, \texttt{offline\_wf} vs
+\texttt{no\_workflow} \\
+Result-file task id & \texttt{2} \\
+Raw step index & \texttt{0} \\
+Case-study label & \texttt{0\ /\ 6} \\
+Current step task &
+\texttt{Apply\ for\ a\ job\ on\ the\ Six\ Flags\ White\ Water\ park} \\
+\end{longtable}
+}
+
+\subsubsection{Claim supported}
+
+This case supports a narrow prompt-level claim: under the recorded
+\texttt{offline\_wf} condition, workflow memory was already present in
+the prompt before raw step \texttt{0}, and the workflow condition
+produced the wrong park-selection click where the baseline produced the
+correct \texttt{Jobs} click.
+
+This case does not by itself isolate workflow insertion as the only
+changed factor between treatment and control, so it should be read as
+mechanism-consistent evidence rather than strict causal identification.
+
+\subsubsection{What is verified here}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item the case belongs to the audited \texttt{gpt-4o / test\_task / sixflags / offline\_wf} setting;
+\item the current step in the raw JSON prompt is a jobs-related task, not the earlier balance-sheet task that appears in the file-level case-study index;
+\item the baseline predicts the correct \texttt{Jobs} navigation click, while the workflow condition predicts the wrong \texttt{Browse the Parks Below} click;
+\item the wrong click is locally consistent with the park-selection workflows present in the prompt.
+\end{enumerate}
+
+\subsubsection{Target and
+predictions}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.28\linewidth}>{\raggedright\arraybackslash}p{0.46\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}@{}}
+\toprule\noalign{}
+Condition & Prediction & Correct? \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Target & \texttt{CLICK\ {[}103{]}} & --- \\
+Baseline (\texttt{no\_workflow}) & \texttt{CLICK\ {[}103{]}} & Yes \\
+Workflow (\texttt{offline\_wf}) & \texttt{CLICK\ {[}1042{]}} & No \\
+\end{longtable}
+}
+
+\subsubsection{Observation excerpt from raw
+JSON}
+
+\begin{verbatim}
+Task: Apply for a job on the Six Flags White Water park
+Trajectory:
+Observation: `<html> <div> <div> <nav navigation> <a id=103> Jobs </a> </nav> <nav navigation> <a id=766> Jobs </a> </nav> </div> <div> <div select> <button id=1042> <div> Browse the Parks Below </div> </button> <button id=1045> Go! </button> </div> <form news letters form> <div> <label> First Name </label> <input id=2747 text andy /> </div> </form> </div> </div> </html>`
+\end{verbatim}
+
+\subsubsection{Workflow excerpt present in the
+prompt}
+
+\begin{verbatim}
+## select_park
+Given that you are on the Six Flags website, this workflow selects a specific park from a list of options.
+[button]  Browse the Parks Below -> CLICK
+[span]  {park-name} -> CLICK
+[button]  Go! -> CLICK
+
+## select_event_options
+Given that you are on a selected Six Flags park's page, this workflow navigates to see all events available at that park.
+[link]  Events [menu] -> CLICK
+[link]  See all events [next] -> CLICK
+\end{verbatim}
+
+\subsubsection{Raw action outputs}
+
+\paragraph{Baseline}
+
+\begin{verbatim}
+Action: `CLICK [103]`
+\end{verbatim}
+
+\paragraph{Workflow condition}
+
+\begin{verbatim}
+Action: `CLICK [1042]`
+\end{verbatim}
+
+\subsubsection{Interpretation}
+
+Here the baseline takes the correct \texttt{Jobs} navigation link, while
+the workflow-conditioned run follows a park-selection pattern
+(\texttt{Browse the Parks Below}) that belongs to a different task
+family. The case therefore illustrates workflow-content mismatch rather
+than a generic click error.
+
+\subsubsection{Limitation}
+
+This example is best used as evidence for workflow-content mismatch. It
+should not be overstated as proof that the model always follows workflow
+over local reasoning.
+
+
+% B5
+\clearpage
+\subsection{Negative Case: Sixflags Template-Induced Step Skipping}\label{app:B5}
+
+This appendix provides a negative case where the workflow appears to
+encourage a premature \texttt{Book\ Now} click instead of the correct
+date-selection step. The case was manually verified against the paired
+baseline/workflow trajectory logs and the audited case notes.
+
+\subsubsection{Case metadata}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedright\arraybackslash}p{0.76\linewidth}@{}}
+\toprule\noalign{}
+Field & Value \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Website & \texttt{sixflags} \\
+Setting & \texttt{gpt-4o}, \texttt{test\_task}, \texttt{offline\_wf} vs
+\texttt{no\_workflow} \\
+Task id & \texttt{1} \\
+Raw step index & \texttt{5} \\
+Case-study label & \texttt{Case\ 2:\ task=1,\ step=5/14} \\
+Current step task &
+\texttt{Find\ a\ place\ to\ stay\ near\ Great\ Escape\ New\ Park\ from\ April\ 21\ to\ April\ 24\ for\ 2\ adults\ and\ 1\ kid,\ and\ book\ the\ cheapest\ themed\ room.} \\
+\end{longtable}
+}
+
+\subsubsection{Claim supported}
+
+This case supports a narrow prompt-level claim: under the recorded
+\texttt{offline\_wf} condition, workflow memory was already present in
+the prompt before raw step \texttt{5}, and the workflow condition
+produced a premature purchase-oriented \texttt{CLICK} where the
+baseline took the correct date-selection action.
+
+This case does not isolate workflow insertion as the only changed factor
+between treatment and control, so it should be read as
+mechanism-consistent evidence rather than strict causal identification.
+
+\subsubsection{What is verified here}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item the case belongs to the official \texttt{gpt-4o / test\_task / sixflags / offline\_wf} comparison setting;
+\item the audited raw step is part of the Great Escape lodging task recorded in both paired result files;
+\item the \texttt{offline\_wf} prompt already contains workflow memory at raw step \texttt{5};
+\item the workflow condition clicks \texttt{Book Now} too early, while the baseline correctly clicks the arrival-date input, and this premature click is locally consistent with the purchase-oriented routine visible in the injected workflow text.
+\end{enumerate}
+
+\subsubsection{Target and
+predictions}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.28\linewidth}>{\raggedright\arraybackslash}p{0.46\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}@{}}
+\toprule\noalign{}
+Condition & Prediction & Correct? \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Target & \texttt{CLICK\ {[}46822{]}} & --- \\
+Baseline (\texttt{no\_workflow}) & \texttt{CLICK\ {[}46822{]}} & Yes \\
+Workflow (\texttt{offline\_wf}) & \texttt{CLICK\ {[}47084{]}} & No \\
+\end{longtable}
+}
+
+\subsubsection{Observation excerpt from raw
+JSON}
+
+\begin{verbatim}
+Observation: `<html> <div> <a id=47084 book now> Book Now </a> <div> <div> <label> Check in date </label> <input id=46822 text startdate select arrival date /> </div> <div> <label> Check out date </label> <input id=47302 text enddate select departure date /> </div> <input hotelid 6491 /> <button id=47310 submit> Check Rates </button> </div> ... </html>`
+\end{verbatim}
+
+\subsubsection{Workflow excerpt present in the
+prompt}
+
+\begin{verbatim}
+## buy_group_tickets
+Given that you are on a selected Six Flags park's page, this workflow buys group tickets by entering necessary group information.
+[link]  Groups -> CLICK
+[button]  Buy Now -> CLICK
+[button]  {date} -> CLICK
+[button]  Buy Now -> CLICK
+[input]   -> TYPE: {group-name}
+...
+\end{verbatim}
+
+\subsubsection{Raw action outputs}
+
+\paragraph{Baseline}
+
+\begin{verbatim}
+Action: `CLICK [46822]` (select Check in date -> CLICK)
+\end{verbatim}
+
+\paragraph{Workflow condition}
+
+\begin{verbatim}
+Action: `CLICK [47084]` ([link]  Book Now -> CLICK)
+\end{verbatim}
+
+\subsubsection{Interpretation}
+
+Here the baseline selects the required check-in date field, while the
+workflow-conditioned run jumps directly to \texttt{Book Now}. The case
+therefore illustrates template-induced step skipping: a compressed
+purchase routine pulls the model to a later action before a necessary
+local substep has been completed.
+
+\subsubsection{Limitation}
+
+This appendix supports a ``template-induced step skipping''
+interpretation for this specific case. It should not be generalized into
+a universal rule without additional audited examples.
+
+
+% B6
+\clearpage
+\subsection{Negative Case: Tripadvisor Online-Workflow Mismatch}\label{app:B6}
+
+This appendix documents a prompt-level mismatch case under the
+\texttt{test\_website / tripadvisor / online\_wf} setting. The case was
+manually verified against the paired baseline/workflow trajectory logs
+and the audited case notes.
+
+\subsubsection{Case metadata}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedright\arraybackslash}p{0.76\linewidth}@{}}
+\toprule\noalign{}
+Field & Value \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Website & \texttt{tripadvisor} \\
+Setting & \texttt{qwen/qwen3.5-397b-a17b}, \texttt{test\_website},
+\texttt{online\_wf} vs \texttt{no\_workflow} \\
+Task id & \texttt{2} \\
+Raw step index & \texttt{0} \\
+Case-study label & \texttt{0\ /\ 13} \\
+Task &
+\texttt{Find\ a\ vacation\ rental\ with\ 2\ bedrooms\ and\ 2\ bathrooms\ for\ the\ 15\ to\ 20\ June\ period,\ in\ Kanha\ National\ Park,\ India,\ and\ book\ the\ cheapest\ one.} \\
+\end{longtable}
+}
+
+\subsubsection{Claim supported}
+
+This case supports a narrow prompt-level claim: under the recorded
+\texttt{online\_wf} condition, workflow memory was already present in
+the prompt before the first action of task \texttt{2}, and the
+treatment condition produced an incorrect early \texttt{TYPE} where the
+baseline produced the correct \texttt{CLICK}.
+
+This case does not by itself isolate workflow insertion as the only
+changed factor between treatment and control, so it should be read as
+mechanism-consistent evidence rather than strict causal identification.
+
+\subsubsection{What is verified here}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item the case belongs to the official \texttt{C2 / test\_website / tripadvisor / online\_wf} run setting;
+\item the \texttt{online\_wf} prompt already contains workflow memory at task \texttt{2}, step \texttt{0};
+\item the baseline predicts the correct first-step \texttt{CLICK}, while the \texttt{online\_wf} condition predicts an incorrect \texttt{TYPE};
+\item the wrong \texttt{TYPE} is locally consistent with the search-first routine visible in the injected workflow message.
+\end{enumerate}
+
+\subsubsection{Target and
+predictions}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.28\linewidth}>{\raggedright\arraybackslash}p{0.46\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}@{}}
+\toprule\noalign{}
+Condition & Prediction & Correct? \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Target & \texttt{CLICK\ {[}631{]}} & --- \\
+Baseline (\texttt{no\_workflow}) & \texttt{CLICK\ {[}631{]}} & Yes \\
+Workflow (\texttt{online\_wf}) &
+\texttt{TYPE\ {[}808{]}\ {[}Kanha\ National\ Park,\ India{]}} & No \\
+\end{longtable}
+}
+
+\subsubsection{Observation excerpt from raw
+JSON}
+
+\begin{verbatim}
+Task: Find a vacation rental with 2 bedrooms and 2 bathrooms for the 15 to 20 June period, in Kanha National Park, India, and book the cheapest one.
+Trajectory:
+Observation: `<html> <div> <form search> ... <a id=631> <span> Vacation Rentals </span> </a> ... <input id=808 searchbox search q where to? /> ... </html>`
+\end{verbatim}
+
+\subsubsection{Workflow message actually present in the
+prompt}
+
+\begin{verbatim}
+## Summary Workflows:
+## search_destination
+Given that you are on the TripAdvisor search page, this workflow searches for and selects a specific destination or attraction.
+[input]  Search where to? -> TYPE: {destination}
+[option]  {destination_suggestion} -> CLICK
+\end{verbatim}
+
+\subsubsection{Raw action outputs}
+
+\paragraph{Baseline}
+
+\begin{verbatim}
+Action: `CLICK [631]` ([link]  Vacation Rentals -> CLICK)
+\end{verbatim}
+
+\paragraph{Workflow condition}
+
+\begin{verbatim}
+Action: `TYPE [808] [Kanha National Park, India]`
+\end{verbatim}
+
+\subsubsection{Interpretation}
+
+Here the baseline takes the correct \texttt{Vacation Rentals}
+navigation click, while the workflow-conditioned run types a location
+into the search box. Because the treatment prompt already contains a
+search-first workflow routine, the error is consistent with a
+workflow-conditioned entry-point mismatch.
+
+\subsubsection{Limitation}
+
+This case does not prove workflow provenance beyond the current
+prefix-level online setting, does not show that the workflow was induced
+only from successful prior trajectories, and does not isolate workflow
+insertion as the only changed prompt factor. It is therefore best used
+together with aggregated target-site result tracing, not as a standalone causal
+proof.
+
+
+% C1
+\clearpage
+\subsection{LM vs Rule Workflow Text Evidence}\label{app:C1}
+
+This appendix supports the claim that LM-induced workflows are more
+abstract and reusable than rule-induced workflows at the text level.
+The evidence below is drawn from the audited workflow-text comparison.
+
+\subsubsection{Summary table from the source
+output}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.11\linewidth}>{\raggedleft\arraybackslash}p{0.10\linewidth}>{\raggedleft\arraybackslash}p{0.10\linewidth}>{\raggedleft\arraybackslash}p{0.10\linewidth}>{\raggedleft\arraybackslash}p{0.10\linewidth}>{\raggedleft\arraybackslash}p{0.10\linewidth}>{\raggedleft\arraybackslash}p{0.10\linewidth}>{\raggedright\arraybackslash}p{0.23\linewidth}@{}}
+\toprule\noalign{}
+Website & LM workflows & Rule workflows & LM avg steps/WF & Rule avg
+steps/WF & LM placeholders & Rule concrete values & Source verdict \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{kayak} & 8 & 17 & 1.8 & 12.5 & 13 & 25 &
+\texttt{SUPPORTED\ (4/4\ indicators)} \\
+\texttt{newegg} & 6 & 19 & 1.7 & 7.8 & 6 & 16 &
+\texttt{SUPPORTED\ (4/4\ indicators)} \\
+\texttt{united} & 6 & 24 & 2.7 & 9.0 & 15 & 41 &
+\texttt{SUPPORTED\ (4/4\ indicators)} \\
+\end{longtable}
+}
+
+\subsubsection{Source excerpts}
+
+\paragraph{Kayak}
+
+\begin{verbatim}
+[Abstraction Indicators]
+  + LM uses more placeholders (13 vs 0)
+  + Rule retains more concrete values (25 vs 0)
+  + LM workflows are more compact (1.8 vs 12.5 steps/wf)
+  + LM has more abstract/reusable workflows (8 vs 0)
+
+[Paper Claim: 'LM induction produces more abstract, reusable sub-routines']
+  -> SUPPORTED (4/4 indicators)
+\end{verbatim}
+
+\paragraph{Newegg}
+
+\begin{verbatim}
+[Abstraction Indicators]
+  + LM uses more placeholders (6 vs 0)
+  + Rule retains more concrete values (16 vs 0)
+  + LM workflows are more compact (1.7 vs 7.8 steps/wf)
+  + LM has more abstract/reusable workflows (6 vs 0)
+\end{verbatim}
+
+\paragraph{United}
+
+\begin{verbatim}
+[Abstraction Indicators]
+  + LM uses more placeholders (15 vs 0)
+  + Rule retains more concrete values (41 vs 0)
+  + LM workflows are more compact (2.7 vs 9.0 steps/wf)
+  + LM has more abstract/reusable workflows (6 vs 0)
+\end{verbatim}
+
+\subsubsection{Representative workflow
+excerpts}
+
+\paragraph{\texorpdfstring{LM workflow example
+(\texttt{united})}{LM workflow example (united)}}
+
+\begin{verbatim}
+## enter_flight_locations
+[combobox]  Enter your departing city, airport name, or airpor... -> TYPE: {origin-city}
+[button]  {origin-option} -> CLICK
+[combobox]  Enter your destination city, airport name, or airp... -> TYPE: {destination-city}
+[button]  {destination-option} -> CLICK
+\end{verbatim}
+
+\paragraph{\texorpdfstring{Rule workflow example
+(\texttt{united})}{Rule workflow example (united)}}
+
+\begin{verbatim}
+Workflow 5: Concrete Trajectory for Find a round trip from Phoenix to Miami with...
+Steps: [combobox]  Flying from -> TYPE: Phoenix; [button]  Phoenix, AZ, US (PHX) -> CLICK; [button]  Search -> CLICK ...
+\end{verbatim}
+
+\subsubsection{Interpretation limits}
+
+\begin{itemize}
+\tightlist
+\item
+  These counts currently follow the
+  \texttt{wf\_text\_compare\_output.txt} counting rule, which includes
+  the \texttt{Summary\ Workflows} block.
+\item
+  This appendix is text-structural evidence. It should be paired with
+  score tables if the main text wants to discuss performance consequences.
+\end{itemize}
+
+
+% C2
+\clearpage
+\subsection{Concrete-Value Counting Rule}\label{app:C2}
+
+This appendix fixes the counting drift around ``concrete values'' in
+\texttt{LM} workflow texts. The rule below is derived from the audited
+workflow-text comparison and manual inspection of the \texttt{LM}
+workflow libraries.
+
+\subsubsection{Recommended counting
+rule}
+
+For the LM workflows, count a token as a \texttt{concrete\ value} only
+if it is a task-instantiated or user-instantiated value that could vary
+by task, such as:
+
+\begin{itemize}
+\tightlist
+\item
+  city names
+\item
+  dates
+\item
+  product names
+\item
+  confirmation numbers
+\item
+  personal identifiers
+\end{itemize}
+
+Do \textbf{not} count fixed UI labels as concrete task values, such as:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{Increment}
+\item
+  \texttt{View\ Deal}
+\item
+  \texttt{APPLY}
+\item
+  \texttt{TRAVEL\ INFO}
+\item
+  \texttt{Find\ cars\ button.}
+\end{itemize}
+
+Under this rule, the LM workflow libraries for \texttt{kayak},
+\texttt{newegg}, and \texttt{united} contain:
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.36\linewidth}>{\centering\arraybackslash}p{0.60\linewidth}@{}}
+\toprule\noalign{}
+Website & LM concrete values \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{kayak} & 0 \\
+\texttt{newegg} & 0 \\
+\texttt{united} & 0 \\
+\end{longtable}
+}
+
+\subsubsection{Why this rule is
+needed}
+
+The earlier drift comes from mixing two things:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{task-variable values}, which should count as concrete values
+\item
+  \textbf{fixed UI labels}, which should not
+\end{enumerate}
+
+The current LM workflow libraries are parameterized almost entirely with
+placeholders such as:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{\{location\_name\}}
+\item
+  \texttt{\{search-term\}}
+\item
+  \texttt{\{origin-city\}}
+\item
+  \texttt{\{destination-city\}}
+\item
+  \texttt{\{start-date\}}
+\end{itemize}
+
+\subsubsection{Supporting excerpts}
+
+\paragraph{Kayak}
+
+\begin{verbatim}
+[textbox]  {location_field} -> TYPE: {location_name}
+[span]  {location_suggestion} -> CLICK
+[button]  {date_input} -> CLICK
+[div]  {date_day} -> CLICK
+\end{verbatim}
+
+\paragraph{Newegg}
+
+\begin{verbatim}
+[searchbox]  Search Site -> TYPE: {search-term}
+[textbox]  price to -> TYPE: {max-price}
+[span]  {filter-option} -> CLICK
+[link]  {category-link} -> CLICK
+\end{verbatim}
+
+\paragraph{United}
+
+\begin{verbatim}
+[combobox]  Enter your departing city, airport name, or airpor... -> TYPE: {origin-city}
+[button]  {origin-option} -> CLICK
+[combobox]  Enter your destination city, airport name, or airp... -> TYPE: {destination-city}
+[button]  {destination-option} -> CLICK
+\end{verbatim}
+
+\subsubsection{Boundary note}
+
+If a later section wants to count fixed UI labels separately, it should
+use a different name such as \texttt{fixed\ interface\ literals}, not
+\texttt{concrete\ values}.
+
+
+% C3
+\clearpage
+\subsection{Workflow Counting and Site-Feature Definitions}\label{app:C3}
+
+This appendix fixes the counting drift around LM workflow counts and
+average steps per workflow. The definitions below are reconstructed
+from the audited workflow-text comparison and manual counting of the
+\texttt{LM} workflow libraries.
+
+\subsubsection{Two valid counting
+conventions}
+
+There are two defensible workflow-count conventions in the current
+materials:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Include \texttt{Summary\ Workflows} as a workflow block}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    This is the convention implicitly used by
+    \texttt{wf\_text\_compare\_output.txt}
+  \item
+    Counts: \texttt{kayak\ 8}, \texttt{newegg\ 6}, \texttt{united\ 6}
+  \end{itemize}
+\item
+  \textbf{Exclude \texttt{Summary\ Workflows} and count only executable
+  named workflows}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    This is the convention used in \texttt{C5}
+  \item
+    Counts: \texttt{kayak\ 7}, \texttt{newegg\ 5}, \texttt{united\ 5}
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Conversion table}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.14\linewidth}>{\raggedleft\arraybackslash}p{0.22\linewidth}>{\raggedleft\arraybackslash}p{0.14\linewidth}>{\raggedleft\arraybackslash}p{0.14\linewidth}>{\raggedleft\arraybackslash}p{0.14\linewidth}>{\raggedleft\arraybackslash}p{0.18\linewidth}@{}}
+\toprule\noalign{}
+Website & Total steps & Count incl. summary & Avg steps/WF incl. summary
+& Count excl. summary & Avg steps/WF excl. summary \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{kayak} & 14 & 8 & 1.75 & 7 & 2.00 \\
+\texttt{newegg} & 10 & 6 & 1.67 & 5 & 2.00 \\
+\texttt{united} & 16 & 6 & 2.67 & 5 & 3.20 \\
+\end{longtable}
+}
+
+\subsubsection{Supporting excerpts}
+
+\paragraph{Kayak}
+
+\begin{verbatim}
+## Summary Workflows:
+## enter_search_location
+...
+## select_calendar_date
+...
+## apply_amenity_filter
+...
+## sort_search_results
+...
+## set_flight_trip_type
+...
+## adjust_guests_rooms
+...
+## book_selected_option
+...
+\end{verbatim}
+
+\paragraph{Newegg}
+
+\begin{verbatim}
+Website: Shopping,Digital,newegg
+## Summary Workflows:
+## search_product
+...
+## apply_price_filter
+...
+## apply_selection_filter
+...
+## navigate_category_links
+...
+## open_site_menu_and_select
+...
+\end{verbatim}
+
+\subsubsection{Recommended use}
+
+\begin{itemize}
+\tightlist
+\item
+  Use \textbf{include-summary} counts when comparing directly against
+  \texttt{wf\_text\_compare\_output.txt}.
+\item
+  Use \textbf{exclude-summary} counts when discussing \texttt{C5}
+  quality metrics.
+\item
+  Do not mix the two in one table without labeling the convention.
+\end{itemize}
+
+
+% C4
+\clearpage
+\subsection{Site-Feature Qualitative Coding}\label{app:C4}
+
+This appendix derives site-feature observations from the audited
+materials themselves, rather than reverse-engineering evidence for
+prewritten claims.
+
+This appendix is meant to support or challenge the qualitative rows in
+\texttt{§10.1} of the main text,
+especially:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{WF\ specificity}
+\item
+  \texttt{Task\ diversity}
+\end{itemize}
+
+The coding below is based on audited offline workflow texts,
+workflow-text summaries, step-level summaries, and manually reviewed
+case examples.
+
+Boundary:
+
+\begin{itemize}
+\tightlist
+\item
+  This is a qualitative coding memo, not a hard quantitative appendix.
+\item
+  The goal is to surface what the audited materials actually show about
+  site structure and task-family alignment.
+\end{itemize}
+
+\subsubsection{Coding questions}
+
+Instead of starting from the paper's conclusions, this appendix asks
+four qualitative questions:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{How specific is the workflow library?}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Does it mostly encode reusable sub-routines, or end-to-end task
+    scripts?
+  \item
+    Does it rely on placeholders or concrete values?
+  \end{itemize}
+\item
+  \textbf{How broad is the observed task family at evaluation time?}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Across the case studies and workflow failures/successes, do tasks
+    cluster around one operational family, or span unrelated site
+    functions?
+  \end{itemize}
+\item
+  \textbf{How aligned are workflow families and observed task families?}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Even if a workflow library is abstract, does it cover the dominant
+    task family seen in evaluation?
+  \end{itemize}
+\item
+  \textbf{What mechanism implication follows?}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Is AWM likely to help through reusable guidance, fail through
+    mismatch, or contribute little because baseline headroom is small?
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Coding dimensions}
+
+The following labels are used as qualitative summaries:
+
+\begin{itemize}
+\item
+  \textbf{WF specificity}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{Low}: mostly short parameterized primitives
+  \item
+    \texttt{Medium}: mixed primitives plus narrow domain patterns
+  \item
+    \texttt{High}: long or strongly task-family-specific sequences
+  \end{itemize}
+\item
+  \textbf{Observed task-family breadth}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{Low}: tasks mostly stay within one narrow operational family
+  \item
+    \texttt{Medium}: tasks vary, but still share a dominant site
+    interaction pattern
+  \item
+    \texttt{High}: tasks span multiple unrelated functional areas
+  \end{itemize}
+\item
+  \textbf{WF-task alignment}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{Strong}: workflows clearly target the dominant eval task
+    family
+  \item
+    \texttt{Partial}: workflows cover only part of the observed task
+    family
+  \item
+    \texttt{Weak}: workflows and eval task families visibly diverge
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Site-by-site source
+observations}
+
+\paragraph{Kayak}
+
+\textbf{Workflow-text observations}
+
+\begin{itemize}
+\tightlist
+\item
+  The audited offline workflow library contains short reusable
+  primitives:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{Enter\ Location\ for\ Car\ or\ Hotel\ Search}
+  \item
+    \texttt{Select\ Travel\ Dates}
+  \item
+    \texttt{Select\ One-Way\ Flight}
+  \item
+    \texttt{Select\ Hotel\ Filters}
+  \item
+    \texttt{View\ and\ Select\ Deals}
+  \end{itemize}
+\item
+  Most workflows are 1 to 4 steps and heavily parameterized:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{\{your-location\}}
+  \item
+    \texttt{\{start-date\}}
+  \item
+    \texttt{\{filter\}}
+  \item
+    \texttt{\{best-popup-option\}}
+  \end{itemize}
+\item
+  This is consistent with the workflow-text audit, where \texttt{kayak}
+  \texttt{LM} workflows are short and placeholder-heavy.
+\end{itemize}
+
+\textbf{Observed eval-task observations}
+
+\begin{itemize}
+\tightlist
+\item
+  Positive cases cover:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    hotel search with amenity constraints
+  \item
+    cheap flights from NYC to London
+  \item
+    Hawaii package selection
+  \end{itemize}
+\item
+  Across these cases, the dominant pattern is still a travel-search
+  pipeline:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    enter location
+  \item
+    pick date
+  \item
+    filter or sort
+  \item
+    choose a deal
+  \end{itemize}
+\end{itemize}
+
+\textbf{Coding}
+
+\begin{itemize}
+\tightlist
+\item
+  WF specificity: \texttt{Low}
+\item
+  Observed task-family breadth: \texttt{Medium}
+\item
+  WF-task alignment: \texttt{Strong}
+\end{itemize}
+
+\textbf{Mechanism implication}
+
+Kayak looks like the cleanest case where abstract sub-routines line up
+with a diverse but still coherent search-oriented task family. This
+supports the claim that reusable workflows help when variation happens
+inside one stable interaction grammar.
+
+\paragraph{Newegg}
+
+\textbf{Workflow-text observations}
+
+\begin{itemize}
+\tightlist
+\item
+  The audited offline workflow library is still fairly abstract, but
+  less purely
+  primitive than kayak:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{search\_and\_apply\_filters}
+  \item
+    \texttt{search\_and\_sort\_items}
+  \item
+    \texttt{shopping\_cart\_management}
+  \item
+    \texttt{build\_custom\_pc}
+  \item
+    \texttt{custom\_pc\_finder}
+  \end{itemize}
+\item
+  Some workflows are generic search/filter modules; others are narrower
+  feature flows (\texttt{build\_custom\_pc},
+  \texttt{custom\_pc\_finder}).
+\item
+  The workflow-text comparison still shows the LM version as more
+  abstract than the rule-induced counterpart, but the workflow family is
+  more commerce-specific than kayak's travel primitives.
+\end{itemize}
+
+\textbf{Observed eval-task observations}
+
+\begin{itemize}
+\tightlist
+\item
+  Positive cases include:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    projector search
+  \item
+    gaming desktop search
+  \item
+    cart-related operations
+  \item
+    bluetooth mouse sorting
+  \end{itemize}
+\item
+  These tasks vary, but the interaction family remains recognizably
+  e-commerce:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    search
+  \item
+    filter
+  \item
+    sort
+  \item
+    cart management
+  \end{itemize}
+\end{itemize}
+
+\textbf{Coding}
+
+\begin{itemize}
+\tightlist
+\item
+  WF specificity: \texttt{Medium-Low}
+\item
+  Observed task-family breadth: \texttt{Medium}
+\item
+  WF-task alignment: \texttt{Strong}
+\end{itemize}
+
+\textbf{Mechanism implication}
+
+Newegg still supports reusable workflow guidance, but in a narrower
+commerce grammar than kayak. This helps explain why both LM and Rule can
+be competitive here: the task family is varied enough to benefit from
+abstractions, yet stable enough that some concrete routines still
+transfer.
+
+\paragraph{Budget}
+
+\textbf{Workflow-text observations}
+
+\begin{itemize}
+\tightlist
+\item
+  The audited offline workflow library mixes several distinct site
+  functions:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    rental location search
+  \item
+    vehicle/extras selection
+  \item
+    pickup/return dates
+  \item
+    reservation lookup
+  \item
+    careers search
+  \item
+    deals/offers browsing
+  \end{itemize}
+\item
+  Several workflows are more end-to-end and function-specific than
+  kayak/newegg:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{search\_for\_job\_in\_usa\_finance}
+  \item
+    \texttt{find\_and\_view\_reservation}
+  \item
+    \texttt{learn\_about\_deals\_and\_offers}
+  \end{itemize}
+\item
+  This makes the library not just longer on average, but also more
+  functionally fragmented.
+\end{itemize}
+
+\textbf{Observed eval-task observations}
+
+\begin{itemize}
+\tightlist
+\item
+  Negative and positive cases together show tasks spanning:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    insurance policy certificates
+  \item
+    car-for-sale browsing
+  \item
+    rental booking
+  \item
+    finance job search
+  \item
+    road-trip ideas / travel content
+  \end{itemize}
+\item
+  The observed task family is therefore much broader than a single
+  rental-booking loop.
+\end{itemize}
+
+\textbf{Coding}
+
+\begin{itemize}
+\tightlist
+\item
+  WF specificity: \texttt{High}
+\item
+  Observed task-family breadth: \texttt{High}
+\item
+  WF-task alignment: \texttt{Weak}
+\end{itemize}
+
+\textbf{Mechanism implication}
+
+Budget is the clearest source-based example where the workflow library
+is internally fragmented and the observed eval tasks span unrelated
+functional areas. This supports a mismatch interpretation more strongly
+than a simple ``workflow count too small'' story.
+
+\paragraph{Sixflags}
+
+\textbf{Workflow-text observations}
+
+\begin{itemize}
+\tightlist
+\item
+  The audited offline workflow library is short and park-centric:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{select\_park}
+  \item
+    \texttt{browse\_ticket\_options}
+  \item
+    \texttt{buy\_group\_tickets}
+  \item
+    \texttt{select\_event\_options}
+  \item
+    \texttt{find\_park\_information}
+  \end{itemize}
+\item
+  These workflows are not highly specific in the same sense as budget;
+  instead, they are shallow templates around park navigation and
+  purchase flows.
+\item
+  The file suggests a narrow operational grammar rather than a broad
+  feature library.
+\end{itemize}
+
+\textbf{Observed eval-task observations}
+
+\begin{itemize}
+\tightlist
+\item
+  Case studies show tasks involving:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    park security policy
+  \item
+    buying a single day pass
+  \item
+    financial statements
+  \item
+    park hours
+  \item
+    VIP tour confirmation
+  \end{itemize}
+\item
+  So the observed eval task family is not simply ``park and ticket
+  variants only.'' It includes both on-family park-navigation tasks and
+  out-of-family informational/financial tasks.
+\end{itemize}
+
+\textbf{Coding}
+
+\begin{itemize}
+\tightlist
+\item
+  WF specificity: \texttt{Medium}
+\item
+  Observed task-family breadth: \texttt{Medium}
+\item
+  WF-task alignment: \texttt{Partial\ to\ Weak}
+\end{itemize}
+
+\textbf{Mechanism implication}
+
+Sixflags does not fit a simple ``low task diversity'' story. A better
+source-based description is:
+
+\begin{itemize}
+\tightlist
+\item
+  the workflow library is \textbf{narrow and park-centric}
+\item
+  the eval tasks are \textbf{mixed}, including both park/ticket flows
+  and out-of-family information tasks
+\item
+  baseline CLICK is already relatively strong, so the narrow workflow
+  family adds little headroom and can become harmful when it overfires
+\end{itemize}
+
+\subsubsection{Comparative summary
+table}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.16\linewidth}>{\raggedright\arraybackslash}p{0.24\linewidth}>{\raggedright\arraybackslash}p{0.18\linewidth}>{\raggedright\arraybackslash}p{0.18\linewidth}>{\raggedright\arraybackslash}p{0.20\linewidth}@{}}
+\toprule\noalign{}
+Site & WF specificity & Observed task-family breadth & WF-task alignment
+& Source-based reading \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{kayak} & Low & Medium & Strong & Abstract travel-search
+primitives line up with a coherent search-oriented task family \\
+\texttt{newegg} & Medium-Low & Medium & Strong & Commerce workflows are
+still reusable; site grammar is stable enough that both LM and Rule can
+compete \\
+\texttt{budget} & High & High & Weak & Workflow library mixes several
+function-specific families; eval tasks span unrelated site functions \\
+\texttt{sixflags} & Medium & Medium & Partial to Weak & Workflow library
+is narrow and park-centric, but eval tasks are more mixed than the
+current main-text label suggests \\
+\end{longtable}
+}
+
+\subsubsection{What this appendix
+supports}
+
+This appendix strongly supports:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{kayak} and \texttt{newegg} as sites where reusable workflow
+  families align with observed task families
+\item
+  \texttt{budget} as the clearest heterogeneity/mismatch case
+\item
+  \texttt{sixflags} as a site where \textbf{narrow workflow family +
+  limited headroom + partial mismatch} is a better explanation than
+  simply ``low task diversity''
+\end{itemize}
+
+This appendix does \textbf{not} fully support:
+
+\begin{itemize}
+\tightlist
+\item
+  a strong claim that \texttt{sixflags} has low task diversity
+\item
+  a strong claim that \texttt{WF\ specificity} alone explains
+  success/failure
+\end{itemize}
+
+
+
+% C5
+\clearpage
+\subsection{Mind2Web Compositionality Reading}\label{app:C5}
+
+\subsubsection{Overview}
+
+The AWM paper uses workflow composition as part of its broader
+narrative, especially in more open-ended settings. On Mind2Web, the
+question is subtler:
+
+\begin{itemize}
+\tightlist
+\item
+  do the induced workflows show any sign of reusable subflows?
+\item
+  if yes, is that sign closer to true composition, or only to a flat
+  library of reusable routines?
+\end{itemize}
+
+This note answers that question by reading the actual workflow texts and
+contrasting stronger vs weaker cases.
+
+This appendix is based on the audited workflow texts for
+\texttt{kayak}, \texttt{united}, \texttt{newegg}, and \texttt{budget},
+read together with the workflow-text evidence in
+Appendix~\ref{app:C1}.
+
+\subsubsection{Three Senses of
+``Compositionality''}
+
+To avoid over-claiming, this appendix separates three different notions:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Explicit hierarchical composition}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    one workflow directly calls or nests another
+  \item
+    this is \textbf{not observed} in the current Mind2Web workflow texts
+  \end{itemize}
+\item
+  \textbf{Flat subflow reuse}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    a task can be completed by chaining several short reusable routines
+  \item
+    this is \textbf{clearly present on some sites}
+  \end{itemize}
+\item
+  \textbf{Template bundling}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    workflows are reusable only in a weak sense because they remain
+    long, site- or task-specific bundles
+  \item
+    this is also present, especially on weaker sites
+  \end{itemize}
+\end{enumerate}
+
+The current Mind2Web evidence supports (2) much more than (1).
+
+\subsubsection{Stronger Evidence of Flat Subflow
+Reuse}
+
+\paragraph{\texorpdfstring{\texttt{kayak}}{kayak}}
+
+The \texttt{kayak} workflow libraries provide the cleanest evidence of
+subflow-style reuse.
+
+In the \texttt{kayak} \texttt{LM} workflow library,
+the workflow set is split into short units such as:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{enter\_search\_location}
+\item
+  \texttt{select\_calendar\_date}
+\item
+  \texttt{apply\_amenity\_filter}
+\item
+  \texttt{sort\_search\_results}
+\item
+  \texttt{set\_flight\_trip\_type}
+\item
+  \texttt{adjust\_guests\_rooms}
+\item
+  \texttt{book\_selected\_option}
+\end{itemize}
+
+These are not end-to-end task scripts. They are local routines that can
+plausibly be chained in different orders depending on the task:
+
+\begin{itemize}
+\tightlist
+\item
+  enter location
+\item
+  select date
+\item
+  adjust guest count
+\item
+  sort/filter
+\item
+  select a result
+\end{itemize}
+
+The corresponding \texttt{kayak} offline workflow library shows the same
+pattern in a slightly broader form:
+
+\begin{itemize}
+\tightlist
+\item
+  location entry
+\item
+  travel date selection
+\item
+  flight type selection
+\item
+  filter selection
+\item
+  deal viewing
+\end{itemize}
+
+This is the strongest Mind2Web evidence that AWM is not merely
+memorizing full trajectories. On \texttt{kayak}, the workflow library
+really looks like a set of reusable subroutines.
+
+\paragraph{\texorpdfstring{\texttt{united}}{united}}
+
+\texttt{united} also shows substantial flat compositionality.
+
+In the \texttt{united} \texttt{LM} workflow library,
+the workflow set decomposes tasks into separable units:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{enter\_flight\_locations}
+\item
+  \texttt{select\_travel\_dates}
+\item
+  \texttt{navigate\_travel\_info}
+\item
+  \texttt{search\_rental\_car}
+\item
+  \texttt{enter\_trip\_credentials}
+\end{itemize}
+
+Again, these are not one-shot whole-task solutions. They correspond to
+pieces of larger airline-site tasks:
+
+\begin{itemize}
+\tightlist
+\item
+  flight search setup
+\item
+  date picking
+\item
+  account/trip retrieval
+\item
+  travel-information navigation
+\item
+  car-rental branching
+\end{itemize}
+
+So \texttt{united}, like \texttt{kayak}, supports a library-style
+reading of composition: not nested function composition, but
+recombinable site routines.
+
+\subsubsection{Weaker or More Ambiguous
+Cases}
+
+\paragraph{\texorpdfstring{\texttt{newegg}}{newegg}}
+
+\texttt{newegg} still shows reuse, but the compositionality signal is
+weaker.
+
+In the \texttt{newegg} \texttt{LM} workflow library,
+the workflows include:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{search\_product}
+\item
+  \texttt{apply\_price\_filter}
+\item
+  \texttt{apply\_selection\_filter}
+\item
+  \texttt{navigate\_category\_links}
+\item
+  \texttt{open\_site\_menu\_and\_select}
+\end{itemize}
+
+These are reusable, but they are also closer to \textbf{site utilities}
+than to cleanly composable task fragments.
+
+A task may use search + filter + category navigation, but the overall
+structure is less obviously decomposed into stable subflows than on
+\texttt{kayak} or \texttt{united}. The workflows look reusable, yet the
+library feels shallower and more page-local.
+
+\paragraph{\texorpdfstring{\texttt{budget}}{budget}}
+
+\texttt{budget} is the clearest counterexample to a strong
+compositionality story.
+
+The \texttt{budget} offline workflow library mixes:
+
+\begin{itemize}
+\tightlist
+\item
+  car-rental location search
+\item
+  vehicle/extras selection
+\item
+  date/time entry
+\item
+  reservation lookup
+\item
+  career-site job search
+\item
+  deals browsing
+\end{itemize}
+
+Some of these routines are internally structured, but the library as a
+whole is heterogeneous and weakly unified. It is better described as a
+\textbf{bundle of extracted templates} than as a coherent compositional
+vocabulary.
+
+This matters because it explains why ``workflow reuse'' on Mind2Web is
+highly site-dependent. A site can contain repeated sequences without
+supporting a strong composition story.
+
+\subsubsection{Online Workflow
+Compression}
+
+The online workflows weaken explicit compositionality even further.
+
+For example, the \texttt{kayak} online workflow library contains
+routines such as:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{search\_for\_cars\_kayak}
+\item
+  \texttt{select\_location\_kayak}
+\item
+  \texttt{select\_dates\_for\_rental\_kayak}
+\item
+  \texttt{browse\_car\_type\_kayak}
+\end{itemize}
+
+These are useful, but more trajectory-shaped and narrower than the LM or
+offline libraries. So even when they are reusable, they look more like
+compressed routines tied to a recent successful path than like a broad
+compositional basis.
+
+This is consistent with Appendix~\ref{app:A7}:
+online memory is closer to local test behavior, but less robust as a
+general reusable library.
+
+\subsubsection{Bottom-Line Reading}
+
+The current Mind2Web evidence supports the following layered conclusion:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{explicit hierarchical composition:} not supported
+\item
+  \textbf{flat subflow reuse:} clearly supported on \texttt{kayak} and
+  \texttt{united}
+\item
+  \textbf{weaker, utility-style reuse:} present on \texttt{newegg}
+\item
+  \textbf{template bundling rather than true composition:} visible on
+  \texttt{budget}
+\end{itemize}
+
+So the fairest critical-reproduction statement is:
+
+On Mind2Web, AWM does show signs of subflow reuse, but mostly as a flat
+library of short reusable routines rather than as explicit hierarchical
+workflow composition. This makes the paper\textquotesingle s composition
+narrative partially visible, but much weaker and flatter than the
+stronger composition story associated with more open-ended environments.
+
+\subsubsection{Interpretation limits}
+
+\begin{itemize}
+\tightlist
+\item
+  This appendix is a qualitative reading of the audited workflow
+  libraries, not a formal graph-structure analysis.
+\item
+  It should support qualitative discussion of composition, not be turned
+  into a hard quantitative claim.
+\end{itemize}

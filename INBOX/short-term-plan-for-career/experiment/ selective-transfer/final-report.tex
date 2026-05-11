@@ -1,0 +1,331 @@
+\documentclass[11pt]{article}
+\PassOptionsToPackage{hyphens}{url}
+
+\usepackage[a4paper,margin=0.78in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[nopatch=footnote]{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{listings}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!black,
+  urlcolor=blue!50!black,
+  pdftitle={Selective Transfer in Memory-Augmented LLM Agents},
+  pdfauthor={Hengrui YE, Mengxiao LI, Yuchen JIANG, Zhaoyang CHENG}
+}
+
+\setstretch{0.97}
+\setlength{\parskip}{3pt}
+\setlength{\parindent}{0pt}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\setlength{\abovedisplayshortskip}{3pt}
+\setlength{\belowdisplayshortskip}{3pt}
+\setlength{\emergencystretch}{3em}
+\hbadness=10000
+\setlist[itemize]{topsep=1pt,itemsep=1pt,parsep=0pt,partopsep=0pt,leftmargin=1.4em}
+\setlist[enumerate]{topsep=1pt,itemsep=1pt,parsep=0pt,partopsep=0pt,leftmargin=1.6em}
+\titlespacing*{\section}{0pt}{8pt plus 1pt minus 1pt}{4pt}
+\titlespacing*{\subsection}{0pt}{6pt plus 1pt minus 1pt}{3pt}
+\titlespacing*{\subsubsection}{0pt}{5pt plus 1pt minus 1pt}{2pt}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  breakatwhitespace=false,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  frame=single,
+  framerule=0.3pt,
+  rulecolor=\color{black!20}
+}
+
+\title{\vspace{-0.6em}\textbf{Selective Transfer in Memory-Augmented LLM Agents}\\[0.3em]
+\large}
+\author{Mengxiao LI \quad Hengrui YE \quad Yuchen JIANG \\ Zhaoyang CHENG}
+\date{\vspace{-0.3em}\today}
+
+\begin{document}
+\sloppy
+
+\maketitle
+
+\begin{abstract}
+This project studies whether memory-augmented language-model agents exhibit \textbf{selective transfer} rather than indiscriminate memory reuse. Instead of asking whether memory improves average benchmark performance, we ask whether memory helps on structurally matched tasks while avoiding harm on mismatched tasks under a fixed experience budget. We operationalize this in a near-transfer QA setting from HotpotQA to 2WikiMultiHopQA using \texttt{Qwen/Qwen3.5-9B}, comparing three conditions: No Memory, Episodic Trace, and Cross-Episode Consolidation.
+
+The pilot did not produce a simple benchmark-win story. On the strongest diagnostic case, \texttt{wiki\_dev\_2639}, an apparent ``relevant memory hurts'' result did not survive a controlled repair chain. Subtype-aware rerouting recovered the matched episodic condition, and operator-level repair recovered the matched consolidation condition, without changing the underlying model. The main contribution is therefore methodological: on the cases examined, selective-transfer evidence depended on how relevance was operationalized and on whether memory abstractions were executable enough for the target reasoning path.
+\end{abstract}
+
+\section{Introduction}
+
+The central question in memory-augmented AI is not simply whether past experience can be stored, but when stored experience becomes \textbf{reusable knowledge}. Average benchmark gain is a weak answer to that question. A model may improve because the retrieved experience is genuinely relevant, because extra context was injected regardless of relevance, or because the evaluation setup itself is too coarse to distinguish the two.
+
+This project therefore frames memory evaluation around \textbf{selective transfer}:
+
+\begin{quote}
+Under a fixed experience budget, does a memory mechanism help on structurally matched target tasks while avoiding harm on mismatched target tasks?
+\end{quote}
+
+This report studies a narrower empirical slice: a near-transfer multi-hop QA setting, a fixed small model, a fixed source budget, and a small set of controlled memory conditions. The goal is not to prove that memory broadly works. The goal is to determine whether the experiment can produce interpretable selective-transfer evidence, and if not, which parts of the evaluation pipeline are preventing that.
+
+\section{Experimental Setting}
+
+\subsection{Task Setting}
+
+The source benchmark is HotpotQA and the target benchmark is 2WikiMultiHopQA. All runs use a local \texttt{Qwen/Qwen3.5-9B} model with greedy decoding. Each memory condition receives a fixed budget of five solved source tasks. The three evaluated conditions are:
+
+\begin{itemize}
+\item \textbf{No Memory}
+\item \textbf{Episodic Trace}, which summarizes the five source episodes separately
+\item \textbf{Cross-Episode Consolidation}, which compresses the five episodes into a single abstract lesson
+\end{itemize}
+
+The project compares each target under a predefined \textbf{matched} and \textbf{mismatched} source split. Matched and mismatched EM are reported side by side throughout. This small pilot contains six target cases in total: one main diagnostic case, one separate process-sanity case, and four boundary or audit cases.
+
+\subsection{Reasoning Taxonomy and Pairing}
+
+Target tasks are annotated by dominant reasoning pattern. During the pilot, it became clear that the original \texttt{bridge} label was too coarse. The report therefore distinguishes:
+
+\begin{itemize}
+\item \textbf{attribute\_bridge}: through an intermediate entity to retrieve an attribute (for example, film $\rightarrow$ director $\rightarrow$ birthplace)
+\item \textbf{relation\_chain\_bridge}: through an intermediate kinship or relation operator (for example, wife $\rightarrow$ husband $\rightarrow$ brother)
+\end{itemize}
+
+This distinction later became central to interpreting one of the main negative results.
+
+\subsection{Measurement Discipline}
+
+The project uses both outcome metrics and process metrics. Outcome is measured by exact match and token-level F1. Process is measured by:
+
+\begin{itemize}
+\item whether reasoning is visible,
+\item whether a final answer is parseable,
+\item and whether the model explicitly uses, rejects, or ignores the provided memory.
+\end{itemize}
+
+We revised the prompt scaffold so that reasoning traces and final answers were reliably parseable, making process-level selective-transfer signals observable and scorable. This was an instrumentation change, not a capability claim: it improved what we could see, not what the model could do.
+
+Three methodological commitments structure the pilot:
+
+\begin{enumerate}
+\item \textbf{Case-role discipline}: each case is treated as either process sanity, diagnosis, or boundary or audit.
+\item \textbf{Subtype-aware pairing}: a coarse relevance label is not enough if the target depends on a more specific subtype.
+\item \textbf{Executable abstraction}: for consolidated memory, topical relevance is insufficient unless the memory preserves operator structure in a usable form.
+\end{enumerate}
+
+\subsection{Prompt Scaffold}
+
+All conditions share the same scaffold. The only slot that changes between conditions is the \texttt{\#\# Past Experience} block: it is omitted under No Memory, populated with five per-episode summaries under Episodic Trace, and populated with a single consolidated lesson under Cross-Episode Consolidation. The full verbatim prompt is reproduced in the companion appendix, Appendix~\ref{app:prompt-scaffold}.
+
+Two design choices in this scaffold do most of the observability work.
+
+First, the \texttt{\#\# Reasoning} and \texttt{\#\# Final Answer} headers let the parser separate process traces from final predictions, which is what makes the process metrics in \S2.3 mechanically measurable rather than rater-dependent.
+
+Second, the instruction requiring the model to either use past experience explicitly or briefly say why it is not useful is what forces explicit memory use or explicit rejection to appear on the surface: when memory is used, the model tends to cite it explicitly; when memory is judged irrelevant, the model tends to say so in a parseable sentence. Without this instruction, explicit rejection would not be directly observable.
+
+\section{Results}
+
+The results are organized as a \textbf{controlled repair chain on a single diagnostic case}, \texttt{wiki\_dev\_2639}. Each stage changes exactly one variable --- the matched routing in \S3.2, the matched memory form in \S3.3 --- while the model, prompt scaffold, scoring rule, and mismatched-control condition all remain fixed. Among the other five cases, one (\texttt{wiki\_dev\_8896}) carries a separate process-sanity role and is reported in the appendix; the remaining four are out of scope for the selectivity argument here and are not pooled into a single average, because pooling cases with different experimental roles would conflate two different signals.
+
+\subsection{Initial Observation: an Apparent Negative Transfer}
+
+On \texttt{wiki\_dev\_2639}, the no-memory baseline answered correctly, but both ``relevant'' memory conditions failed:
+
+\begin{center}
+\begin{tabularx}{\textwidth}{Y Y c}
+\toprule
+Condition & Source set & EM \\
+\midrule
+no\_memory & --- & 1 \\
+episodic\_trace, relevant & attribute-bridge source set & \textbf{0} \\
+cross\_episode\_consolidation, relevant & attribute-bridge source set & \textbf{0} \\
+episodic\_trace, irrelevant & comparison-type source set & 0 \\
+cross\_episode\_consolidation, irrelevant & comparison-type source set & 1 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\textit{Note.} \texttt{relevant} and \texttt{irrelevant} here are the coarse-pairing labels used at Round 1b. From \S3.2 onward the report uses \texttt{matched} and \texttt{mismatched} to refer to the subtype-aware pairing introduced in \S2.2. Part of \S3.2's argument is that what this table labels \texttt{relevant} for \texttt{wiki\_dev\_2639} is in fact subtype-mismatched, which is why that row shows EM 0.
+
+Read at face value, this is a ``relevant memory hurts'' pattern: the baseline is correct, and turning memory on in the relevant condition turns the answer wrong. This was the headline negative signal in the pilot. The next two sections show why that reading did not survive a controlled audit.
+
+\subsection{First Repair --- Pairing Granularity}
+
+\S3.1's negative pattern is vulnerable to a subtype-labeling error. \texttt{wiki\_dev\_2639} is not a generic bridge task; it is a \textbf{relation-chain bridge} task, whose reasoning path is \texttt{wife -> husband -> brother}, that is, a composed kinship operator. The original matched source set contained only \textbf{attribute-bridge} episodes (through an intermediate entity to retrieve an attribute). Under the subtype-aware definition from \S2.2, the memory was relevant only under a coarse taxonomy label; in fact the pairing was mismatched.
+
+The repair was a single-variable change: reroute the matched condition to a subtype-matched relation-chain source set. Nothing else was touched.
+
+\begin{center}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth}Y}
+\toprule
+ & Content \\
+\midrule
+\textbf{Held fixed} & target \texttt{wiki\_dev\_2639}; model \texttt{Qwen/Qwen3.5-9B} with greedy decoding; prompt scaffold (\S2.4); EM/F1 scoring; mismatched routing (now the attribute-bridge source set, serving as a topically nearby bridge-type control that remains subtype-mismatched) \\
+\textbf{Changed} & matched routing only: attribute-bridge source set $\rightarrow$ relation-chain source set \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Under this rerouting, the matched episodic condition recovered from wrong to correct (EM 0 $\rightarrow$ 1), while the mismatched episodic condition remained wrong (EM 0) (Round 1g). The appendix documents the source-set swap, the intervention record, and the corresponding before/after outputs. This result suggests that coarse relevance labels can manufacture a false negative --- what first looked like ``relevant memory hurts'' was ``memory under a too-coarse notion of relevant.'' The episodic channel was repaired. It remained to be checked whether the consolidation channel would recover under the same rerouting.
+
+\subsection{Second Repair --- Executable Operator Abstraction}
+
+Subtype-aware rerouting did \emph{not} repair the consolidation channel. Under the same relation-chain source routing, matched consolidation remained wrong. A subsequent intervention revised the consolidated note inserted into \texttt{\#\# Past Experience} --- cleaner formatting and wording, but leaving \texttt{sibling-in-law} as a loose natural-language label --- and matched consolidation still stayed at EM 0 (Round 1h). This narrowed the remaining problem to a property of the memory content itself, not the routing.
+
+The key path for this task is \texttt{wife -> husband -> brother}, or equivalently the composed operator \texttt{spouse\_of -> sibling}. The next repair changed only the operator-level guidance inside the matched \texttt{\#\# Past Experience} block:
+
+\begin{lstlisting}
+2. Normalize Kinship Operators: Convert natural language kinship terms into explicit candidate relation pairs.
+   - For `sibling-in-law`, strictly evaluate candidates in this order:
+     1. `spouse_of` -> `sibling`
+     2. `sibling` -> `spouse_of`
+   - For other terms (e.g., `wife`, `mother`, `son`), map directly to the corresponding atomic relation.
+...
+5. Enforce Operator Boundaries: Do not substitute the requested kinship operator with `parent`, `grandparent`, or `spouse-of-parent` unless the question explicitly requests those specific relations.
+\end{lstlisting}
+
+No other changes were made:
+
+\begin{center}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth}Y}
+\toprule
+ & Content \\
+\midrule
+\textbf{Held fixed} & target \texttt{wiki\_dev\_2639}; model; greedy decoding; prompt scaffold; EM/F1 scoring; matched routing from \S3.2 (the relation-chain source set); mismatched consolidation control condition \\
+\textbf{Changed} & matched consolidation note inside \texttt{\#\# Past Experience} only: added the \texttt{sibling-in-law} normalization and the operator-boundary clause shown above \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+This single change recovered matched consolidation from wrong to correct (EM 0 $\rightarrow$ 1). In the repaired output, the model explicitly enumerates both candidate paths (``Path 1: Harriet $\rightarrow$ \texttt{spouse\_of} (Thomas) $\rightarrow$ \texttt{sibling} (Henry)'') before self-correcting and answering \texttt{Henry Pelham} --- evidence that the operator normalization entered the reasoning, rather than merely shifting the surface label. This result suggests that for abstract memory, \emph{relevant} is insufficient: the abstraction must also preserve operator structure in a form the model can execute. The appendix reproduces the pre-repair and post-repair \texttt{\#\# Past Experience} note snippets alongside the corresponding raw outputs.
+
+\subsection{Selectivity of the Repairs}
+
+A selective-transfer claim requires that the matched path improve \emph{while the mismatched path does not}. Otherwise any revision that nudges the model into the right region of the answer space would count as selectivity. The mismatched routing (the attribute-bridge source set, which stays topically nearby but remains subtype-mismatched) and the mismatched control condition were therefore held constant across all three repair rounds on \texttt{wiki\_dev\_2639}:
+
+\begin{center}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.1\textwidth}Y c c}
+\toprule
+Round & Intervention (matched only) & Matched EM & Mismatched EM \\
+\midrule
+1b & --- (baseline, coarse pairing) & ep 0 / cons 0 & ep 0 / cons --- \\
+\textbf{1g} & matched routing $\rightarrow$ relation-chain source set & ep \textbf{0 $\rightarrow$ 1} / cons 0 & ep 0 / cons 0 \\
+\textbf{1h} & matched consolidation content revised (no operator change) & cons 0 (unchanged) & cons 0 \\
+\textbf{1i} & matched consolidation operator-normalized & cons \textbf{0 $\rightarrow$ 1} & cons 0 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\textit{Note.} \texttt{ep} = episodic, \texttt{cons} = cross-episode consolidation. The dash in the Round 1b mismatched column indicates that the mismatched control was not yet standardized: Round 1b paired \texttt{wiki\_dev\_2639} with a comparison-type source set, whereas from Round 1g onward the mismatched control was the attribute-bridge source set, which stays topically nearby but remains subtype-mismatched. The two mismatched baselines are therefore not directly comparable, so the Round 1b mismatched consolidation EM is not carried forward into the selectivity argument.
+
+Two facts in this table carry the selectivity argument.
+
+First, on the episodic channel (Round 1g), the matched condition flipped from wrong to correct while the mismatched condition stayed wrong under an identical prompt, model, and scoring rule. The only variable that moved was the matched source set; the mismatched source set was deliberately kept topically nearby to the old incorrect matched set, so it controls for ``the model gets better whenever memory comes from a nearby topic area.'' It did not.
+
+Second, on the consolidation channel (Rounds 1h $\rightarrow$ 1i), Round 1h already tested the weaker hypothesis that \emph{any} revision of the matched note in \texttt{\#\# Past Experience} would repair the failure --- it did not. Only the operator-specific repair in Round 1i changed the outcome, and again the mismatched consolidation condition was untouched and stayed at EM 0. The appendix reproduces that mismatched-consolidation output for reference. The two repairs therefore pass the minimal selectivity check: each targeted the matched path, and each left the mismatched control unmoved.
+
+Selectivity in this report is demonstrated at the per-case level. It is not claimed as a population-level effect; \S5 discusses what it would take to extend this check to a moderate-scale evaluation.
+
+\subsection{What the Repair Chain Shows}
+
+Taken together, the repair chain on \texttt{wiki\_dev\_2639} supports three conclusions.
+
+First, the early ``relevant memory hurts'' interpretation was not stable under controlled repair. Second, the two memory forms failed for different reasons: episodic memory needed better pairing, whereas consolidation additionally needed executable operator structure. Third, the repairs were selective rather than generic, because the mismatched controls remained wrong after each matched-path intervention (\S3.4).
+
+This does not amount to a large-scale proof. It is one repaired diagnostic case, not a benchmark-wide claim. But it is enough to show that what first looked like negative transfer can instead be an artifact of coarse pairing and non-executable abstraction.
+
+\section{Discussion}
+
+\subsection{What the Pilot Established}
+
+The pilot established a diagnostic workflow for evaluating selective transfer:
+
+\begin{itemize}
+\item a structured prompt that makes memory use visible,
+\item case-role discipline that prevents misleading aggregation,
+\item subtype-aware pairing,
+\item and executable abstractions for consolidated memory.
+\end{itemize}
+
+These are not just implementation details. They are the conditions under which selective-transfer evaluation becomes interpretable.
+
+\subsection{Claims}
+
+Within that scope, the pilot supports five claims.
+
+\begin{enumerate}
+\item \textbf{Process-level selectivity is directly observable.} Within this scaffold, memory use and memory rejection surface in the reasoning text (Appendix~\ref{app:wiki-dev-8896}).
+\item \textbf{Pooling across experimental roles misleads.} Cases assigned to different roles (process sanity, diagnosis) should not be collapsed into one average.
+\item \textbf{Pairing granularity is part of the result.} Coarse \texttt{bridge} matching produced false negative evidence on the strongest diagnostic case.
+\item \textbf{Abstract memory needed to be executable, not merely relevant.} On the strongest diagnostic case, matched consolidation was not usable until the operator structure was made executable (Appendix~\ref{app:wiki-dev-2639}).
+\item \textbf{Apparent negative transfer can be overturned by infrastructure repair.} On \texttt{wiki\_dev\_2639}, the earlier negative interpretation did not survive a controlled repair of pairing and abstraction.
+\end{enumerate}
+
+\subsection{Non-Claims}
+
+The pilot does \textbf{not} support the following stronger conclusions:
+
+\begin{itemize}
+\item that memory delivers strong average benchmark gains,
+\item that one memory form is universally better than the other,
+\item that selective transfer has been demonstrated at scale,
+\item or that one repaired case proves broad generalization.
+\end{itemize}
+
+The pilot also does not show that the current 9B model is sufficient for production-grade memory use. Even the repaired consolidation output remains process-level hesitant.
+
+\subsection{Route-Selection Signal}
+
+One design goal of the pilot was to learn where future work should go next: memory \emph{form} (how the experience is represented), memory \emph{use} (how it is routed and applied), or their coupling.
+
+The current evidence suggests \textbf{coupling}. Episodic memory was repaired by a routing change closer to the use side. Consolidated memory required an additional repair on the form side, namely executable operator structure. This is consistent with the two axes being coupled rather than independent: for more abstract memories, useful transfer appears to depend jointly on how the memory is represented and how it is routed to the target.
+
+This is a hypothesis suggested by the pilot, not a fully established law. But it is a meaningful route-selection signal for the next round.
+
+\section{Limitations and Future Work}
+
+The pilot remains limited in three ways.
+
+First, its strongest repaired evidence comes from a single diagnostic case. Second, all runs use the same 9B model, so the results do not separate evaluation problems from possible model-capacity effects. Third, the repaired consolidation output is correct but still process-level hesitant.
+
+These limits imply a clear next-step ordering.
+
+\begin{enumerate}
+\item \textbf{Moderate-scale repaired evaluation} should come first. The repaired workflow now needs to be tested on a larger set of relation-chain bridge targets.
+\item \textbf{Applicability judgment or gating} should come second. The pilot suggests that routing and memory form are coupled, but it did not yet test an explicit use-side gating mechanism.
+\item \textbf{Model scaling} should come last. A larger model may reduce some operator-level failures, but model size was not the main bottleneck exposed in this pilot.
+\end{enumerate}
+
+The next round should therefore ask a narrower question than ``does memory help on average?'':
+
+\begin{quote}
+Does the repaired workflow generalize beyond the strongest diagnostic case?
+\end{quote}
+
+\section{Conclusion}
+
+This pilot should be read as a \textbf{measurement and interpretation success}, not as a benchmark-win story.
+
+Its central finding is that apparent negative transfer can be produced by coarse pairing and non-executable abstraction, and that a controlled repair chain can overturn that interpretation without changing the underlying model. On this case, selective-transfer evaluation was sensitive to pairing granularity, case-role discipline, and executable memory abstraction. Without these, the experiment risks measuring its own artifacts rather than the phenomenon of interest.
+
+That does not prove that memory broadly works. It shows something more foundational: before asking whether memory helps, the experiment must first ensure that relevance, match, and memory abstraction are operationalized in a way the model can actually use.
+
+\appendix
+\input{appendix}
+
+\end{document}

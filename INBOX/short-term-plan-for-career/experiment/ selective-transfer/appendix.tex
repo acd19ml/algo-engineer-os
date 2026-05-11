@@ -1,0 +1,466 @@
+\clearpage
+\section*{Appendix Overview}
+
+This appendix provides the evidence layer for the submission. It does not reproduce every run file in the repository. Instead, it extracts the smallest set of tables, prompt fragments, and reasoning snippets needed to support the claims in the main text. Every excerpt is quoted verbatim from the underlying source files, and line ranges are given so the reader can locate each block directly if needed.
+
+\section{\texttt{wiki\_dev\_2639} Diagnostic Chain}
+\label{app:wiki-dev-2639}
+
+\textbf{Question:} Who is the sibling-in-law of Harriet Pelham-Holles, Duchess of Newcastle-upon-Tyne?
+
+\textbf{Gold answer:} Henry Pelham
+
+\textbf{Why this case matters:} It is the strongest diagnostic case because the no-memory baseline is correct, relevant memory initially fails, and later repairs recover the relevant path while the mismatched control remains wrong.
+
+\subsection{Condensed Outcome Table}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{Y c c}
+\toprule
+Condition & Match Status & Outcome \\
+\midrule
+No Memory & --- & Correct \\
+Relevant Episodic under coarse bridge pairing & Mismatched in subtype & Wrong \\
+Relevant Episodic after subtype-aware rerouting & Matched & Correct \\
+Relevant Consolidation before operator repair & Matched but non-executable & Wrong \\
+Relevant Consolidation after operator repair & Matched and executable & Correct \\
+Irrelevant Consolidation after all repairs & Mismatched & Wrong \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Source Sets and Prompt Insertion}
+
+This subsection answers a question the main text only sketches: when \S3.2 talks about rerouting the matched source set, what concrete text is actually being swapped? The two source sets below are the exact pair involved in the Round 1g rerouting. Everything shown here is read verbatim from the frozen source files; nothing is regenerated at run time.
+
+\subsubsection{Attribute-bridge source set used before rerouting (\texttt{hp\_bridge\_set\_01})}
+
+\textbf{Evidence source:} frozen pre-reroute episodic note for the attribute-bridge source set (\texttt{hp\_bridge\_set\_01}), lines 1--49.
+
+\begin{lstlisting}
+# Episodic Trace
+
+## Source Set
+- source_set_id: hp_bridge_set_01
+- cluster: bridge
+
+## Episode Summaries
+### 1. hp_dev_2054
+- question: When did the park at which Tivolis Koncertsal is located open?
+- answer: 15 August 1843
+- key lookup path: Tivolis Koncertsal -> location (Tivoli Gardens) -> park opening date
+- minimal support: Tivolis Koncertsal is a concert hall located at Tivoli Gardens in Copenhagen, Denmark.
+- reusable cue: Identify the specific venue's parent park or garden entity to retrieve the establishment date.
+
+### 2. hp_dev_3245
+- question: The school in which the Wilmslow Show is held is designated as what?
+- answer: Centre of Excellence
+- key lookup path: Wilmslow Show -> venue (Wilmslow High School) -> school designation
+- minimal support: Wilmslow Show is held at Wilmslow High School; Wilmslow High School is a designated Centre of Excellence.
+- reusable cue: Trace the event to its host institution to find specific designations or awards associated with that institution.
+
+### 3. hp_dev_1119
+- question: Who will Billy Howle be seen opposite in the upcoming British drama film directed by Dominic Cooke?
+- answer: Saoirse Ronan
+- key lookup path: Billy Howle -> co-star in film -> verify film director (Dominic Cooke)
+- minimal support: Howle will next be seen opposite Saoirse Ronan in "On Chesil Beach", directed by Dominic Cooke.
+- reusable cue: Use the actor's co-star list to find the specific film, then cross-reference the director to confirm the match.
+
+### 4. hp_dev_1668
+- question: Tommy's Honour was a drama film that included the actor who found success with what 2016 BBC miniseries?
+- answer: War & Peace
+- key lookup path: Tommy's Honour -> cast member (Jack Lowden) -> actor's 2016 BBC miniseries
+- minimal support: Jack Lowden starred in the 2016 BBC miniseries "War & Peace" following his stage career.
+- reusable cue: Identify the actor in the source film and retrieve their notable television work from the specified year.
+
+### 5. hp_dev_4237
+- question: "Tunak", is a bhangra/pop love song by an artist born in which year ?
+- answer: 1967
+- key lookup path: "Tunak" -> artist (Daler Mehndi) -> artist birth year
+- minimal support: "Tunak" is a song by Indian artist Daler Mehndi.
+- reusable cue: Extract the performer's name from the song description and look up their biographical birth year.
+
+## Local Pattern Notes
+- Bridge queries consistently require a two-step entity resolution: first identifying the intermediate entity (venue, school, film, actor, or singer), then retrieving the target attribute from that intermediate entity.
+- Supporting sentences often contain the direct link between the query entity and the bridge entity within the same sentence or adjacent sentences.
+- Verification steps are critical in film/actor bridges to ensure the correct co-star or director is matched before retrieving the final answer.
+- Event-based bridges (shows, songs) rely heavily on the "held at" or "by" relationship to pivot to the institutional or biographical data.
+- All episodes in this set share a "hard" difficulty rating due to the necessity of chaining distinct facts rather than direct retrieval.
+\end{lstlisting}
+
+\textbf{Cluster character.} Every episode here chains through an intermediate entity and retrieves an attribute on that intermediate entity. The reusable cues are all of the form ``find the intermediate, then look up its attribute.'' None of the episodes involve composed kinship or multi-hop relational operators --- the \texttt{wife -> husband -> brother} pattern required by \texttt{wiki\_dev\_2639} is not represented in this set.
+
+\subsubsection{Relation-chain source set used after rerouting (\texttt{hp\_relation\_chain\_bridge\_set\_01})}
+
+\textbf{Evidence source:} frozen post-reroute episodic note for the relation-chain source set (\texttt{hp\_relation\_chain\_bridge\_set\_01}), lines 1--49.
+
+\begin{lstlisting}
+# Episodic Trace
+
+## Source Set
+- source_set_id: hp_relation_chain_bridge_set_01
+- cluster: bridge
+
+## Episode Summaries
+### 1. hp_dev_7398
+- question: Who was the brother of the wife of the Democratic Party nomination for Vice President in 1972?
+- answer: President John F. Kennedy
+- key lookup path: 1972 VP Nominee (Sargent Shriver) -> Wife (Eunice Kennedy Shriver) -> Brother (John F. Kennedy)
+- minimal support: Sargent Shriver was the nominee; his wife was Eunice Kennedy Shriver; her brother was President John F. Kennedy.
+- reusable cue: Kinship chains often require traversing a spouse link to reach the target relative.
+
+### 2. hp_dev_2485
+- question: Who is the mother of Mary, Crown Princess of Denmark's husband?
+- answer: Queen Margrethe II
+- key lookup path: Mary (Crown Princess) -> Husband (Frederik, Crown Prince) -> Mother (Queen Margrethe II)
+- minimal support: Mary is the wife of Frederik, Crown Prince of Denmark; Frederik's mother is Queen Margrethe II.
+- reusable cue: Spouse-to-parent queries require identifying the immediate partner before accessing the parent node.
+
+### 3. hp_dev_1892
+- question: Matilda of Chester, Countess of Huntingdon's father was the son of which woman?
+- answer: Maud of Gloucester
+- key lookup path: Matilda -> Father (Hugh de Kevelioc) -> Mother (Maud of Gloucester)
+- minimal support: Matilda was the daughter of Hugh de Kevelioc, 5th Earl of Chester; Hugh's mother was Maud of Gloucester.
+- reusable cue: Parent-child chains are explicit; the target is the mother of the identified father.
+
+### 4. hp_dev_5315
+- question: Barnstable County Hospital was the location of the autopsy of the son of President John F. Kennedy and Jacqueline Kennedy, and the younger brother of who?
+- answer: Caroline Kennedy
+- key lookup path: JFK Jr. (autopsy at Barnstable) -> Sibling (Caroline Kennedy)
+- minimal support: John F. Kennedy Jr. died at Barnstable County Hospital; he was the younger brother of Caroline Kennedy.
+- reusable cue: Location-based entity anchors can lead directly to a sibling relation if the entity's biography is linked to the location.
+
+### 5. hp_dev_7220
+- question: The eldest daughter of Princess Louise of Denmark and Norway was the wife of a king whose motto was what?
+- answer: God and the just cause
+- key lookup path: Princess Louise -> Eldest Daughter (Marie of Hesse-Kassel) -> Husband (Frederick VI of Denmark) -> Motto (God and the just cause)
+- minimal support: Marie of Hesse-Kassel was the eldest daughter of Princess Louise; she married Frederick VI of Denmark; his motto was "God and the just cause".
+- reusable cue: Multi-hop chains involving royal titles often require traversing a "daughter -> wife of" link to reach the monarch.
+
+## Local Pattern Notes
+- Bridge reasoning in this set consistently involves a three-step kinship traversal (e.g., Nominee -> Wife -> Brother).
+- Specific entity titles (e.g., "Crown Princess," "Countess of Huntingdon") serve as critical anchors for disambiguating parent-child relationships.
+- Queries frequently require identifying an intermediate spouse or child before accessing the final target attribute (motto, mother, sibling).
+- Supporting sentences often explicitly define the immediate relationship (e.g., "was the wife of," "was a daughter of") which must be chained sequentially.
+- Difficulty is driven by the necessity to maintain the correct lineage direction (e.g., finding the mother of the husband, not the husband of the mother).
+\end{lstlisting}
+
+\textbf{Cluster character.} Every episode here chains through a composed kinship or relation operator: \texttt{Nominee -> Wife -> Brother}, \texttt{Crown Princess -> Husband -> Mother}, \texttt{Daughter -> Wife of King -> Motto}, and so on. The reusable cues explicitly name spouse-link traversal and lineage direction --- the same operator structure that \texttt{wiki\_dev\_2639} requires (\texttt{wife -> husband -> brother}).
+
+\textbf{The contrast is the mechanical content of the pairing-granularity argument in the main text.} Under the original coarse \texttt{bridge} label, A.2.1 and A.2.2 are interchangeable. Under the attribute-bridge vs relation-chain-bridge subtype distinction introduced in Round 1d, they are not: only A.2.2 shares the composed-kinship operator structure that the target task requires.
+
+\subsubsection{How these source notes were prepared}
+
+Source sets are constructed through a frozen three-step pipeline, documented in the source-set selection workflow and the per-set episodic-note prompt:
+
+\begin{enumerate}
+\item \textbf{Select 5 solved HotpotQA tasks} from a single reasoning cluster. Selection constraints: entity-disjoint across the 5 episodes, entity-disjoint with every 2WikiMultiHopQA target in the pilot pool, no passage-level leakage into the target contexts, diverse surface forms (no near-duplicates).
+\item \textbf{Run a one-shot generation prompt} on each of the 5 solved tasks to produce a structured summary --- question, answer, key lookup path, minimal support, reusable cue --- using the per-set episodic-note template.
+\item \textbf{Freeze the concatenated output} as the source set's episodic note. The note is never regenerated after freezing. A parallel consolidated note is produced from the same 5 episodes under the consolidation prompt, also frozen.
+\end{enumerate}
+
+The consequence matters for the selectivity argument in the main text: every inference run that uses \texttt{hp\_bridge\_set\_01} sees literally identical \texttt{\#\# Past Experience} text, and likewise for \texttt{hp\_relation\_chain\_bridge\_set\_01}. Swapping source sets is swapping one frozen block for another --- it is not live regeneration and introduces no run-to-run variance in the memory content.
+
+\subsubsection{How the source notes enter the prompt}
+
+At inference time, the pipeline reads the chosen source set's \texttt{episodic\_trace.md} for episodic conditions or \texttt{cross\_episode\_consolidation.md} for consolidation conditions and splices the entire file body into the \texttt{\#\# Past Experience} slot of the prompt scaffold. No editing, no summarization, no truncation. Schematically:
+
+\begin{lstlisting}
+## Past Experience
+The following notes summarize patterns from previously solved tasks
+that may or may not be relevant to the current question.
+Use them only if they help your reasoning -- do not force-apply them.
+
+{<verbatim body of the chosen episodic note>}
+\end{lstlisting}
+
+The no-memory condition omits the \texttt{\#\# Past Experience} block entirely. Everything else in the scaffold --- \texttt{\#\# Context}, \texttt{\#\# Question}, \texttt{\#\# Instructions}, the \texttt{\#\# Reasoning} and \texttt{\#\# Final Answer} headers --- is character-identical across conditions for a given target.
+
+This is what ``only the matched source set changed'' means at the prompt-token level: between the Round 1b and Round 1g runs, only the content inside \texttt{\#\# Past Experience} differs, and that content is the full file body of A.2.1 vs A.2.2 respectively.
+
+\subsection{Why These Excerpts Are Sufficient}
+
+The appendix does not need the full raw files. It needs the shortest source-file segments that make the intervention auditable.
+
+For this case, the indispensable evidence comes from six places:
+
+\begin{enumerate}
+\item \textbf{Round 1b wrong episodic output} --- raw output for the relevant episodic condition on \texttt{wiki\_dev\_2639}, lines 146--155. Smallest block that simultaneously shows the scaffold header, the wrong branch (Harriet's blood-family siblings), and the final refusal.
+\item \textbf{Round 1g repaired episodic output} --- raw output for the rerouted matched episodic condition on \texttt{wiki\_dev\_2639}, lines 146--154. Smallest block that shows the corrected husband-to-brother path and the final correct answer.
+\item \textbf{Round 1h consolidation-note snippet} --- revised matched consolidation note, lines 18--23. The heuristic lines added to \texttt{\#\# Past Experience}; shows spouse-branch sensitivity but does not yet normalize \texttt{sibling-in-law}.
+\item \textbf{Round 1i consolidation-note snippet} --- operator-repaired matched consolidation note, lines 20--31. The actual operator repair: introduces ordered candidate paths for \texttt{sibling-in-law} and forbids fallback to parent or grandparent branches.
+\item \textbf{Round 1h wrong consolidation output} --- raw output for the revised matched consolidation condition on \texttt{wiki\_dev\_2639}, lines 125--134. Minimal post-note block showing the model still refusing after the Round 1h cleanup.
+\item \textbf{Round 1i repaired consolidation output} --- raw output for the operator-repaired matched consolidation condition on \texttt{wiki\_dev\_2639}, line 133 and lines 143--165. Minimal block showing both candidate paths, the self-correction, and the final correct answer.
+\end{enumerate}
+
+\subsection{Controlled Intervention Summary}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth}Y}
+\toprule
+ & Content \\
+\midrule
+\textbf{Held fixed} & target task \texttt{wiki\_dev\_2639}; model \texttt{Qwen/Qwen3.5-9B} with greedy decoding; global prompt scaffold; scoring rule (EM / token-F1); source routing for the mismatched consolidation condition \\
+\textbf{Changed (Round 1g)} & matched episodic \texttt{\#\# Past Experience} block --- rerouted from \texttt{hp\_bridge\_set\_01} (attribute-bridge; A.2.1) to \texttt{hp\_relation\_chain\_bridge\_set\_01} (relation-chain; A.2.2) \\
+\textbf{Changed (Round 1h)} & matched consolidation note --- rewritten with spouse-branch-sensitive heuristics but no explicit \texttt{sibling-in-law} operator normalization \\
+\textbf{Changed (Round 1i)} & matched consolidation note --- added ordered candidate-path normalization for \texttt{sibling-in-law} and explicit operator-boundary enforcement \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Evidence Excerpts}
+
+\subsubsection{No-memory baseline (reference block)}
+
+\textbf{Source excerpt:} no-memory raw output on \texttt{wiki\_dev\_2639}, lines 90--98.
+
+\textbf{Why this block:} the context alone already supports the correct \texttt{wife -> husband -> brother} path without any memory.
+
+\begin{lstlisting}
+## Reasoning
+
+- Harriet Pelham-Holles was the wife of Thomas Pelham-Holles, 1st Duke of Newcastle, as stated in her biographical paragraph.
+- Thomas Pelham-Holles had a brother named Henry Pelham, who served as Prime Minister alongside him.
+- Since Henry Pelham is the brother of Harriet's husband, he is her brother-in-law.
+- The text does not provide information about any siblings of Harriet herself, so no other siblings-in-law can be identified from the provided context.
+
+## Final Answer
+Henry Pelham
+\end{lstlisting}
+
+\subsubsection{Relevant episodic under coarse pairing: wrong}
+
+\textbf{Source excerpt:} Round 1b raw output for the relevant episodic condition on \texttt{wiki\_dev\_2639}, lines 146--155.
+
+\begin{lstlisting}
+## Reasoning
+
+*   The context identifies Harriet Pelham-Holles as the wife of Thomas Pelham-Holles, 1st Duke of Newcastle, and explicitly states she was the daughter of Francis Godolphin, 2nd Earl of Godolphin.
+*   As the daughter of the 2nd Earl of Godolphin, Harriet's siblings are the children of Francis Godolphin and Lady Henrietta Churchill.
+*   The text mentions her grandfather, Sidney Godolphin, 1st Earl of Godolphin, and his wife Sarah Churchill, Duchess of Marlborough, establishing the family lineage but not listing Harriet's specific siblings by name.
+*   However, the question asks for a "sibling-in-law," which refers to the spouse of one's sibling. Since the text does not name Harriet's siblings or their spouses, the specific name of a sibling-in-law cannot be derived from the provided context.
+*   The provided context focuses on Harriet's parents, husband, and grandparents, but lacks information regarding her brothers or sisters and their marriages.
+
+## Final Answer
+Cannot be determined from the provided context.
+\end{lstlisting}
+
+This is the key false-negative stage. The memory, paired at the coarse \texttt{bridge} level with attribute-bridge source episodes (A.2.1), steers the model toward Harriet's blood-family branch instead of the husband-side kinship chain --- even though the no-memory baseline handles the same context correctly.
+
+\subsubsection{Relevant episodic after subtype-aware rerouting: correct}
+
+\textbf{Source excerpt:} Round 1g raw output for the rerouted matched episodic condition on \texttt{wiki\_dev\_2639}, lines 146--154.
+
+\begin{lstlisting}
+## Reasoning
+
+*   The context identifies Harriet Pelham-Holles as the wife of Thomas Pelham-Holles, 1st Duke of Newcastle-upon-Tyne.
+*   Thomas Pelham-Holles is described as having held power with his brother, Henry Pelham, who served as Prime Minister.
+*   Therefore, Henry Pelham is the brother of Harriet's husband, making him her sibling-in-law.
+*   The provided context does not mention any siblings of Harriet herself, so the query must refer to her husband's siblings.
+
+## Final Answer
+Henry Pelham
+\end{lstlisting}
+
+\textbf{What changed between the two episodic runs:} at the prompt-token level, only the content inside the \texttt{\#\# Past Experience} block --- from the A.2.1 body to the A.2.2 body. At the design level, only the matched routing decision.
+
+\textbf{What stayed fixed:} model, decoding, prompt scaffold template, scoring rule, target, and the mismatched control.
+
+This rules out a generic ``better source quality'' explanation: the mismatched-episodic condition on the same target continued to fail after this change.
+
+\subsubsection{Round 1h consolidation note: pre-operator-repair heuristic}
+
+\textbf{Source excerpt:} Round 1h revised matched consolidation note, lines 18--23.
+
+\begin{lstlisting}
+## Operational Heuristic
+1. Identify the initial subject and the first explicit relation mentioned in the question.
+2. Check if the target relation requires traversing a **spouse link** (e.g., "wife of," "husband of," "daughter-in-law").
+3. **Branch-Sensitive Instruction**: If a spouse branch is present, prioritize retrieving the spouse's profile first to access their kinship network; do not skip this step to find the subject's own siblings.
+4. Verify the connection between the spouse and the final target entity using the retrieved context.
+5. **Warning**: Do not switch to the subject's own siblings or parents unless the context explicitly supports that specific branch; strictly follow the chain defined by the question's relational operators.
+\end{lstlisting}
+
+This block is the intervention object for Round 1h. It adds spouse-branch sensitivity in English prose but does not yet operationalize \texttt{sibling-in-law}; there is no explicit decomposition of the in-law operator, so the model still has to decide how to act on the kinship term.
+
+\subsubsection{Round 1i consolidation note: operator-repaired heuristic}
+
+\textbf{Source excerpt:} Round 1i operator-repaired matched consolidation note, lines 20--31.
+
+\begin{lstlisting}
+2. **Normalize Kinship Operators**: Convert natural language kinship terms into explicit candidate relation pairs.
+   - For `sibling-in-law`, strictly evaluate candidates in this order:
+     1. `spouse_of` -> `sibling`
+     2. `sibling` -> `spouse_of`
+   - For other terms (e.g., `wife`, `mother`, `son`), map directly to the corresponding atomic relation.
+3. **Execute Forward Chain**:
+   - Retrieve the entity connected by the first normalized relation.
+   - If the retrieved entity is a person, check if a spouse is explicitly named in the context.
+   - **If a spouse is named**: Immediately pivot to the `spouse_of` branch to continue the chain.
+   - **If no spouse is named**: Proceed to the next relation in the sequence.
+4. **Validate Termination**: Verify the final entity possesses the target attribute. If the chain breaks or the attribute is missing, halt and report failure.
+5. **Enforce Operator Boundaries**: Do not substitute the requested kinship operator with `parent`, `grandparent`, or `spouse-of-parent` unless the question explicitly requests those specific relations.
+\end{lstlisting}
+
+This is the actual operator repair. It does not just polish wording; it changes the executable policy inside the consolidation note, decomposing \texttt{sibling-in-law} into two ordered atomic-relation candidate paths and explicitly prohibiting the parent or grandparent substitution that the Round 1h output fell back to.
+
+\subsubsection{Relevant consolidation before operator repair: still wrong}
+
+\textbf{Source excerpt:} Round 1h raw output for the revised matched consolidation condition on \texttt{wiki\_dev\_2639}, lines 125--134.
+
+\begin{lstlisting}
+## Reasoning
+
+*   The context identifies Harriet Pelham-Holles as the wife of Thomas Pelham-Holles, 1st Duke of Newcastle, establishing the primary subject and her spouse.
+*   The text states that Harriet was the daughter of Francis Godolphin, 2nd Earl of Godolphin, and Lady Henrietta Churchill, 2nd Duchess of Marlborough.
+*   Lady Henrietta Churchill is explicitly identified as the wife of John Churchill, 1st Duke of Marlborough, making her Harriet's mother-in-law.
+*   The question asks for a sibling-in-law, which refers to the siblings of one's spouse; however, the provided text details Harriet's parents and her husband's family but does not list the names of Thomas Pelham-Holles's siblings.
+*   Since the text mentions Harriet's mother (Lady Henrietta Churchill) and her mother's husband (John Churchill), but does not mention any siblings of Harriet herself, the specific sibling-in-law cannot be identified from the given context.
+
+## Final Answer
+Cannot be determined from the provided context.
+\end{lstlisting}
+
+At this stage, the memory is topically relevant and already carries the spouse-branch warning from the Round 1h note, but it is still not operational. The model silently drifts into the mother-in-law or parent branch and refuses.
+
+\subsubsection{Relevant consolidation after operator repair: correct}
+
+\textbf{Source excerpt:} Round 1i raw output for the operator-repaired matched consolidation condition on \texttt{wiki\_dev\_2639}, line 133 and lines 143--165, with lines 135--142 elided for length.
+
+\begin{lstlisting}
+## Reasoning
+
+[... earlier reasoning bullets omitted for length; see raw file L135--142 ...]
+
+*   **Re-evaluating the "Sibling-in-law" definition in this context**: Often in these datasets, if the spouse of the sibling isn't named, the question might be flawed or referring to the brother-in-law as the answer if the distinction isn't strictly enforced, OR I am missing a specific name. Let's look at the "Past Experience" heuristic. It says for `sibling-in-law`, evaluate `spouse_of` -> `sibling` OR `sibling` -> `spouse_of`.
+    *   Path 1: Harriet -> `spouse_of` (Thomas) -> `sibling` (Henry). Result: Henry. (This makes Henry the brother-in-law).
+    *   Path 2: Harriet -> `sibling` (None named) -> `spouse_of` (None named).
+*   **Decision**: The only named relative fitting the "in-law" category derived from the text is Henry Pelham (brother of the husband). ...
+    *   *Self-Correction*: Actually, looking at similar QA patterns, if the text says "A is married to B, and B has a brother C", the answer to "Who is A's sibling-in-law?" is often **C** ... Let's provide Henry Pelham.
+
+*Refined Reasoning*:
+1.  The text identifies Harriet Pelham-Holles as the wife of Thomas Pelham-Holles, 1st Duke of Newcastle.
+2.  It states that Thomas Pelham-Holles held power with his brother, Henry Pelham.
+3.  This establishes Henry Pelham as the brother of Harriet's husband, making him her brother-in-law.
+4.  As no spouse of Henry is mentioned in the text, Henry Pelham is the only individual fitting the "in-law" family connection described.
+
+## Final Answer
+Henry Pelham
+\end{lstlisting}
+
+This is the key before or after pair with the previous block. Two observations:
+
+\begin{itemize}
+\item The model explicitly cites the Past Experience heuristic by name and enumerates both ordered candidate paths.
+\item It self-corrects away from the refusal default and lands on \texttt{Henry Pelham}.
+\end{itemize}
+
+The repaired note therefore changed the model's reasoning trajectory, not just its final label.
+
+\subsubsection{Irrelevant consolidation after all repairs: still wrong (selective-repair control)}
+
+\textbf{Source excerpt:} Round 1i raw output for the mismatched consolidation control on \texttt{wiki\_dev\_2639}, lines 126--135.
+
+\begin{lstlisting}
+## Reasoning
+
+*   The context identifies Harriet Pelham-Holles as the wife of Thomas Pelham-Holles, 1st Duke of Newcastle, and explicitly states she was the daughter of Francis Godolphin, 2nd Earl of Godolphin.
+*   As the daughter of the 2nd Earl of Godolphin, Harriet's siblings are the children of Francis Godolphin and Lady Henrietta Churchill.
+*   The text mentions her grandfather, Sidney Godolphin, 1st Earl of Godolphin, and his wife Sarah Churchill, Duchess of Marlborough, establishing the family lineage but not listing Harriet's specific siblings by name.
+*   However, the question asks for a "sibling-in-law," which refers to the spouse of one's sibling. Since the specific names of Harriet's siblings are not provided in the text, their spouses (the sibling-in-laws) cannot be identified from the given context.
+*   The provided text details Harriet's husband (Thomas Pelham-Holles) and her parents/grandparents, but contains no information regarding her brothers or sisters, making it impossible to name a sibling-in-law based strictly on the provided paragraphs.
+
+## Final Answer
+Cannot be determined from the provided context.
+\end{lstlisting}
+
+This is the selective-repair control. After all Round 1h and 1i consolidation-note repairs have been applied to the matched path, the mismatched-consolidation condition on the same target still produces the blood-family-branch reasoning and still refuses. This is what distinguishes ``operator repair fixed the matched path'' from ``any revision would have improved the target.''
+
+\subsection{Appendix-Level Takeaway}
+
+\texttt{wiki\_dev\_2639} is not evidence that relevant memory is harmful. It is evidence that coarse pairing can create a false negative, and that consolidated memory may additionally require executable operator structure.
+
+\section{\texttt{wiki\_dev\_8896} Process Sanity}
+\label{app:wiki-dev-8896}
+
+\textbf{Question type:} comparison
+
+\textbf{Why this case matters:} It is the cleanest evidence that the prompt scaffold makes memory use and memory rejection visible, even when the final answer does not change.
+
+\subsection{Why These Excerpts Are Sufficient}
+
+\begin{itemize}
+\item For the \textbf{relevant} condition, use the Round 1b raw output for the relevant episodic condition on \texttt{wiki\_dev\_8896}, lines 146--155. This is the smallest block that shows both the direct date comparison and the explicit sentence that past experience was useful.
+\item For the \textbf{irrelevant} condition, use the Round 1b raw output for the irrelevant episodic condition on \texttt{wiki\_dev\_8896}, lines 146--156. This is the smallest block that shows the model explicitly rejecting the provided memory rather than merely ignoring it.
+\end{itemize}
+
+\subsection{Relevant Memory: Explicit Use}
+
+\begin{lstlisting}
+## Reasoning
+
+*   The context paragraph for **Billy Magoulias** explicitly states he was born on **23 January 1997**.
+*   The context paragraph for **Jean-Baptiste Le Prince** provides his full birth and death dates as **September 17, 1734 -- September 30, 1781**.
+*   Comparing the two dates, 1734 occurs significantly earlier in history than 1997.
+*   Therefore, Jean-Baptiste Le Prince was born well before Billy Magoulias.
+*   This follows the pattern of temporal comparisons seen in past experience, requiring the extraction of specific year markers to determine chronological order.
+
+## Final Answer
+Jean-Baptiste Le Prince
+\end{lstlisting}
+
+The fifth bullet is the observable memory-use signal: ``This follows the pattern of temporal comparisons seen in past experience \ldots''.
+
+\subsection{Irrelevant Memory: Explicit Reject}
+
+\begin{lstlisting}
+## Reasoning
+
+*   The context states that Billy Magoulias was born on 23 January 1997.
+*   The context provides the birth and death dates for Jean-Baptiste Le Prince as September 17, 1734 -- September 30, 1781.
+*   Comparing the two dates, 1734 is significantly earlier than 1997.
+*   Therefore, Jean-Baptiste Le Prince was born before Billy Magoulias.
+*   The provided past experience regarding multi-hop entity resolution is not useful here because the answer requires a direct comparison of birth dates found in the text, rather than chaining distinct facts through an intermediate entity.
+
+## Final Answer
+Jean-Baptiste Le Prince
+\end{lstlisting}
+
+The fifth bullet is the observable memory-reject signal: ``The provided past experience \ldots is not useful here because \ldots''. Same gold answer as the relevant condition, but the process trace is structurally different.
+
+\subsection{Appendix-Level Takeaway}
+
+This case does not show transfer efficacy. It shows process-level selectivity: the model can explicitly use matched memory and explicitly reject mismatched memory within the same scaffold.
+
+\section{Prompt Scaffold (verbatim)}
+\label{app:prompt-scaffold}
+
+This appendix reproduces the full prompt scaffold shared by all conditions. In the main text, the scaffold is discussed only at the design level. The verbatim template is retained here so the reader can inspect the exact output-formatting and observability instructions without interrupting the main argument.
+
+\begin{lstlisting}
+You are a question-answering agent. Your task is to answer a multi-hop reasoning question using the provided context paragraphs.
+
+## Context
+{context paragraphs from 2WikiMultiHopQA}
+
+## Question
+{target question}
+
+## Past Experience
+The following notes summarize patterns from previously solved tasks that may or may not be relevant to the current question. Use them only if they help your reasoning -- do not force-apply them.
+
+{episodic trace OR cross-episode consolidation block; omitted under No Memory}
+
+## Instructions
+- Read all context paragraphs carefully.
+- Work through the reasoning chain explicitly before deciding the answer.
+- In ## Reasoning, write 3 to 6 short bullet points grounded in the provided context.
+- If past experience is shown, either use it explicitly or state briefly why it is not useful here.
+- Keep the reasoning concise and evidence-grounded.
+- In ## Final Answer, give only the final short answer phrase.
+
+## Reasoning
+
+## Final Answer
+\end{lstlisting}
