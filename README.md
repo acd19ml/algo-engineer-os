@@ -173,14 +173,15 @@ algo-engineer-os/
 
 **已有**：
 - 规则层完整（META/policies + few_shots + ownership matrix + 分阶段加载 triage）
-- KNOWLEDGE：31 个节点，**全部已按新形态（因果叙述 + 反事实推导）写完**——9 个域（ml / nlp / optimization / pytorch / vision / methodology / transformer / agent / training）
+- KNOWLEDGE：38 个节点，**全部已按新形态（因果叙述 + 反事实推导）写完**——9 个域（ml / nlp / optimization / pytorch / vision / methodology / transformer / agent / training），agent 域含 Cloud Code 源码级 6 大子系统拆解
 - KNOWLEDGE/_self_check：9 个 domain 的自检题 deck 全部完整
 - PODCAST：层框架就绪（spec + template + few-shot），按用户请求触发写脚本
-- TRACKS：`active/final-exam-prep.md` + `roadmap/agent-engineer.md`（待重写）
-- CAREER：`cv.md` 已有（过时，需更新）+ skeleton（target-roles / skill-gap / interview-bank）
+- TRACKS：`active/sprint-2026-summer.md`（求职冲刺双轨道）+ `roadmap/agent-engineer.md`（待重写）
+- CAREER：`cv.md` 已更新到投递就绪态（七牛云段已删 RocketMQ + 重写为 Dify L1/L2/L3 + MCP + MVP 措辞）+ target-roles 4 份已填 + skill-gap 第一版已成 + interview-bank（**已派生 3 条 STAR + 4 道技术深问**，全部基于 qiniu-zeroops-rca-agent）
+- PROJECTS：`work/qiniu-zeroops-rca-agent/` 完整页（含时代背景锚点 / 主动选型路径 / 真实 SOP / 学术坐标对照 Flow-of-Action / 20%→70% 真实数字 / 7 条复盘）
 
 **接下来该做的**：
-1. 填 `CAREER/target-roles/summer-intern-agent-engineer.md` 和 `newgrad-agent-engineer.md`
-2. 给方向后让 LLM 重写 `TRACKS/roadmap/agent-engineer.md`
-3. 开对话挖掘七牛云 / Neo 两段实习，长出 `PROJECTS/work/*` 和 `CAREER/interview-bank/behavioral/*`
+1. 重写 `TRACKS/roadmap/agent-engineer.md`（target-roles 已填，可启动）
+2. 开对话挖掘 Neo 一段实习，长出 `PROJECTS/work/neo-deepresearch-and-react-agent/` 和对应 STAR
+3. 考虑建 `PROBLEMS/multi-agent-decomposition-axis/`（按职责拆 vs 按阶段拆 vs 按角色拆的横向对比）和 `PROBLEMS/multimodal-fusion-paradigms/`
 4. 用 PODCAST 层把节点改写成跑步可听的脚本（用户主动请求触发）

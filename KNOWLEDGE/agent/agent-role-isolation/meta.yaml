@@ -1,0 +1,29 @@
+id: agent-role-isolation
+title: "Agent Role Isolation: 按阶段拆 + 三维隔离"
+type: system
+status: stable
+created_at: 2026-05-11
+last_reviewed_at: 2026-05-11
+
+tags: [agent, multi-agent, role-separation, claude-code, hard-constraint]
+depends_on:
+  - multi-agent
+  - harness
+related_nodes:
+  - multi-agent
+  - harness
+  - harness-practice
+  - agent-permission-system
+  - agent-tool-design
+related_problems: []
+
+evidence_level:
+  concept: self_reasoned
+  math: not_verified
+  code: not_verified
+
+checklist:
+  concept: true
+  math: false
+  code: false
+  reproduction: false

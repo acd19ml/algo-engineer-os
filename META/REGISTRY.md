@@ -42,12 +42,26 @@
 | long-context-rl | `KNOWLEDGE/training/long-context-rl/` | method | stable |
 | sft-data-size | `KNOWLEDGE/training/sft-data-size/` | methodology | stable |
 | rlhf-dpo-grpo | `KNOWLEDGE/training/rlhf-dpo-grpo/` | concept | stable |
+| agent-context-compaction | `KNOWLEDGE/agent/agent-context-compaction/` | system | stable |
+| agent-permission-system | `KNOWLEDGE/agent/agent-permission-system/` | system | stable |
+| agent-role-isolation | `KNOWLEDGE/agent/agent-role-isolation/` | system | stable |
+| agent-tool-design | `KNOWLEDGE/agent/agent-tool-design/` | capability | stable |
+| agent-memory-system | `KNOWLEDGE/agent/agent-memory-system/` | system | stable |
+| agent-system-prompt | `KNOWLEDGE/agent/agent-system-prompt/` | capability | stable |
+| agentops-vs-opsagent | `KNOWLEDGE/agent/agentops-vs-opsagent/` | concept | stable |
+| multi-agent-rca-paradigm | `KNOWLEDGE/agent/multi-agent-rca-paradigm/` | system | stable |
+| agent-failure-attribution | `KNOWLEDGE/agent/agent-failure-attribution/` | research-direction | stable |
+| agent-anomaly-taxonomy | `KNOWLEDGE/agent/agent-anomaly-taxonomy/` | framework | stable |
+| agent-failure-trajectory-dataset | `KNOWLEDGE/agent/agent-failure-trajectory-dataset/` | infrastructure | stable |
+| architecture-design-six-steps | `KNOWLEDGE/methodology/architecture-design-six-steps/` | methodology | stable |
+| three-tier-decision-docs | `KNOWLEDGE/methodology/three-tier-decision-docs/` | methodology | stable |
+| ai-product-decision-four-questions | `KNOWLEDGE/methodology/ai-product-decision-four-questions/` | methodology | stable |
 
 ### 节点形态状态
 
 | 形态 | 节点数 | 说明 |
 |---|---|---|
-| ✅ 新形态（因果叙述 + 反事实） | 32（全部） | 所有节点都已按 `META/policies/node_form.md` 重写 |
+| ✅ 新形态（因果叙述 + 反事实） | 46（全部） | 所有节点都已按 `META/policies/node_form.md` 重写 |
 | ⚠️ 旧形态 | 0 | 已全部清零 |
 
 ---
@@ -61,9 +75,9 @@
 | optimization | `KNOWLEDGE/_self_check/optimization.md` | 完整（2 节点 + 跨节点） |
 | pytorch | `KNOWLEDGE/_self_check/pytorch.md` | 完整（2 节点 + 跨节点） |
 | vision | `KNOWLEDGE/_self_check/vision.md` | 完整（1 节点） |
-| methodology | `KNOWLEDGE/_self_check/methodology.md` | 完整（1 节点） |
+| methodology | `KNOWLEDGE/_self_check/methodology.md` | 完整（4 节点 + 跨节点） |
 | transformer | `KNOWLEDGE/_self_check/transformer.md` | 完整（3 节点 + 跨节点） |
-| agent | `KNOWLEDGE/_self_check/agent.md` | 完整（6 节点 + 跨节点） |
+| agent | `KNOWLEDGE/_self_check/agent.md` | 完整（17 节点 + 跨节点） |
 | training | `KNOWLEDGE/_self_check/training.md` | 完整（7 节点 + 跨节点） |
 
 ---
@@ -91,8 +105,12 @@
 
 | id | 路径 | type | status |
 |---|---|---|---|
+| qiniu-zeroops-rca-agent | `PROJECTS/work/qiniu-zeroops-rca-agent/` | work | done |
+| neo-deepresearch-and-react-agent | `PROJECTS/work/neo-deepresearch-and-react-agent/` | work | **in-progress** |
 
-（暂无。`PROJECTS/work/` 下两个待挖掘项目：qiniu-supervisor-agent、neo-deepresearch-and-react-agent）
+> `qiniu-zeroops-rca-agent/` 含 4 份文档：`README.md`（决策复盘）+ `system-anatomy.md`（系统解剖）+ `agent-subsystem.md`（Agent 子系统解剖）+ `interview-defense-matrix.md`（挑战防御矩阵 · living）
+>
+> `neo-deepresearch-and-react-agent/` 起手 2 份文档：`README.md`（4 子项目导航 + 挖掘 brief Q1-Q20）+ `interview-defense-matrix.md`（30+ 行 readiness baseline + GAP-N1~N12 清单）。等挖掘 brief 答完后再 evolve 出 `system-anatomy.md` 和 `subsystem-react-router.md`
 
 ---
 
@@ -100,8 +118,10 @@
 
 | id | 路径 | type |
 |---|---|---|
+| jd-and-interviews | `RAW_SOURCES/jd-and-interviews/` | external |
+| conference-talks | `RAW_SOURCES/conference-talks/` | external |
 
-（暂无）
+> `conference-talks/` 含 `AgentOS_AgentOps_report.md`（2025 CCF ChinaSoft，裴昶华），已拆到 5 个 agent 节点：agentops-vs-opsagent / multi-agent-rca-paradigm / agent-failure-attribution / agent-anomaly-taxonomy / agent-failure-trajectory-dataset
 
 ---
 
@@ -112,8 +132,8 @@
 | `CAREER/cv.md` | 简历（过时，待更新） | 你 |
 | `CAREER/skill-gap.md` | CV ↔ 目标岗位缺口表 | 你（LLM 建议 diff） |
 | `CAREER/target-roles/` | 目标岗位画像（待填：summer-intern-agent-engineer、newgrad-agent-engineer） | 你（或对话长出但你审）|
-| `CAREER/interview-bank/technical/` | 技术题（待填：你丢面经触发）| LLM triage |
-| `CAREER/interview-bank/behavioral/` | 行为题 + STAR（待填：从 PROJECTS/work 派生）| LLM triage |
+| `CAREER/interview-bank/technical/` | 技术题（已派生 4 条来自 qiniu-zeroops-rca-agent：agent-loop-vs-workflow / multi-agent-decomposition / multimodal-fusion-paradigm / opsagent-vs-agentops）| LLM triage |
+| `CAREER/interview-bank/behavioral/` | 行为题 + STAR（已派生 3 条来自 qiniu-zeroops-rca-agent：ceo-pivot-decision / team-turbulence-handoff / roadshow-emergency-rescue）| LLM triage |
 
 ---
 
@@ -135,8 +155,8 @@
 
 | id | 路径 | 类型 | 状态 |
 |---|---|---|---|
-| final-exam-prep | TRACKS/active/final-exam-prep.md | 临时 | active |
-| agent-engineer | TRACKS/roadmap/agent-engineer.md | 长期 | **待重写**（等 target-roles 填完）|
+| sprint-2026-summer | TRACKS/active/sprint-2026-summer.md | 临时 | active |
+| agent-engineer | TRACKS/roadmap/agent-engineer.md | 长期 | **待重写**（target-roles 已填，可重写）|
 
 ---
 

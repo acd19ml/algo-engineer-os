@@ -17,7 +17,7 @@
 - **推理优化**：KV Cache 工程理解 + Neo 70% 成本降经验
 - **工程基础**：Python + Go、微服务、Gin、gRPC、数据库 + 中间件、TDD
 - **领导 + 架构**：组长 + 6 步法 + 三类设计文档
-- **开源协作**：Neo 150+ stars + 海外社区运营
+- **开源协作**：Neo 260+ stars + 海外社区运营
 - **研究深度**（agent memory）：横向对比 + selective transfer 方法学 + 8 类 boundary pattern
 
 ## 目标岗位汇总要求
@@ -43,7 +43,7 @@
 | 能力 | 表现 | 是否已写进新 cv |
 |---|---|---|
 | 组长经验 + 架构 6 步法 | 七牛云实习内容 | ✅ 新 cv 七牛云段已加 |
-| 三类设计文档思考 | `INBOX/short-term-plan-for-career/want-to-talk-by-myself-during-interview.md` | ✅ 新 cv 七牛云段已加 |
+| 三类设计文档思考 | `KNOWLEDGE/methodology/three-tier-decision-docs/` + `PROJECTS/work/qiniu-zeroops-rca-agent/` 学术坐标段 | ✅ 新 cv 七牛云段已加 |
 | Neo 海外社区运营 | Neo 实际工作内容 | ✅ 新 cv Neo 段已加 |
 | agent memory 框架对比研究 | 主项目横向对比 | ✅ 主项目"横向对比研究" bullet |
 | 7B 模型 LoRA + GRPO 全栈训练经验 | 主项目（进行中） | ✅ 主项目"全链路实现" bullet |

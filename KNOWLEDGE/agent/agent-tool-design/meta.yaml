@@ -1,0 +1,27 @@
+id: agent-tool-design
+title: "Agent Tool Design: 三原则"
+type: capability
+status: stable
+created_at: 2026-05-11
+last_reviewed_at: 2026-05-11
+
+tags: [agent, tool-design, context-engineering, claude-code, just-in-time]
+depends_on:
+  - context-engineering
+related_nodes:
+  - context-engineering
+  - agent-context-compaction
+  - agent-role-isolation
+  - structured-output
+related_problems: []
+
+evidence_level:
+  concept: self_reasoned
+  math: not_verified
+  code: not_verified
+
+checklist:
+  concept: true
+  math: false
+  code: false
+  reproduction: false

@@ -76,7 +76,7 @@ Week 3-8
 
 ## 不该做的事（避雷自检）
 
-参考 `INBOX/short-term-plan-for-career/post.md` 的 HR 抱怨清单：
+参考 `RAW_SOURCES/jd-and-interviews/post.md` 的 HR 抱怨清单：
 
 - ❌ 简历写"调用 LangChain 搭 demo"就声称"设计了 Agent 架构"——我的简历不这样写
 - ❌ "Fetch 几个 API 加个记忆模块"就声称"实现复杂决策系统"——主项目用具体数字（6-18% 影响窗口、98% 意图匹配、70% 成本降）替代套话

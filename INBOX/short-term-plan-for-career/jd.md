@@ -1,3 +1,5 @@
+<!-- PROCESSED: 2026-05-12 ｜ 已复制到 RAW_SOURCES/jd-and-interviews/jd.md（作为永久原始资料）。INBOX 副本可随时删除。 -->
+
 完整职位名称: AI Agents算法实习生 A202665
 职位描述
 1、    负责代码智能体(Coding Agent)系统的全

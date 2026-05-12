@@ -84,8 +84,8 @@
 
 ## 参考来源
 
-- JD 原文：`INBOX/short-term-plan-for-career/jd.md`（A202665 段）
-- 同公司面经：`INBOX/short-term-plan-for-career/shared-interview.md`（字节相关段——风格高度相近）
+- JD 原文：`RAW_SOURCES/jd-and-interviews/jd.md`（A202665 段）
+- 同公司面经：`RAW_SOURCES/jd-and-interviews/shared-interview.md`（字节相关段——风格高度相近）
 
 ## 投递时机
 

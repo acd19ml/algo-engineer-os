@@ -28,8 +28,8 @@
 
 - 基于开源 Claude Code 实现扩展 procedural memory 模块，在 SWE-bench-Lite 上设计 matched / mismatched issue 配对评测，验证记忆抽象的可执行性如何决定跨任务复用边界。
 - **全链路实现**：业务定义 → 多智能体架构（Supervisor + Sub-Agents + Memory Pool）→ trajectory 数据生产与蒸馏 → Qwen 2.5-7B + LoRA SFT 训练 → GRPO 策略学习 → matched/mismatched 评测体系 → vLLM 部署。
-- **评测设计**：构建 matched / mismatched issue 配对评测框架，包含四类指标：(i) 加 memory 模块前后整体 pass@1 / pass@k 对比；(ii) 按 issue 类型分桶（bug fix / feature add / refactor）的成功率影响；(iii) matched / mismatched 配对上的增益比值，量化 memory 模块的 selective 程度；(iv) 对 memory 引入错误的案例做归类，建立可回归的失败模式检测集。
-- **横向对比研究**：对 Claude Code（开源 fork）/ OpenClaw / Hermes-Agent 三个主流 agent harness 在记忆机制 / 工具调用 / 上下文管理 / 错误恢复 / 反馈回路五个维度做对比分析，并将 procedural memory 思想拓展到运维诊断场景做思想实验，输出开源研究报告。
+- **评测设计**：构建 matched / mismatched issue 配对评测框架，从整体 pass@1 / pass@k、issue 类型分桶（bug fix / feature add / refactor）成功率、配对增益比、失败模式归类四个维度量化 memory 模块的 selective 程度，并建立可回归的失败模式检测集。
+- **横向对比研究**：对 Claude Code（开源 fork）/ OpenClaw / Hermes-Agent 三个主流 agent harness 在记忆机制 / 工具调用 / 上下文管理 / 错误恢复 / 反馈回路五个维度做对比分析，并将 procedural memory 思想延伸到运维诊断场景写一章扩展分析，输出开源研究报告。
 
 **Agent Memory 自主研究项目** | 2026 春
 **硕士在读期间个人研究**
@@ -44,10 +44,11 @@
 **七牛云** | 2025.07 - 2025.10
 **AI 算法工程师 / 项目组长** | 上海
 
-- 作为项目组长协调前后端、运维、算法 6 名同学，遵循"明确产品定位 → 定义产品原型与原型图 → 定义功能 API → 完成数据表设计 → 进行模块拆分 → 模块详细设计"的架构设计 6 步法，区分技术提案 / 架构设计 / 实现设计三类决策层级文档，推动项目从需求到上线全流程联调。
-- 设计并实现 Supervisor Agent → Sub Agents 架构，在运维告警处理场景下实现自动下钻归因分析与自愈，集成指标 / 日志 / 异常检测 / 上下游关系等查询工具，以及告警阈值调整 / 版本回滚等执行工具。
-- 使用 RocketMQ 的发布订阅模式实现异步化 Agent 事件驱动，缓解了同步 Multi-Agent 因失败重试 / 连接超时引发的内存雪崩，支持任务失败自动重试与按优先级的事件驱动。
-- 设计外部告警系统与本系统的数据中间层，实现"同一服务不同版本"动态告警阈值调整机制，使问题在更早阶段被发现与解决。
+- 作为项目组长协调前后端、运维、算法 6 名同学，遵循"明确产品定位 → 定义产品原型与原型图 → 定义功能 API → 完成数据表设计 → 进行模块拆分 → 模块详细设计"的架构设计 6 步法，经历产品形态三次重大调整后由 CEO 拍板收敛 MVP 形态，区分技术提案 / 架构设计 / 实现设计三类决策层级文档，推动项目从立项到 CEO milestone 路演的全流程联调。
+- 设计并实现"指标下钻分析"AI 子系统：基于 Dify 工作流编排的三层多智能体架构——任务规划"运维专家" + 日志 / 指标 / 链路三个专门数据 agent + **不主动获取数据的分析决策"值班长"** + 最终输出"运营专家"5 个角色 agent，按角色选模型（规划 / 决策用 qwen-plus-latest，写查询语句的数据 agent 用 qwen3-coder-plus）；通过 MCP Server（部署在函数计算）标准化封装日志 / 指标 / 链路 / CMDB 拓扑工具，使大模型按需动态查询多源运维数据。
+- 针对多智能体 ReAct 模式的延迟高 / token 爆炸 / 循环不终止三个痛点做工程优化（上下文压缩与精准引用 + 智能终止判断 + 显式总结工具 + 减少无效循环），**Mock 系统 demo 上根因定位成功率从 20% 迭代提升到约 70%**。
+- 在多版本灰度发布场景下设计多版本并行灰度策略（5% → 30% → 100% 三阶段 + 异常时逐层回溯到最近稳定版本），并设计外部告警系统与本系统的数据中间层，实现"同一服务不同版本"动态告警阈值调整机制，使问题在更早阶段被发现与解决。
+- 设计运行体检中心：通过时序异常检测主动巡检全量指标，把根因分析的触发入口从"告警驱动"扩展为"告警 + 主动巡检"双路径，使部分问题先于阈值告警被识别。
 
 **Neo 智能经济** | 2025.02 - 2025.07
 **AI Agent 开发工程师** | 上海
@@ -64,6 +65,6 @@
 - **大模型与 Agent**：熟悉 Transformer / Attention 机制（QKV / Multi-Head / KV Cache）、ReAct / Plan-RePlan / SubAgent / Workflow / MCP / A2A 等 Agent 范式；熟悉 Context Engineering / Harness Engineering 工程实践；熟练运用 LangChain / LangGraph 等智能体框架。
 - **训练与微调**：熟悉 PPO / DPO / GRPO / DAPO 强化学习算法及其演进谱系；熟练运用 LoRA / QLoRA 高效参数微调；理解 SFT / RLHF / RLAIF 后训练流程及能力激活关系。
 - **检索与记忆**：熟悉 RAG 系统设计，熟练运用向量数据库（Pinecone）、嵌入模型与高效检索策略；理解 procedural / episodic memory 的设计权衡。
-- **数据库与中间件**：熟练 MongoDB / MySQL / Postgres，以及 Redis / RocketMQ。
+- **数据库与中间件**：熟练 MongoDB / MySQL / Postgres，以及 Redis。
 - **工程**：熟练 Python，具备 Go 语言基础；熟练 Gin、gRPC、微服务架构，及面向对象 / 接口 / IoC 设计原则；熟练 GitHub 工程化协作，具备测试驱动开发经验；熟练 PRD 编写、MVP 模块拆分与架构设计。
 

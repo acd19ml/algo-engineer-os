@@ -10,30 +10,32 @@
 
 | 追问 | 答题要点 | KB 链接 / Gap |
 |---|---|---|
-| 你作为组长具体协调什么？6 个人怎么分工？ | 前端 2 + 后端 2 + 运维 1 + 算法 1（我）；我作为算法 + 架构 owner，协调 (a) 各端接口对齐 (b) 数据表设计 review (c) LLM 应用边界（哪些用 LLM、哪些用确定性逻辑兜底） | ⚠️ 准备具体到周例会节奏 |
-| 6 步法（产品定位 → 原型图 → API → 数据表 → 模块拆分 → 模块详细设计）的核心动机？ | 每一步在解决上一步留下的、推进不下去的问题：定位决定原型；原型决定 API 形状；API 决定数据表关系；数据表决定模块边界——**避免推倒重来** | 详见 `INBOX/short-term-plan-for-career/qiniu-intern-record.md`（导师写的） |
-| 你说的"区分技术提案 / 架构设计 / 实现设计三类决策层级文档"——这三类具体什么区别？ | **技术提案**："该不该做"（动机、替代方案、共识）；**架构设计**："系统怎么组织"（组件、控制流、部署）；**实现设计**："具体怎么落地"（API、schema、状态机）；**决策层级不同，不是详略不同** | 详见 `INBOX/short-term-plan-for-career/want-to-talk-by-myself-during-interview.md` |
-| 你举一个三类文档的实际例子？ | 实训项目里：技术提案 = "ZeroOps 该做成全托管还是工具？"（团队级决策）；架构设计 = "Supervisor 与 Sub-Agents 的边界、和 RocketMQ 的关系"；实现设计 = "告警阈值调整工具的 API + 数据表 ddl" | ⚠️ 准备具体故事 |
-| 6 步法里哪一步最难？踩过什么坑？ | "产品定位 → 原型图" 这一步——容易陷入伪需求（某功能用技术手段解决比做成产品功能更合理）；要警惕过度设计（设计了实际不会用的功能） | 详见 qiniu-intern-record.md |
-| 三类文档现在 AI 都能生成——你怎么看？ | AI 生成不区分类别——容易把"该不该做"和"具体怎么实现"混在一份文档里。**人的工作变成识别 AI 生成的是哪一类、缺哪一类**——所以三类划分反而比 AI 时代之前更重要 | ⚠️ 自己的判断 |
+| 你作为组长具体协调什么？6 个人怎么分工？ | 团队 = 算法 1（我）+ Agent 设计 1 + Mock 系统 2 + 时序检测 1 + 1 mentor 运维专家；我作为组长 + Agent 设计 + 后端联调（后期）的主 owner，每日晨会推进 + 协调前后端 + 联调 Mock 系统 + 路演 PPT | ⚠️ 准备具体到周例会节奏 |
+| 6 步法（产品定位 → 原型图 → API → 数据表 → 模块拆分 → 模块详细设计）的核心动机？ | 每一步在解决上一步留下的、推进不下去的问题：定位决定原型；原型决定 API 形状；API 决定数据表关系；数据表决定模块边界——**避免推倒重来** | KB: `KNOWLEDGE/methodology/architecture-design-six-steps/` |
+| 你说的"区分技术提案 / 架构设计 / 实现设计三类决策层级文档"——这三类具体什么区别？ | **技术提案**："该不该做"（动机、替代方案、共识）；**架构设计**："系统怎么组织"（组件、控制流、部署）；**实现设计**："具体怎么落地"（API、schema、状态机）；**决策层级不同，不是详略不同** | KB: `KNOWLEDGE/methodology/three-tier-decision-docs/` |
+| 你举一个三类文档的实际例子？ | 实训项目里：**技术提案** = "ZeroOps 该做成对话辅助 / 无人替代 / 灰度发布管理 三选哪个？"（团队级方向决策——这一层我们当时缺位是教训）；**架构设计** = "Dify L1/L2/L3 多智能体的边界 + Result Fusion 多模态融合范式选型"；**实现设计** = "告警阈值调整工具的 API + 数据表 ddl + 5 个 agent 的 prompt 结构 + JSON 输出 schema" | ✅ 已对齐新 CV |
+| 6 步法里哪一步最难？踩过什么坑？ | "产品定位 → 原型图" 这一步——容易陷入伪需求（某功能用技术手段解决比做成产品功能更合理）；要警惕过度设计（设计了实际不会用的功能）；我们项目三次方向变更全卡在这一步 | KB: `KNOWLEDGE/methodology/architecture-design-six-steps/`（"避免过度设计 + MVP 思想"段） |
+| 三类文档现在 AI 都能生成——你怎么看？ | AI 生成不区分类别——容易把"该不该做"和"具体怎么实现"混在一份文档里。**人的工作变成识别 AI 生成的是哪一类、缺哪一类**——所以三类划分反而比 AI 时代之前更重要 | KB: `KNOWLEDGE/methodology/three-tier-decision-docs/`（"AI 生成混合层级文档"段 Open Question） |
 
-### C2. Supervisor → Sub Agents 架构 + 工具集
-
-| 追问 | 答题要点 | KB 链接 / Gap |
-|---|---|---|
-| Supervisor 怎么决定派哪个 Sub Agent？ | 根据告警类型 + 当前已收集的上下文 → LLM 推理出下一步该用哪类工具 → 对应的 Sub Agent 接管 | KB: `agent/multi-agent/`（按工具领域拆分） |
-| Sub Agent 失败时 Supervisor 怎么处理？ | (a) 重试（异步 MQ 自动重试）；(b) Supervisor 收到失败信号后切换 Sub Agent 类型（比如"日志查询"失败就改用"指标查询"）；(c) 累计失败超过阈值 → 升级到人工 | KB: `agent/agent-engineer-ability/`（错误恢复——架构级隔离） |
-| 工具集（指标 / 日志 / 异常检测 / 上下游关系 / 阈值调整 / 版本回滚）怎么注册？标准化方式？ | 内部 tool registry（类似 MCP 思路）——每个工具暴露 schema（参数、返回、错误码）；Sub Agent 通过 tool_name 调用；Supervisor 看到的不是工具实现，是工具能力描述 | KB: `agent/structured-output/`（第 3 层 + 第 5 层） |
-| 这个 Supervisor 架构和 Anthropic / Manus 的 multi-agent 立场（"按工具拆分而不是按角色拆分"）一致吗？ | 一致——我们的 Sub-Agents 是按工具领域（监控工具组 / 修复工具组）拆，**不是按"工程师 / 运维 / 数据分析师" 这种角色拟人化**——避免了拟人化角色分工的反模式 | KB: `agent/multi-agent/`（关键："把子 agent 当作工具来调用而不是同事") |
-
-### C3. RocketMQ 异步事件驱动
+### C2. Dify L1/L2/L3 多智能体 + MCP 工具集（取代旧的"Supervisor → Sub Agents"叙事）
 
 | 追问 | 答题要点 | KB 链接 / Gap |
 |---|---|---|
-| 为什么用 MQ 不用同步 RPC？ | 同步 multi-agent 在 LLM 调用慢 + 工具调用失败时**串行阻塞**——一个 Sub Agent 卡住会拖累整个 Supervisor；MQ 解耦——Supervisor 发任务到 queue 后立即返回，Sub Agent 异步消费 | ⚠️ 标准答案 |
-| 同步 Multi-Agent 的"内存雪崩"具体是什么？ | (a) Supervisor 同步等 Sub Agent 时，自身上下文一直驻留在内存；(b) 多个并发 Sub Agent 失败重试时，老的等待任务没释放、新的又叠上；(c) LLM 调用超时叠加 → 等待协程爆 → OOM 或频繁 GC | ⚠️ 实习中实际遇到的 |
-| 失败重试 + 优先级队列怎么实现？ | RocketMQ 的延迟消息 + Topic 按优先级分；失败重试用退避策略（exponential backoff）；保留 trace_id 串联整次任务的所有 retry | ⚠️ 准备具体到代码层 |
-| 异步设计带来的新问题？ | (a) 状态同步——Supervisor 不知道 Sub Agent 进度；解决：定期 heartbeat + Supervisor 端 timeout；(b) 结果回传顺序——异步导致结果乱序到达；解决：trace_id 关联 + Supervisor 端 reorder buffer | ⚠️ trade-off 思考 |
+| 5 个角色 agent 怎么决定下一步派哪个？ | 任务规划 agent（"运维专家"）解析告警 + 生成 SOP 步骤计划（拓扑定位 → 指标验证 → 日志取证 → 根因推断）+ 调度指令；3 个数据 agent（Metric / Log / Trace）各自处理单一模态；值班长 agent **不获取数据**只对已有证据做结构化推理 + 停止判断；最终输出 agent 生成结构化报告 | KB: `PROJECTS/work/qiniu-zeroops-rca-agent/` "三件套之一"段 + `KNOWLEDGE/agent/multi-agent-rca-paradigm/` |
+| 数据 agent 失败时怎么处理？ | (a) 工作流内置重试 + 上下文压缩；(b) 值班长 agent 评估证据充分性，若证据不足或冲突会重构问题表述发起新一轮；(c) 工作流引擎支持循环 + 条件分支 + 超时控制 | KB: `KNOWLEDGE/agent/multi-agent-rca-paradigm/` "ReAct 性能优化路径"段 |
+| 工具集（日志 / 指标 / 链路 / CMDB 拓扑）怎么注册？标准化方式？ | **MCP Server**（部署在函数计算上）——每个工具暴露 schema（参数、返回、错误码）；agent 通过 MCP 协议动态调用；这跟"内部 tool registry"思路一致但用标准 MCP 协议 | KB: `KNOWLEDGE/agent/agent-tool-design/` + `KNOWLEDGE/agent/structured-output/` |
+| 你为什么选**按职责拆 + Result Fusion**而不是单 agent + 多 tool？ | 三个原因：(a) 上下文爆炸——多模态数据全塞一个 agent 会撑爆 context；(b) 调试黑盒——错了不知道哪步错；(c) 团队中非算法成员要能接手——按职责拆 + JSON 结构化输出便于显式调试。**这跟学术界 Flow-of-Action (WWW 2025) 的 Main/Action/Judge/Ob 角色拆分高度同构** | KB: `KNOWLEDGE/agent/multi-agent-rca-paradigm/` "三件套"段 |
+| 你的多智能体设计跟 Cloud Code 那种"按阶段拆（explore/plan/implement/verify）"区别在哪？ | 项目是根因分析任务——主要"信息收集 + 推理"，**没有 implement/verify 阶段**——所以按数据源 + 推理角色拆比按阶段拆更直观。同时类比"人类运维团队"对非算法 mentor 更易理解 | KB: `KNOWLEDGE/agent/agent-role-isolation/`（Cloud Code 按阶段拆）+ `KNOWLEDGE/agent/multi-agent-rca-paradigm/`（按职责拆） |
+| Result Fusion / Model Fusion / Feature Fusion 三种范式你为什么选 Result Fusion？ | 工业落地友好：日志/指标/调用链已有成熟工具（SLS / Prometheus / ARMS），转告警事件后 LLM 直接读；Model Fusion 上限更高但需要训练融合模型 + 标注数据，MVP 阶段做不起 | KB: `KNOWLEDGE/agent/multi-agent-rca-paradigm/` "三件套之二"段；技术深问：`CAREER/interview-bank/technical/qiniu-multimodal-fusion-paradigm.md` |
+
+### C3. 为什么选 Dify 工作流而不是 agent loop（取代旧的"RocketMQ 异步事件驱动"叙事——RocketMQ 未真实使用）
+
+| 追问 | 答题要点 | KB 链接 / Gap |
+|---|---|---|
+| 你为什么选 Dify 工作流而不是 agent loop / coding agent 范式？ | **时代背景**：2025.07-10 当时市面上还没有开源 agent loop 系统（Claude Code / Codex / Cursor Agent 等都是后涌现）+ 上下文工程刚兴起 + 最火是基于 DAG 的 DeepResearch。**项目初期试过 agent loop → 调试困难 → 主动退到工作流**——用工作流可调试性换 agent loop 灵活性的 ROI 取舍 | KB: `CAREER/interview-bank/technical/qiniu-agent-loop-vs-workflow.md`（完整答案 + 金句） |
+| 工作流的 ReAct 性能问题怎么解决？ | 四件事：(a) 减少不必要循环——前置数据处理减少无效思考；(b) 上下文压缩 + 精准引用——摘要历史信息；(c) 智能终止判断——值班长 agent 评估证据充分性；(d) 显式总结工具——任务完成时调用总结工具生成结构化报告 | KB: `KNOWLEDGE/agent/multi-agent-rca-paradigm/` "ReAct 性能优化路径"段 |
+| 如果今天重做你会改吗？ | 会重新评估 agent loop——Claude Code / Codex / OpenHands 等 harness 这一年涌现成熟，把 agent debug / failure attribution / checkpoint rollback 工程能力都内置了。**但当时退到工作流是对的**——技术坐标决定 | KB: `KNOWLEDGE/agent/agentops-vs-opsagent/`（AgentOps 视角反观自己项目的局限） |
+| 你的多 agent 系统当时挂掉怎么 debug？ | 老实承认：当时主要靠 Dify 工作流的可视化 + 每个 agent 的 JSON 结构化输出做事后定位——**没有专门的 failure attribution 机制，连"挂在哪一类异常"都没法系统化标**。**系统化答案 = 三件套**：(a) 11 类 anomaly taxonomy（Intra-Agent 5 + Inter-Agent 6，先有分类才能埋点）；(b) failure attribution（Who&When / FAMAS / Echo / Correct）；(c) failure trajectory dataset（标准化 schema + 多 benchmark + 标注流水线，让单次 debug 升级成长期改进基础设施）。这三件项目当时一件都没有 | KB: `KNOWLEDGE/agent/agent-failure-attribution/` + `KNOWLEDGE/agent/agent-anomaly-taxonomy/` + `KNOWLEDGE/agent/agent-failure-trajectory-dataset/`；技术深问：`CAREER/interview-bank/technical/qiniu-opsagent-vs-agentops.md` |
 
 ### C4. 同一服务不同版本动态阈值
 
@@ -92,7 +94,7 @@
 |---|---|
 | 你两段实习的最大区别是什么？ | Neo 是开源应用层（工具集 + ReAct），偏 framework / 工具型；七牛云是企业内部全栈（架构 + 多 agent + 中间件），偏系统型 + 协作型——两段经验互补：Neo 让我对工具集成 + 海外协作有 feel，七牛云让我对生产级系统设计 + 异步架构 + 业务流程有 feel |
 | 实习中最大的失败 / 踩坑是什么？ | （需要准备一个具体故事——非泛泛而谈） |
-| 最自豪的设计 / 决策？ | （需要准备：比如 Neo 70% 成本降的语义路由设计 / 七牛云 RocketMQ 异步解耦的雪崩防护） |
+| 最自豪的设计 / 决策？ | （需要准备：比如 Neo 70% 成本降的语义路由设计 / 七牛云 Dify L1/L2/L3 多智能体 + Result Fusion 范式让根因定位成功率从 20% 迭代到约 70%） |
 | 为什么离开 / 来这边？ | （准备 transition story——通常是"想做更前沿的 agent 训练 + 评测，所以来实习更深入的方向"） |
 
 ---
@@ -103,10 +105,9 @@
 
 | 故事 | 适用 |
 |---|---|
-| 七牛云：6 步法在某个具体功能上的实操 + 踩坑 | 行为面（领导力 / 协作） |
-| 七牛云：异步雪崩的发现 + 解决过程 | 技术深度 + 故障排查能力 |
-| Neo：3072 维语义路由的设计决策过程 | 系统设计能力 |
-| Neo：海外社区某次冲突 / 协作 | 跨文化协作 |
-| 自主研究：从 AWM 复现踩到 boundary 边界 → 设计主项目的故事 | 研究能力 + 工程化能力 |
-
-Week 2 完成 STAR 故事派生。
+| 七牛云：CEO 拍板 / 团队共识失败的复盘 | 行为面（领导力 / 协作） | ✅ 已派生 `CAREER/interview-bank/behavioral/qiniu-ceo-pivot-decision.md` |
+| 七牛云：人员动荡 + 接手前后端联调 + 算法调优取舍 | ownership / 工程取舍 | ✅ 已派生 `CAREER/interview-bank/behavioral/qiniu-team-turbulence-handoff.md` |
+| 七牛云：路演前进度不达预期 + 加班补救让最终路演超预期 | 极限交付 / 优先级判断 | ✅ 已派生 `CAREER/interview-bank/behavioral/qiniu-roadshow-emergency-rescue.md` |
+| Neo：3072 维语义路由的设计决策过程 | 系统设计能力 | 待派生 |
+| Neo：海外社区某次冲突 / 协作 | 跨文化协作 | 待派生 |
+| 自主研究：从 AWM 复现踩到 boundary 边界 → 设计主项目的故事 | 研究能力 + 工程化能力 | 待派生 |

@@ -51,7 +51,7 @@
 | **高并发性能** | 七牛云 RocketMQ 异步 + Neo 70% 成本降 |
 | **AI 编程工具重度玩家** | 我和 LLM 协作开发已是日常（这个 OS 本身就是证明） |
 | **LangChain / MCP** | cv 技能栈 + KB |
-| **开源贡献** | Neo 150+ stars + 主项目即将开源 |
+| **开源贡献** | Neo 260+ stars + 主项目即将开源 |
 | **vLLM / KV cache 工程理解** | KB `KNOWLEDGE/transformer/kv-cache/` + 主项目 vLLM 部署 |
 | **代码 / 算法 / 网络 / 操作系统基础** | 谢菲尔德本科 + 双语言（Python + Go） |
 
@@ -97,6 +97,6 @@
 
 ## 参考来源
 
-- JD 原文：`INBOX/short-term-plan-for-career/jd.md`（业务 Agent 段）
-- 面经：`INBOX/short-term-plan-for-career/shared-interview.md`（阿里淘宝闪购 + 阿里高德段）
-- HR 抱怨简历的诊断：`INBOX/short-term-plan-for-career/post.md`——避雷
+- JD 原文：`RAW_SOURCES/jd-and-interviews/jd.md`（业务 Agent 段）
+- 面经：`RAW_SOURCES/jd-and-interviews/shared-interview.md`（阿里淘宝闪购 + 阿里高德段）
+- HR 抱怨简历的诊断：`RAW_SOURCES/jd-and-interviews/post.md`——避雷

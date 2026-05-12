@@ -1,0 +1,77 @@
+id: qiniu-zeroops-rca-agent
+title: "七牛云 ZeroOps · 多智能体根因分析下钻模块"
+type: work
+status: done
+
+company: 七牛云
+program: 1024 实训营
+duration: 2025-07 / 2025-10  # 3 个月
+role: 项目组长 + Agent 设计 + 后端联调
+team_size: 6
+mentor:
+  - 王昶敏（架构设计 6 步法）
+  - 运维工程师 mentor
+ceo_involved: true  # 许式伟亲自立项 + milestone 拍板
+award: 七牛云第三届 1024 创作节优胜奖
+
+honest_status:
+  shipped: false
+  reason: MVP / Mock 系统 / Agent 模块单独跑通但端到端主链路未跑通
+  agent_module_status: 独立 demo 可用，根因定位成功率迭代中 20% → 70%（Mock 系统数据），未接入主链路完整跑通
+  what_must_be_disclosed_in_interview:
+    - 未上线生产
+    - 基于 Mock 系统
+    - Agent 模块未真正接入主链路端到端
+    - 20% → 70% 成功率是 Mock 系统 + 内部迭代验证，非生产环境 A/B
+  technology_era_anchor: 2025.07-10（时代背景：当时无开源 agent loop / coding agent / harness / skills，最火是基于 DAG 的 DeepResearch）
+  selection_path: 先试 agent loop → 调试困难 → 主动退到 Dify 工作流 + ReAct（用可调试性换灵活性的 ROI 取舍）
+  sop_reality: 跟运维高工 mentor 共定的"拓扑定位 → 指标验证 → 日志取证 → 根因推断"嵌入 system prompt（不是缺位）
+
+key_tech:
+  - Dify on K8s（agent 编排）
+  - MCP Server on 函数计算（工具封装）
+  - Go + fox(Gin)（主流程后端）
+  - Python（时序异常检测微服务）
+  - Postgres
+  - Vue（前端）
+
+cv_corrections_needed:
+  - 删除 RocketMQ 异步事件驱动相关内容（未真实设计 / 实施）
+  - 加上 MVP / Mock / 未上线的真相（投递层可保留工作量描述，面试必须如实）
+
+related_knowledge:
+  - KNOWLEDGE/agent/multi-agent
+  - KNOWLEDGE/agent/agent-role-isolation
+  - KNOWLEDGE/agent/context-engineering
+  - KNOWLEDGE/agent/agent-tool-design
+  - KNOWLEDGE/agent/structured-output
+
+derived_behavioral_stories:
+  - CAREER/interview-bank/behavioral/qiniu-ceo-pivot-decision.md
+  - CAREER/interview-bank/behavioral/qiniu-team-turbulence-handoff.md
+  - CAREER/interview-bank/behavioral/qiniu-roadshow-emergency-rescue.md
+
+derived_technical_questions:
+  - CAREER/interview-bank/technical/qiniu-agent-loop-vs-workflow.md
+  - CAREER/interview-bank/technical/qiniu-multi-agent-decomposition.md
+  - CAREER/interview-bank/technical/qiniu-multimodal-fusion-paradigm.md
+  - CAREER/interview-bank/technical/qiniu-opsagent-vs-agentops.md
+
+academic_anchor:
+  paradigm: OpsAgent / AgenticOps（用 agent 做传统运维）
+  closest_academic_work: Flow-of-Action (WWW 2025, 中科院+清华+字节)
+  fusion_paradigm: Result Fusion
+  gap_vs_flow_of_action: SOP 机制差一层（prompt 内嵌 vs 可生成代码并执行）
+  knowledge_nodes:
+    - KNOWLEDGE/agent/agentops-vs-opsagent
+    - KNOWLEDGE/agent/multi-agent-rca-paradigm
+    - KNOWLEDGE/agent/agent-failure-attribution
+
+project_docs:
+  - README.md                       # 决策复盘 + 时代背景 + Lessons learned + 面试入口
+  - system-anatomy.md               # 6 层架构 + API + DB + 关键流程图 + 6 步法实操产物
+  - agent-subsystem.md              # Dify 工作流 + 5 agent prompt + JSON schema + MCP 工具 + 20%→70% 优化路径
+  - interview-defense-matrix.md     # 10 类×60+ 条挑战防御矩阵 + GAP P0/P1/P2 优先级清单（living document）
+
+created_at: 2026-05-11
+last_reviewed_at: 2026-05-13

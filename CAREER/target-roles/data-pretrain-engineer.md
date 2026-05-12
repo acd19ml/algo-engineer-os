@@ -50,4 +50,4 @@
 
 ## 参考来源
 
-- JD 原文：`INBOX/short-term-plan-for-career/jd.md`（数据预训练段）
+- JD 原文：`RAW_SOURCES/jd-and-interviews/jd.md`（数据预训练段）

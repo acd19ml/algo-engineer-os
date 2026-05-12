@@ -1,0 +1,29 @@
+id: agent-failure-attribution
+title: "Agent Failure Attribution: 谁、什么时候、为什么错"
+type: research-direction
+status: stable
+created_at: 2026-05-12
+last_reviewed_at: 2026-05-12
+
+tags: [agent, agentops, failure-attribution, debugging, trajectory-analysis, vae, benchmark]
+depends_on:
+  - agentops-vs-opsagent
+related_nodes:
+  - agentops-vs-opsagent
+  - multi-agent-rca-paradigm
+  - agent-anomaly-taxonomy
+  - agent-failure-trajectory-dataset
+  - agent-context-compaction
+  - agent-memory-system
+related_problems: []
+
+evidence_level:
+  concept: self_reasoned
+  math: not_verified
+  code: not_verified
+
+checklist:
+  concept: true
+  math: false
+  code: false
+  reproduction: false

@@ -1,0 +1,30 @@
+id: multi-agent-rca-paradigm
+title: "Multi-Agent RCA Paradigm: 工业实现的三件套"
+type: system
+status: stable
+created_at: 2026-05-12
+last_reviewed_at: 2026-05-12
+
+tags: [agent, multi-agent, rca, aiops, opsagent, result-fusion, sop, react, industrial-practice]
+depends_on:
+  - agentops-vs-opsagent
+  - multi-agent
+related_nodes:
+  - agentops-vs-opsagent
+  - multi-agent
+  - agent-role-isolation
+  - agent-anomaly-taxonomy
+  - structured-output
+  - context-engineering
+related_problems: []
+
+evidence_level:
+  concept: self_reasoned
+  math: not_verified
+  code: not_verified
+
+checklist:
+  concept: true
+  math: false
+  code: false
+  reproduction: false

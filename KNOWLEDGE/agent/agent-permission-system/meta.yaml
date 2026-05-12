@@ -1,0 +1,26 @@
+id: agent-permission-system
+title: "Agent Permission System: 分层规则 + 两阶段评审"
+type: system
+status: stable
+created_at: 2026-05-11
+last_reviewed_at: 2026-05-11
+
+tags: [agent, safety, permission, claude-code, llm-as-judge, harness]
+depends_on:
+  - harness
+related_nodes:
+  - harness
+  - harness-practice
+  - agent-role-isolation
+related_problems: []
+
+evidence_level:
+  concept: self_reasoned
+  math: not_verified
+  code: not_verified
+
+checklist:
+  concept: true
+  math: false
+  code: false
+  reproduction: false

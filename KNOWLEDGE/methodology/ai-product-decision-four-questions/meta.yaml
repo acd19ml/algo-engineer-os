@@ -1,0 +1,24 @@
+id: ai-product-decision-four-questions
+title: "AI 产品决策四问: 面试官真正在追问什么"
+type: methodology
+status: stable
+created_at: 2026-05-12
+last_reviewed_at: 2026-05-12
+
+tags: [methodology, interview, ai-product, decision-making, four-questions, scenario-judgment, risk, standard, boundary]
+depends_on: []
+related_nodes:
+  - three-tier-decision-docs
+  - architecture-design-six-steps
+related_problems: []
+
+evidence_level:
+  concept: self_reasoned
+  math: not_verified
+  code: not_verified
+
+checklist:
+  concept: true
+  math: false
+  code: false
+  reproduction: false

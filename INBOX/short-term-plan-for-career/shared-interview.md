@@ -1,3 +1,5 @@
+<!-- PROCESSED: 2026-05-12 ｜ 已复制到 RAW_SOURCES/jd-and-interviews/shared-interview.md（作为永久原始资料）。INBOX 副本可随时删除。 -->
+
 时间线
 4.14一面
 深挖项目，比如reward怎么设计的，后续有什么改进思路，八股问了ppo grpo的具体原理以及区别（目前看这个问题非常高频），ppo的critic模型怎么训练的，kl散度有什么用，为什么要用kl散度，以及一些kvcache相关的，mla之类的，手撕是链表相加，用双指针

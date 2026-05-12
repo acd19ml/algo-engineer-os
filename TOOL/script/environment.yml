@@ -1,0 +1,10 @@
+name: audio2text-asr
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.10
+  - pip
+  - pip:
+      - python-dotenv>=1.0.1
+      - qiniu>=7.14.0
+      - requests>=2.32.0

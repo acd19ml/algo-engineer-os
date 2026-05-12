@@ -57,4 +57,4 @@
 
 ## 参考来源
 
-- JD 原文：`INBOX/short-term-plan-for-career/jd.md`（腾讯游戏段）
+- JD 原文：`RAW_SOURCES/jd-and-interviews/jd.md`（腾讯游戏段）

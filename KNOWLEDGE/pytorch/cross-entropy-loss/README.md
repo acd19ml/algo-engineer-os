@@ -117,7 +117,7 @@ loss = nn.CrossEntropyLoss()(probs, labels)
 
 `CrossEntropyLoss` 内部还会再做一次 log_softmax——等于做了 **softmax 两次**，梯度会**坏掉**。
 
-更糟的是这种 bug **不会报错**——loss 看起来在动，模型表面在训练，但**梯度信号是错的**，收敛差或学不动。这是期末代码题里反复出现的 bug。
+更糟的是这种 bug **不会报错**——loss 看起来在动，模型表面在训练，但**梯度信号是错的**，收敛差或学不动。这是初学者写训练代码时反复出现的 bug。
 
 **正确**：
 
