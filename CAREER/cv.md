@@ -17,25 +17,15 @@
 
 **比赛奖项**：七牛云第三届 1024 创作节优胜奖
 
-**参与比赛**：阿里云智能 Agent 创新大赛、ThinkInAI MCP 挑战赛 Hackathon、Global AI Conference & Hackathon Tokyo
-
 ---
 
 ## 项目经历
 
-**Coding Agent + Procedural Memory 全链路开源研究项目** | 2026.05 - 至今 *进行中*
-**自主项目** | 开源仓库
-
-- 基于开源 Claude Code 实现扩展 procedural memory 模块，在 SWE-bench-Lite 上设计 matched / mismatched issue 配对评测，验证记忆抽象的可执行性如何决定跨任务复用边界。
-- **全链路实现**：业务定义 → 多智能体架构（Supervisor + Sub-Agents + Memory Pool）→ trajectory 数据生产与蒸馏 → Qwen 2.5-7B + LoRA SFT 训练 → GRPO 策略学习 → matched/mismatched 评测体系 → vLLM 部署。
-- **评测设计**：构建 matched / mismatched issue 配对评测框架，从整体 pass@1 / pass@k、issue 类型分桶（bug fix / feature add / refactor）成功率、配对增益比、失败模式归类四个维度量化 memory 模块的 selective 程度，并建立可回归的失败模式检测集。
-- **横向对比研究**：对 Claude Code（开源 fork）/ OpenClaw / Hermes-Agent 三个主流 agent harness 在记忆机制 / 工具调用 / 上下文管理 / 错误恢复 / 反馈回路五个维度做对比分析，并将 procedural memory 思想延伸到运维诊断场景写一章扩展分析，输出开源研究报告。
-
 **Agent Memory 自主研究项目** | 2026 春
 **硕士在读期间个人研究**
 
-- **主流 Web Agent Memory 框架的复现与审计**：在 Mind2Web 上做 step-level 配对实验（baseline vs workflow 同步对照），发现 workflow 实际影响窗口仅 6-18% 且 matched / mismatched 站点效果反向；归类 8 类典型失败模式（strategy redirection / domain misdirection 等），输出可复用的 paired-case 评测方法学。
-- **记忆跨任务复用机制实验**（HotpotQA → 2WikiMultiHopQA 近迁移）：以 matched / mismatched 配对框架测试三种记忆形态（None / Episodic / Consolidated），定位"记忆抽象的可执行性"如何决定跨任务复用边界。
+- **主流 Web Agent Memory 框架的复现与审计**（AWM @ Mind2Web）：在 step-level 配对实验下做 baseline vs workflow 同步对照，**发现 workflow 实际影响窗口仅 6-18% 且正向 / 负向站点的干预模式反向**；归类 workflow 干预的正负机制（strategy redirection / domain misdirection / step skipping 等），并定位"抽象不等于更好执行"边界，输出可复用的 paired-case 评测方法学。
+- **记忆跨任务复用机制实验**（HotpotQA → 2WikiMultiHopQA 近迁移）：在固定经验预算 + 共享 prompt 框架下以 matched / mismatched 配对设计测试三种记忆形态（None / Episodic / Consolidated），**通过受控前后对比验证仅匹配路径在两次修复（源任务重路由 + 算子可执行化）后恢复、不匹配控制组始终保持不变**，定位"记忆抽象的可执行性"如何决定跨任务复用边界。
 
 ---
 
@@ -47,8 +37,7 @@
 - 作为项目组长协调前后端、运维、算法 6 名同学，遵循"明确产品定位 → 定义产品原型与原型图 → 定义功能 API → 完成数据表设计 → 进行模块拆分 → 模块详细设计"的架构设计 6 步法，经历产品形态三次重大调整后由 CEO 拍板收敛 MVP 形态，区分技术提案 / 架构设计 / 实现设计三类决策层级文档，推动项目从立项到 CEO milestone 路演的全流程联调。
 - 设计并实现"指标下钻分析"AI 子系统：基于 Dify 工作流编排的三层多智能体架构——任务规划"运维专家" + 日志 / 指标 / 链路三个专门数据 agent + **不主动获取数据的分析决策"值班长"** + 最终输出"运营专家"5 个角色 agent，按角色选模型（规划 / 决策用 qwen-plus-latest，写查询语句的数据 agent 用 qwen3-coder-plus）；通过 MCP Server（部署在函数计算）标准化封装日志 / 指标 / 链路 / CMDB 拓扑工具，使大模型按需动态查询多源运维数据。
 - 针对多智能体 ReAct 模式的延迟高 / token 爆炸 / 循环不终止三个痛点做工程优化（上下文压缩与精准引用 + 智能终止判断 + 显式总结工具 + 减少无效循环），**Mock 系统 demo 上根因定位成功率从 20% 迭代提升到约 70%**。
-- 在多版本灰度发布场景下设计多版本并行灰度策略（5% → 30% → 100% 三阶段 + 异常时逐层回溯到最近稳定版本），并设计外部告警系统与本系统的数据中间层，实现"同一服务不同版本"动态告警阈值调整机制，使问题在更早阶段被发现与解决。
-- 设计运行体检中心：通过时序异常检测主动巡检全量指标，把根因分析的触发入口从"告警驱动"扩展为"告警 + 主动巡检"双路径，使部分问题先于阈值告警被识别。
+- 设计**运行体检中心**：通过时序异常检测主动巡检全量指标，**把根因分析的触发入口从"告警驱动"扩展为"告警 + 主动巡检"双路径**；在多版本灰度发布场景下进一步设计数据中间层，实现"同一服务不同版本"动态阈值调整机制，使问题先于阈值告警被识别。
 
 **Neo 智能经济** | 2025.02 - 2025.07
 **AI Agent 开发工程师** | 上海

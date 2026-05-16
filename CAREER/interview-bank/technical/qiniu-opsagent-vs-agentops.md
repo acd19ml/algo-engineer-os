@@ -40,6 +40,21 @@
 | **Trajectory 异常检测** | Group-wise VAE 对调用链做结构 / 延迟异常检测，可借鉴到 agent trajectory 上（详见 `KNOWLEDGE/agent/agent-failure-attribution/` "AIOps 方法可以迁移" 段） |
 | **Resolution 可回滚** | rollback / rerun / A/B test prompt——agent 多步推理失败后能回到具体步骤重跑而不是从头重来 |
 
+### 如果今天重做我会怎么强化 OpsAgent 自身能力（procedural memory 方向）
+
+上面那张表是补**AgentOps 工程化能力**（让 agent 能被调试 / 归因 / 持续改进）。如果要进一步强化 **OpsAgent 本身的智能** 而不是工程化能力——我的判断是：**用 procedural memory 替代当前的短期上下文压缩**。
+
+**核心思路**：模型本身够强、工具也成熟，问题不是"能不能做"而是"重复搜索浪费"；运维的当前拓扑、服务依赖、告警模式是**外部结构**——刚好该用 procedural memory 保留（保留可复用的搜索路径、验证顺序、边界条件）。
+
+**详细延伸思考 + 90s 口语稿 + 面试 challenge 答案** → 见 [`main-project-and-research.md`](./main-project-and-research.md) **§C 研究方向延伸**。
+
+**具体两层架构（Storage partition vs Retrieval filter + Declarative vs Procedural）+ 面试 soundbite + 5 个 challenge 防御** → 见 [`memory-architecture-for-ops.md`](./memory-architecture-for-ops.md)（从资深 SRE 视角反推得到的洞察）。
+
+**面试切入时机**：
+- 当面试官问 "**如果重做 OpsAgent 你会怎么变？**"——可以从 AgentOps 工程化（上表）切到 OpsAgent 自身智能强化（procedural memory）形成双维度回答
+- 当面试官问 "**拿到优质数据你只能 SFT 吗？**"——直接切到 procedural memory 作为 SFT 之外的另一条路径
+- 当面试官问 "**你研究方向 / 你最近在思考什么？**"——整段讲 §C 的 90s 口语稿
+
 ### 关键金句（**面试时拉满学术坐标 + 自我学习路径**）
 
 > "**我七牛云做的是 OpsAgent，但碰到的痛点是 AgentOps**——Agent 单独跑通了端到端联调始终上不去。当时这个概念学术界还没成型，我们的工程基础设施都是为传统系统设计的。**结束后我转向做 Claude Code procedural memory 研究——本质就是从 OpsAgent 转向 AgentOps 方向**。这条故事线让我对'Agent 工程化'的理解比纯做 agent demo 的人多一层。"

@@ -1,0 +1,29 @@
+id: agent-memory-cascading-update
+title: "Agent Memory 的级联更新问题：当一个事实变了，依赖它的事实怎么办"
+type: research-direction
+status: learning
+created_at: 2026-05-14
+last_reviewed_at: 2026-05-14
+
+tags: [agent, memory, cascading-update, counterfactual, meme-paper, knowledge-graph, dependency-tracking]
+depends_on:
+  - agent-memory-system
+  - memory-architecture-thesis
+related_nodes:
+  - agent-memory-system
+  - memory-architecture-thesis
+  - agent-skills-closed-loop
+  - agent-failure-attribution
+related_problems:
+  - agent-memory-architecture
+
+evidence_level:
+  concept: self_reasoned
+  math: not_verified
+  code: not_verified
+
+checklist:
+  concept: true
+  math: false
+  code: false
+  reproduction: false

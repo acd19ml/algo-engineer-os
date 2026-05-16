@@ -97,6 +97,18 @@
 - [深] "自动化 ≠ 不受控"——后台自动 agent 任务怎么同时做到自动化和可控？这条原则可以推广到哪些其他场景？ → `KNOWLEDGE/agent/agent-memory-system/`
 - [深] Active Recall 是两阶段检索（粗筛 + 精选），它和传统 RAG（向量搜索）的根本区别是什么？什么场景下两阶段检索胜过向量？ → `KNOWLEDGE/agent/agent-memory-system/`
 
+## CLAUDE.md 规则设计（用户侧行为合约）
+
+- [浅] CLAUDE.md 三种常见状态（什么都塞 / 完全跳过 / 复制模板就忘）各自的 token 浪费 / 遵循率坑是什么？为什么 200 行是个真实天花板？ → `KNOWLEDGE/agent/claude-md-rule-design/`
+- [浅] Karpathy 原版 4 条（先想后写 / 简单至上 / 外科手术式修改 / 目标驱动）各自防什么具体错误？为什么这 4 条只能覆盖 ~40% 失败模式？ → `KNOWLEDGE/agent/claude-md-rule-design/`
+- [中] 12 条 vs 4 条 vs 18 条的实测数据——合规率从 78%→76%→52% 但错误率 11%→3%→回升。**新规则的边际价值取决于什么**？什么叫"新规则不在争夺同一份注意力预算，而是形成互补增强"？ → `KNOWLEDGE/agent/claude-md-rule-design/`
+- [中] Karpathy 原版的 4 个 limitation（长任务 / 多代码库 / 测试质量 / 生产 vs 原型）各自缺什么？新增 8 条分别补哪个 limitation？ → `KNOWLEDGE/agent/claude-md-rule-design/`
+- [中] 规则 5 "模型只做判断不做决策"——为什么调用 Claude 去判断 "503 该不该重试" 的代码会**稳定运行两周后开始漂移**？这跟"确定性逻辑 vs 裁量逻辑"的分工原则有什么关系？ → `KNOWLEDGE/agent/claude-md-rule-design/`
+- [中] 规则 9 "测试验证意图而非仅验证行为"——`expect(getUserName()).toBe('John')` 测试为什么形同虚设？写"业务逻辑变更时会失败"的测试的标准是什么？ → `KNOWLEDGE/agent/claude-md-rule-design/`
+- [中] 规则 12 "显式失败"——为什么"看起来像成功的失败是最贵的失败"？数据库迁移**悄悄跳过 14% 因约束冲突的记录**为什么 11 天后才被发现？默认原则"主动暴露不确定性"在 CLAUDE.md 里怎么写？ → `KNOWLEDGE/agent/claude-md-rule-design/`
+- [深] **试过但放弃的 6 条路径**（Reddit 看来的规则 / 超过 12 条 / 依赖不一定存在的工具 / 在 CLAUDE.md 里放例子 / "小心"类软语言 / 让 Claude "做高级工程师"）——**这 6 条反事实证据各自暴露了 prompt 设计的什么深层错误**？为什么"例子比规则重"是反直觉？ → `KNOWLEDGE/agent/claude-md-rule-design/`
+- [深] **两条心智模型**：(1) "CLAUDE.md 是行为合约不是许愿清单"——每条规则必须能回答"预防的是什么错误"；(2) "6 条针对真踩过的坑 > 12 条里有 6 条用不上"。**这两条原则跟 agent-system-prompt 节点的"具体规则 > 抽象原则"是同一回事吗**？用户侧 CLAUDE.md vs Claude Code 内部 system prompt 两层是怎么交互的？ → `KNOWLEDGE/agent/claude-md-rule-design/#open-questions` (open) + `KNOWLEDGE/agent/agent-system-prompt/`
+
 ## System Prompt 设计（Claude Code 实操）
 
 - [浅] Cloud Code 的 system prompt 有 900 多行——它的"模块化 + 静态/动态分离"结构是什么样的？ → `KNOWLEDGE/agent/agent-system-prompt/`
@@ -151,6 +163,55 @@
 - [中] Emergent Behavioral Anomalies 为什么"无法在单 agent 层面检测"？这给 multi-agent 系统监控提了什么具体要求？ → `KNOWLEDGE/agent/agent-anomaly-taxonomy/`
 - [深] 11 类边界在工程实操中是否真的清晰？一个失败同时触发 Reasoning + Termination 该归哪类？为什么多标签可能比单标签更合适？ → `KNOWLEDGE/agent/agent-anomaly-taxonomy/#open-questions` (open)
 
+## Memory 架构理论框架（Ledger + Views + Policy 三件套）
+
+- [浅] Memory 为什么不是"存储"？"能力来自历史能不能在当前状态下影响决策分布"这句话的反直觉在哪？ → `KNOWLEDGE/agent/memory-architecture-thesis/`
+- [浅] (Ledger, Views, Policy) 三件套各自负责什么？三者缺一各自会出现什么具体问题？ → `KNOWLEDGE/agent/memory-architecture-thesis/`
+- [中] 一个完整的 ledger event 至少包含哪几个要素？event 序列为什么"是真相来源但不可直接用"？views 和 policy 在中间做什么转换？ → `KNOWLEDGE/agent/memory-architecture-thesis/`
+- [中] 为什么需要 System 2 而不是把 memory 能力 RL 训进 System 1 权重？"memory 能力和 LLM 其他 agent 能力相对正交"是什么意思？非正交边界在哪？ → `KNOWLEDGE/agent/memory-architecture-thesis/`
+- [中] JitRL 的修正项 `Δ = α · A_est(s, a, M)` 怎么逼近 fine-tune 效果？参数化 vs 非参数化"写入成本"分摊在哪不一样？ → `KNOWLEDGE/agent/memory-architecture-thesis/`
+- [中] 三类上限瓶颈（接口带宽 / views 近似误差 / policy 可学习性）各自对应什么可观测指标？怎么用这三类指标定位"当前系统效果差在哪里"？ → `KNOWLEDGE/agent/memory-architecture-thesis/`
+- [中] Memory 操作的 6 个工具化动作（LTM: ADD/UPDATE/DELETE + STM: RETRIEVE/SUMMARY/FILTER）分别对应参数化训练里的什么行为？为什么必须 RL 训练而不能 rubrics based？ → `KNOWLEDGE/agent/memory-architecture-thesis/`
+- [中] bi-temporal 把 `transaction_time ≠ valid_time` 拆开——为什么 UPDATE/DELETE 的语义不应该是"改旧记录"而是"追加更正事件"？这对"遗忘"的实现有什么启发？ → `KNOWLEDGE/agent/memory-architecture-thesis/`
+- [深] TKG 给边加 temporal validity `[t_start, t_end]`——这跟纯语义检索的根本区别是什么？为什么 Zep 在长时序记忆评测能比传统 RAG 提升 18.5%？MAGMA 的 ablation（0.700 → 0.647）证明了什么？ → `KNOWLEDGE/agent/memory-architecture-thesis/`
+- [深] 非参数化 Memory 想逼近参数化上限——核心**不是**"塞更多东西进库"，而是什么？为什么 policy 是真正的瓶颈而不是存储后端？ → `KNOWLEDGE/agent/memory-architecture-thesis/#open-questions` (open)
+
+## Heuristic Learning（coding agent 改变维护曲线）
+
+- [浅] HL 和 Deep RL 在 6 个维度（Policy / State / Action / Feedback / Update / Memory）上的差异？最反直觉的一个差异是什么？ → `KNOWLEDGE/agent/heuristic-learning/`
+- [浅] Atari Breakout 上从 387 到 864 的提升用什么策略？这个策略包含什么 if-else 之外的内容？ → `KNOWLEDGE/agent/heuristic-learning/`
+- [中] 为什么 1980 年代 expert system 失败而 HL 现在可能成立？变化的不是规则本身，变的是什么？纺纱机的类比怎么用？ → `KNOWLEDGE/agent/heuristic-learning/`
+- [中] HS（Heuristic System）和单一 `policy.py` 的区别是什么？哪 7 个组成部分都齐才算 HS？ → `KNOWLEDGE/agent/heuristic-learning/`
+- [中] HL 怎么处理 Continual Learning？"避免遗忘"怎么转化为"维护一个持续吸收反馈的软件系统"？老能力可以固化为哪 6 类对象？ → `KNOWLEDGE/agent/heuristic-learning/`
+- [中] Coupling complexity **不能用代码行数衡量**——什么决定了它的上限？为什么 500 行干净策略可能比 80 行难维护的策略好维护？ → `KNOWLEDGE/agent/heuristic-learning/`
+- [中] "只增不压的 HS 最终会变成大泥球"——为什么单调增长就是负资产？健康 HS 必须有的两种操作是什么？ → `KNOWLEDGE/agent/heuristic-learning/`
+- [深] Montezuma 在 Atari57 拿 400 分但路径是 86 个 macro-action 的开环执行——这个反例对 HL 的边界给出什么提示？什么样的环境需要"超越纯 `if-else`"的程序形态？ → `KNOWLEDGE/agent/heuristic-learning/`
+- [深] 在 Robotics System 1 / System 2 分层里 HL 的定位是什么？joint-level → limb-level → whole-body balance → task-level 分层的逻辑是什么？coding agent 不"懂走路"为什么不影响它当 update pipeline？ → `KNOWLEDGE/agent/heuristic-learning/`
+- [深] HL 产物（rules + tests + replays + memory）是不是一种 procedural memory？跟 AWM workflow / Hermes Skill 在 "procedural memory object shape" 这条轴上怎么定位？ → `KNOWLEDGE/agent/heuristic-learning/#open-questions` (open)
+
+## Hermes Skills 闭环（procedural memory 的工程闭环）
+
+- [浅] Hermes Skills 7 步闭环的核心环节是什么？这个闭环跟 LangChain / AutoGen / CrewAI / Claude Code / OpenAI Codex CLI 的关键区别在哪？ → `KNOWLEDGE/agent/agent-skills-closed-loop/`
+- [浅] Skill 创建触发条件 `SKILLS_GUIDANCE` 里 "5+ tool calls / fixing a tricky error / don't wait to be asked" 分别在 hint 什么设计判断？"过时 Skill 比没 Skill 更危险"反直觉在哪？ → `KNOWLEDGE/agent/agent-skills-closed-loop/`
+- [中] 七道安全关卡的"先写入再扫描"反直觉——为什么**不**"先扫描后写入"？TOCTOU 竞态条件是什么？原子写入 `tempfile + os.replace` 在 AI Agent 工具里罕见，反应了什么工程成熟度？ → `KNOWLEDGE/agent/agent-skills-closed-loop/`
+- [中] 两层缓存（L1 进程内 LRU + L2 磁盘快照）的 `cache_key` 五元组为什么必须包含 `available_tools` 和 `platform_hint`？同一个 Skill 在不同配置下显示 / 隐藏靠什么机制？ → `KNOWLEDGE/agent/agent-skills-closed-loop/`
+- [中] System Prompt 的 "you MUST load it" 强制措辞背后是什么取舍？"漏加载相关 Skill 的成本 vs 多加载不相关 Skill 的成本" 哪个更大？ → `KNOWLEDGE/agent/agent-skills-closed-loop/`
+- [中] 条件激活 4 字段（`fallback_for_toolsets / requires_toolsets / fallback_for_tools / requires_tools`）解决什么问题？`manual-web-search` 在 web toolset 可用时隐藏的例子说明什么设计原则？ → `KNOWLEDGE/agent/agent-skills-closed-loop/`
+- [中] 渐进式加载 Tier 0-3 同时解决哪两个矛盾？"Agent 知道有哪些 Skill 可用" + "Skill 内容不占满 context" 分别落在哪一层？ → `KNOWLEDGE/agent/agent-skills-closed-loop/`
+- [深] Hermes Skill（Agent 显式 create）vs AWM workflow（task completion 反推）vs Claude Code Skills.md（人写）—— procedural memory 三种 design point 哪个更可持续？这条轴跟 memory-architecture-thesis 三件套怎么连接？ → `KNOWLEDGE/agent/agent-skills-closed-loop/#open-questions` (open)
+
+## Memory 级联更新问题（MeMe 论文 + research direction）
+
+- [浅] "我搬家了" 之后，"健身房在望京"这条记忆应该怎么办？三层更新难度（直接替换 / 级联失效 / 反事实推理）分别是什么？ → `KNOWLEDGE/agent/agent-memory-cascading-update/`
+- [浅] MeMe 论文的两个关键数字——级联更新 3% / 反事实推理 1%——意味着什么？为什么"不是某个系统差，是所有系统都差"？ → `KNOWLEDGE/agent/agent-memory-cascading-update/`
+- [中] 当前记忆系统为什么做不到级联更新？跟传统数据库的"外键约束 + 级联删除"类比一下——根源差在哪？ → `KNOWLEDGE/agent/agent-memory-cascading-update/`
+- [中] 四个候选方向（写入时触发分析 / 显式依赖图 / 置信度衰减 + 主动确认 / 全量上下文）各自为什么不够？四者指向的同一根本矛盾是什么？ → `KNOWLEDGE/agent/agent-memory-cascading-update/`
+- [中] 唯一"部分有效"的方案是"全量上下文（70× 成本）"——它证明了什么关于模型推理能力 vs 记忆架构能力的判断？ → `KNOWLEDGE/agent/agent-memory-cascading-update/`
+- [中] "写入时粗筛 + 读取时精确验证 + 后台批量扫描" 两阶段方案的成本摊销逻辑是什么？为什么"没有任何开源/商业产品完整实现"是个重要信号？ → `KNOWLEDGE/agent/agent-memory-cascading-update/`
+- [深] **级联更新失败可以归到 `memory-architecture-thesis` 三类瓶颈框架里的哪一类？** policy 可学习性 vs views 近似误差 vs 接口带宽——为什么是 policy？这跟用 GRPO 训 memory tool 的数据分布有什么关系？ → `KNOWLEDGE/agent/agent-memory-cascading-update/` + `KNOWLEDGE/agent/memory-architecture-thesis/`
+- [深] **"事实被否定" vs "事实变成历史" 的区分**本质是什么？跟 `memory-architecture-thesis` 里 `transaction_time ≠ valid_time` 的 bi-temporal 设计是同一回事吗？如果显式 ledger 记录 valid_time 区间，第 3 层反事实推理能从 1% 提升到多少？ → `KNOWLEDGE/agent/agent-memory-cascading-update/#open-questions` (open)
+- [深] **对做 agent 产品的人**："不能假设记忆系统会自动处理依赖关系"——什么场景必须在产品层面设计降级策略（搬家 / 换工作 / 换城市 / 换伴侣）？怎么设计？这跟"AI 记错了"的用户体感和系统责任怎么划分？ → `KNOWLEDGE/agent/agent-memory-cascading-update/`
+
 ## Agent Failure Trajectory Dataset（评测基础设施）
 
 - [浅] Who&When 的两个结构性局限是什么？为什么"71% 任务 5-10 步 + 48% 失败偏早"会让简单启发式占便宜？ → `KNOWLEDGE/agent/agent-failure-trajectory-dataset/`
@@ -170,3 +231,7 @@
 - [深] **Cloud Code 全栈拆解串成一条线**：四层压缩 / YOLO 分类器 / 6 agent 按阶段拆 / 工具三原则 / 记忆四存五不存 / 系统提示词模块化——这 6 个子系统都在解决"在概率性的模型周围，构建确定性的工程系统"。每个子系统**编码了什么假设、用什么硬约束兜底、什么软约束补缝**？ → `KNOWLEDGE/agent/agent-context-compaction/` + `KNOWLEDGE/agent/agent-permission-system/` + `KNOWLEDGE/agent/agent-role-isolation/` + `KNOWLEDGE/agent/agent-tool-design/` + `KNOWLEDGE/agent/agent-memory-system/` + `KNOWLEDGE/agent/agent-system-prompt/` + `KNOWLEDGE/agent/harness/`
 - [深] **Cloud Code 的整体设计哲学**："不信任模型的自觉性，能用硬约束的地方绝不用软约束"——但有些行为（不加冗余功能、克制抽象）没法编进代码、只能写进 prompt。**硬约束 vs 软约束的边界在哪、判断准则是什么**？这条原则会随着模型变强而演化吗？ → `KNOWLEDGE/agent/agent-role-isolation/` + `KNOWLEDGE/agent/agent-permission-system/` + `KNOWLEDGE/agent/harness/`
 - [深] **OpsAgent / AgentOps / Multi-Agent RCA / Failure Attribution 串成一条研究线**：工程师做 OpsAgent 时遇到的痛点"Agent 模块单独跑通但端到端联调上不去"，本质上就是缺 AgentOps 的 Failure Attribution 能力。**这条迁移路径（OpsAgent → AgentOps）跟"研究方向定位"的关系是什么**？怎么用这条迁移路径回答"你未来想做什么"？ → `KNOWLEDGE/agent/agentops-vs-opsagent/` + `KNOWLEDGE/agent/multi-agent-rca-paradigm/` + `KNOWLEDGE/agent/agent-failure-attribution/`
+- [深] **Claude Code 6 层 vs OpenClaw 2 层 vs Ledger+Views+Policy 三件套 vs AWM/Hermes Skills 程序性记忆**——同一个问题"Agent 跨会话记忆"的四种 design space。每种方案的 (Ledger, Views, Policy) 三件套对应情况是什么？为什么所有开源系统都没把 policy 显式化为 ADD/UPDATE/DELETE Action 序列？这暴露了什么 gap？ → `KNOWLEDGE/agent/memory-architecture-thesis/` + `KNOWLEDGE/agent/agent-memory-system/` + `KNOWLEDGE/agent/agent-skills-closed-loop/` + `PROBLEMS/agent-memory-architecture/`
+- [深] **Heuristic Learning 和 Hermes Skills 闭环都在做"agent 积累经验"，但路线截然不同**——HL 强调代码 + tests + replays + memory 的软件系统、Skills 强调 SOP 文档 + 自动 patch。这两条路线的本质差异是什么？什么场景下 HL 更合适（环境 feedback 清晰可验证）、什么场景下 Skills 更合适（任务可流程化）？两条路线能否共存？ → `KNOWLEDGE/agent/heuristic-learning/` + `KNOWLEDGE/agent/agent-skills-closed-loop/`
+- [深] **Procedural Memory Object Shape 这条轴**：Skill（人写 / 偏散文）vs AWM workflow（task 反推 / context-conditioned templates with action slots）vs Hermes Skill（agent 自主 create / 7 步闭环带自动 patch）vs Gene（runtime control object with trigger/strategy/avoid/validation）。把这四种当作 design point 而不是线性进化——在 web agent / 运维 RCA / coding agent 三个场景下哪种最合适？为什么？ → `KNOWLEDGE/agent/agent-skills-closed-loop/` + `KNOWLEDGE/agent/heuristic-learning/` + `KNOWLEDGE/agent/agent-memory-system/` + `PROBLEMS/agent-memory-architecture/`
+- [深] **memory-architecture-thesis 的"追加更正事件"不变量 vs cascading-update 的"显式依赖图"方向**——这两个其实是**同一族问题的两个视角**还是两个独立机制？bi-temporal 闭合的是"什么时刻什么是真的"（**fact-level 时序**），cascading 解决的是"一个事实变了哪些事实需要重算"（**cross-fact 依赖传播**）。请论证：(1) 为什么 bi-temporal 是必要条件不是充分条件；(2) 为什么"显式依赖图"是 bi-temporal 不变量的天然延伸（从事件序列升级到事件 + 依赖图）；(3) 它失败的不是设计动机，而是什么——这跟 `memory-architecture-thesis` 的三类瓶颈框架（接口带宽 / views 近似误差 / policy 可学习性）哪个对应？ → `KNOWLEDGE/agent/memory-architecture-thesis/` + `KNOWLEDGE/agent/agent-memory-cascading-update/`

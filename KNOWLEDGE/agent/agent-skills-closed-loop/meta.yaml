@@ -1,0 +1,29 @@
+id: agent-skills-closed-loop
+title: "Hermes Skills 闭环：Agent 像专家一样积累 SOP"
+type: system
+status: learning
+created_at: 2026-05-13
+last_reviewed_at: 2026-05-13
+
+tags: [agent, skills, procedural-memory, self-learning, hermes, agentskills]
+depends_on:
+  - context-engineering
+  - agent-tool-design
+related_nodes:
+  - agent-memory-system
+  - agent-tool-design
+  - structured-output
+  - memory-architecture-thesis
+related_problems:
+  - agent-memory-architecture
+
+evidence_level:
+  concept: self_reasoned
+  math: not_verified
+  code: not_verified
+
+checklist:
+  concept: true
+  math: false
+  code: false
+  reproduction: false

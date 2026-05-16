@@ -11,11 +11,14 @@
 
 ## 子目录约定
 
-按需建。常见类型：
+按需建。当前类型：
 
-- `papers/` — 学术论文
-- `docs/` — 官方文档（如某框架文档抓取）
-- `talks/` — 演讲、视频笔记
+- `conference-talks/` — 演讲、视频笔记
+- `jd-and-interviews/` — JD 与面经原件
+- `articles/` — 公众号 / 博客 / 技术文章原文存档
+- `research-deliverables/` — 自主研究项目交付件（LaTeX / 演讲稿）
+- `dialogues/` — 特定主题的深度对话 log 原件
+- `qiniu-internship-artifacts/` — 七牛云实习期间产出的原始 design / 复盘 / demo 文档
 
 ## 引用方向
 

@@ -1,3 +1,5 @@
+<!-- PROCESSED: 2026-05-13 → PROJECTS/research/{awm-mechanism-audit, selective-transfer-memory}/ -->
+
 这个目录放了我硕士第一年期间自主做的研究关于帮助我自己理解agent memory的工作，有实验报告，也有我和Claude的聊天关于理解人类记忆帮助我来设计agent记忆模块。
 
 从学习中我学到的核心思想是，

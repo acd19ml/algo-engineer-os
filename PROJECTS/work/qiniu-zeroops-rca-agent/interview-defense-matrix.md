@@ -158,7 +158,7 @@
 | 端到端测试怎么做的？ | 测试 / 技 | ❌ | **GAP-39**：MVP 阶段大概率没做完整 E2E 测试，需诚实回答 |
 | 监控告警自己怎么监控？（meta-observability）| 可观测元 / 技 + 总 | ❌ | **GAP-40**：项目自身可观测性未沉淀——这正是"AgentOps 视角缺位"的具体表现 |
 | 项目代码开源吗？仓库结构？ | 工程 / 技 | ❌ | **GAP-41**：仓库结构 / 是否公开未沉淀 |
-| 团队 git 协作模式？PR review 流程？ | 协作 / 技 + 行 | ⚠️ | `INBOX/qiniu/复盘文档.md`（即将删）提到"加强 GitHub 协作培训" / "养成 PR 习惯"——GAP-42 |
+| 团队 git 协作模式？PR review 流程？ | 协作 / 技 + 行 | ⚠️ | `RAW_SOURCES/qiniu-internship-artifacts/复盘文档.md` 提到"加强 GitHub 协作培训" / "养成 PR 习惯"——GAP-42 |
 
 ---
 
