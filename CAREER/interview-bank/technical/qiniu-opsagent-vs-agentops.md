@@ -8,7 +8,7 @@
 ## 涉及节点
 
 - 主：`PROJECTS/work/qiniu-zeroops-rca-agent/`
-- 主：你后续做的 `Coding Agent + Procedural Memory 全链路开源研究项目`（CV 第 26 行）
+- 相关：`PROJECTS/research/awm-mechanism-audit/` + `PROJECTS/research/selective-transfer-memory/`（当前 CV 中的 Agent Memory 自主研究）
 - 相关 KNOWLEDGE 节点：`KNOWLEDGE/agent/agentops-vs-opsagent/`（核心概念）+ `KNOWLEDGE/agent/agent-failure-attribution/`（debug agent 系统的核心方法论）+ `KNOWLEDGE/agent/agent-anomaly-taxonomy/`（11 类异常分类）+ `KNOWLEDGE/agent/agent-failure-trajectory-dataset/`（标准化失败轨迹 schema + 6 benchmark + 标注流水线）
 
 ## 我的答案（核心：把两段项目连成一条故事线）
@@ -18,7 +18,7 @@
 > AgentOps 和 OpsAgent 是两个方向：
 >
 > - **OpsAgent / AgenticOps** = 用 Agent 做传统系统的运维（**我在七牛云做的**）
-> - **AgentOps** = 用运维技术管理 Agent 系统本身（新方向，**我后续做 Claude Code 研究的方向**）
+> - **AgentOps** = 用运维技术管理 Agent 系统本身（新方向，和我后续做 Agent Memory / failure analysis 的研究兴趣相连）
 
 ### 我的项目属于哪个
 
@@ -46,18 +46,18 @@
 
 **核心思路**：模型本身够强、工具也成熟，问题不是"能不能做"而是"重复搜索浪费"；运维的当前拓扑、服务依赖、告警模式是**外部结构**——刚好该用 procedural memory 保留（保留可复用的搜索路径、验证顺序、边界条件）。
 
-**详细延伸思考 + 90s 口语稿 + 面试 challenge 答案** → 见 [`main-project-and-research.md`](./main-project-and-research.md) **§C 研究方向延伸**。
+**详细延伸思考 + 面试 challenge 答案** → 见 [`main-project-and-research.md`](./main-project-and-research.md) **§E 未来延伸**。
 
 **具体两层架构（Storage partition vs Retrieval filter + Declarative vs Procedural）+ 面试 soundbite + 5 个 challenge 防御** → 见 [`memory-architecture-for-ops.md`](./memory-architecture-for-ops.md)（从资深 SRE 视角反推得到的洞察）。
 
 **面试切入时机**：
 - 当面试官问 "**如果重做 OpsAgent 你会怎么变？**"——可以从 AgentOps 工程化（上表）切到 OpsAgent 自身智能强化（procedural memory）形成双维度回答
 - 当面试官问 "**拿到优质数据你只能 SFT 吗？**"——直接切到 procedural memory 作为 SFT 之外的另一条路径
-- 当面试官问 "**你研究方向 / 你最近在思考什么？**"——整段讲 §C 的 90s 口语稿
+- 当面试官问 "**你研究方向 / 你最近在思考什么？**"——从 Agent Memory 自主研究切入，再讲如果重做 OpsAgent 会如何加入 procedural memory
 
 ### 关键金句（**面试时拉满学术坐标 + 自我学习路径**）
 
-> "**我七牛云做的是 OpsAgent，但碰到的痛点是 AgentOps**——Agent 单独跑通了端到端联调始终上不去。当时这个概念学术界还没成型，我们的工程基础设施都是为传统系统设计的。**结束后我转向做 Claude Code procedural memory 研究——本质就是从 OpsAgent 转向 AgentOps 方向**。这条故事线让我对'Agent 工程化'的理解比纯做 agent demo 的人多一层。"
+> "**我七牛云做的是 OpsAgent，但碰到的痛点是 AgentOps**——Agent 单独跑通了端到端联调始终上不去。当时这个概念学术界还没成型，我们的工程基础设施都是为传统系统设计的。后来我做 Agent Memory 自主研究，本质上是在继续追问：Agent 如何从历史轨迹里提取可复用经验、如何判断这些经验什么时候帮忙什么时候误导。"
 
 ## 关键金句（备用，更精炼版）
 
@@ -66,6 +66,6 @@
 ## 我答不出的部分（深问准备）
 
 - **"具体某个 agent debug 失败的例子"** → 答：**最让我印象深的是 ReAct 循环不终止**——agent 反复调同样的工具但没有进展，最后我们补了"值班长不获取数据，只做结构化推理 + 智能终止判断"的角色才解决。**这本质上就是 AgentOps 多智能体异常分类里的 Inter-Agent / Termination Anomaly**——11 类异常的具体边界见 `KNOWLEDGE/agent/agent-anomaly-taxonomy/`
-- **"你 Claude Code procedural memory 研究跟 AgentOps 具体怎么连"** → 答：我在做的是 procedural memory——agent 从历史成功 / 失败 trajectory 里抽出可执行的"过程性记忆"复用到新任务。这本质上是给 agent 加一层"自学习的 AgentOps 能力"——agent 自己 debug 自己、从自己的失败里学习
+- **"你 Agent Memory 研究跟 AgentOps 具体怎么连"** → 答：我研究的是 agent 从历史成功 / 失败 trajectory 里抽出可执行经验，并判断什么时候复用、什么时候不复用。这和 AgentOps 的连接点是 failure trajectory、failure attribution 和 memory policy：不是只 debug 一次，而是让失败轨迹变成长期改进材料
 - **"未来你想做 OpsAgent 还是 AgentOps，具体抓哪几个子问题"** → 答：**AgentOps**。理由：(1) OpsAgent 是用 agent 做事，工程问题已经清晰；(2) AgentOps 是工程基础设施层，是 agent 大规模落地的必经环节；(3) 我亲身经历过 OpsAgent 项目卡在 AgentOps 缺位上，这种"用户视角的工程痛点"是 AgentOps 研究者最珍贵的资产。**具体抓三件事**：(a) **异常分类**——先把 11 类异常的边界划清楚（Reasoning vs Action vs Memory vs Communication vs Termination 不能混），不然检测和归因都谈不上；(b) **Failure Attribution**——Who & When 是基础，FAMAS / Echo / Correct 是上层方法；(c) **Failure Trajectory Dataset**——标准化 schema + 多 benchmark + LLM 预标注 + 人工复核的流水线，让系统能从失败里持续改进，而不是每次都重新调一次
 - **"如果让你给你的项目补 AgentOps 能力的顺序"** → 答：**异常分类 → 可观测性 → Failure Attribution → Trajectory Dataset**。理由：分类先于检测（不知道有几类异常无法埋点）；可观测性是基础（没事件流谈不上归因）；Failure Attribution 解单次 debug 问题；Trajectory Dataset 是长期改进的底座（**单次 debug 是治标，标注好的失败轨迹库才让系统长期能改进**——这跟传统 AIOps 历史告警库的角色一致）

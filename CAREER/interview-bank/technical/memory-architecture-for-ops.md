@@ -1,6 +1,6 @@
 # Agent Memory 在运维场景的组织架构（从资深 SRE 视角）
 
-> **派生**：基于 Socratic 讨论（`RAW_SOURCES/dialogues/conversation_01.md` + `PROBLEMS/agent-memory-architecture/` + `PROJECTS/research/effect-attributed-memory-rl/`）的核心洞察。
+> **派生**：基于 Socratic 讨论（`RAW_SOURCES/dialogues/conversation_01.md` + `PROBLEMS/agent-memory-architecture/` + `PROJECTS/research/awm-mechanism-audit/` + `PROJECTS/research/selective-transfer-memory/`）的核心洞察。
 >
 > **用途**：面试展示对 agent memory + ops 业务的理解深度。表达"我不只是会做 OpsAgent demo，我真正想清楚了 memory 在 ops 场景该长什么样"。
 
@@ -163,8 +163,8 @@
 - **[[agent-skills-closed-loop]]**：Hermes Skills 是 procedural memory 的工程实现——symptom-anchored 的 SOP 闭环
 - **[[agent-memory-cascading-update]]**：单层 partition 时级联更新只有 3% 准确率；两层架构把级联范围限制在 service 内部，是缓解方向之一
 - **[[agent-memory-architecture-thesis]]**：Ledger + Views + Policy 三件套 → service-anchored declarative 是 ledger 维度，symptom-anchored procedural 是 views 维度
-- **[[main-project-and-research]] §C**：procedural memory 在运维场景的价值——本卡是更精细的"那个 procedural memory 怎么组织"的展开
-- **`PROJECTS/research/effect-attributed-memory-rl/`**：当前研究项目讨论的就是 memory policy 的训练——两层架构的 policy 设计应该分开做（service 层 policy 跟 symptom 层 policy 关注的东西不同）
+- **[[main-project-and-research]] §E**：procedural memory 在运维场景的未来延伸——本卡是更精细的"那个 procedural memory 怎么组织"的展开
+- **`PROJECTS/research/awm-mechanism-audit/` + `PROJECTS/research/selective-transfer-memory/`**：当前 CV 中真正可讲的研究项目；它们提供 selective reuse、matched/mismatched 与可执行性边界的方法学基础
 
 ---
 

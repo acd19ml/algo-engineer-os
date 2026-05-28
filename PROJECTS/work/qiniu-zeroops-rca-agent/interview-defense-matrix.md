@@ -63,8 +63,8 @@
 
 | 挑战角度 | 测什么 / 谁问 | Readiness | 深答位置 / 行动 |
 |---|---|---|---|
-| 为什么选 Dify 不选 LangGraph？ | 横向调研 / 技 + 总 | ⚠️ | **GAP-7（P0）**：LangGraph 横向对比缺位 |
-| 为什么 Dify 不自建 agent 编排？ | ROI 取舍 / 技 | ✅ | `interview-bank/technical/qiniu-agent-loop-vs-workflow.md` |
+| 为什么选 LangGraph StateGraph 而不是自由 Agent Loop？ | 横向调研 / 技 + 总 | ✅ | `README.md` "真实选型路径" + `interview-bank/technical/qiniu-agent-loop-vs-workflow.md` |
+| 为什么选 LangGraph 不选 Dify 可视化方案？ | ROI 取舍 / 技 | ✅ | 同上；核心：ops safety + HITL interrupt 是代码层需要，Dify 可视化是 SaaS 约束 |
 | 为什么不用 coding agent 范式？ | 时代背景 / 技 + 总 | ✅ | 同上 |
 | **为什么 MCP 不是直接 Function Calling？** | 协议选型 / 技 | ⚠️ | **GAP-8（P1）**：MCP vs FC 取舍未沉淀 |
 | 为什么 fox / Gin 不是 Echo？ | 公司栈 / 技 | ✅ | `system-anatomy.md` §1.2（公司内部包装） |
@@ -147,8 +147,8 @@
 | 挑战角度 | 测什么 / 谁问 | Readiness | 深答位置 / 行动 |
 |---|---|---|---|
 | **为什么 Go 主流程 + Python 异常检测，不全 Go？** | 工程取舍 / 技 | ⚠️ | CV 已删但仍可能被问；准备答案："算法生态 + 模块独立迭代" |
-| K8s 怎么部署 Dify？ | 部署 / 技 | ❌ | **GAP-33（P2）**：当时 Dify 部署细节遗忘，需查阅 Dify on K8s 文档兜底 |
-| Dify on K8s 的高可用怎么做？ | 工程 / 技 | ❌ | 同上 |
+| LangGraph service K8s 部署方案？ | 部署 / 技 | ⚠️ | **GAP-33（P2）**：Python FastAPI/uvicorn 容器化 + K8s Deployment；具体细节待补 |
+| LangGraph service 高可用怎么做？ | 工程 / 技 | ❌ | 同上；MVP 阶段未深究 |
 | 灰度发布逻辑是否真自动？冲突检测怎么做？ | 实现深度 / 技 | ⚠️ | `system-anatomy.md` §5 描述策略缺实现细节——GAP-34 |
 | 服务依赖关系（CMDB）怎么获得？ | Mock 体系 / 技 | ❌ | **GAP-35**：CMDB mock 来源未沉淀 |
 | MCP Server 部署在函数计算的具体原因？ | 部署选型 / 技 | ⚠️ | `agent-subsystem.md` §1.2 原则二提到但缺工程细节 |
@@ -183,7 +183,7 @@
 | 挑战角度 | 测什么 / 谁问 | Readiness | 深答位置 / 行动 |
 |---|---|---|---|
 | vs Flow-of-Action (WWW 2025)？ | 学术坐标 / 总 + 研 | ✅ | `README.md` "学术坐标" + `KNOWLEDGE/agent/multi-agent-rca-paradigm/` |
-| vs Claude Code？ | 选型 / 技 | ✅ | `agent-subsystem.md` §8 |
+| vs Claude Code？ | 选型 / 技 | ✅ | `agent-subsystem.md` §8（三方比较：LangGraph StateGraph vs 自由 Agent Loop vs Claude Code harness）|
 | vs 阿里云 AIOps 产品？ | 行业 / 技 | ⚠️ | `KNOWLEDGE/agent/agentops-vs-opsagent/` 有素材待整理——GAP-44 |
 | **vs Datadog APM / Splunk Observability？** | 商业产品 / 总 | ❌ | **GAP-45（P0）**：商业 AIOps 产品矩阵 |
 | **vs OpsAgent 后续出的开源（OpenAIOps 等）？** | 时代演进 / 总 + 研 | ❌ | **GAP-46（P0）**：2025.10 后的项目横向 |
@@ -220,7 +220,7 @@
 | GAP # | 内容 | 落地位置 |
 |---|---|---|
 | GAP-3 | 双路径（告警 + 体检）业务价值的定性 / 定量论证 | 加到 `interview-bank/technical/qiniu-dual-trigger-rca.md`（新建）|
-| GAP-7 / GAP-47 | LangGraph vs Dify 横向对比段 | 补到 `qiniu-agent-loop-vs-workflow.md`，或者起 `PROBLEMS/agent-framework-comparison/` |
+| ~~GAP-7 / GAP-47~~（已解决）| 已采用 LangGraph；原"vs Dify"问题不再成立；转为补充 **Agent Loop vs LangGraph StateGraph vs Claude Code 三方对比**（已在 `agent-subsystem.md` §8 落地）| —— |
 | GAP-21 | 时序异常检测算法对比表（STL / Z-score / 孤立森林 / RPCA / Group-wise VAE / 季节性分解）| `interview-bank/technical/qiniu-anomaly-detection-algos.md`（新建）|
 | GAP-23 / GAP-24 | 20%→70% 评测设计细节（标注 / 匹配标准 / Precision-Recall / baseline） | `interview-bank/technical/qiniu-rca-evaluation.md`（新建）|
 | GAP-45 | 商业 AIOps 产品对比（Datadog / Splunk / New Relic / Dynatrace / Honeycomb）| `PROBLEMS/aiops-product-landscape/`（新建）|

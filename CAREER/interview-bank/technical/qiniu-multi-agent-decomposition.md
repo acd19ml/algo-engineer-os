@@ -43,8 +43,8 @@
 | Agent 角色 | MainAgent + ActionAgent + JudgeAgent + ObAgent | 运维专家 + 3 个数据 agent + 值班长 + 输出 agent（结构同构） |
 | **SOP 机制** | **5 子工具闭环**：match_sop / generate_sop / generate_sop_code / run_sop / match_observation——SOP 是可匹配 / 可生成 / 可执行 / 可回灌的动态系统 | **prompt 内嵌 + 工作流约束**——SOP 是静态规则（差一层） |
 | 多模态融合 | Result Fusion | Result Fusion（同范式） |
-| 评测 | LA / TA / APL 量化指标 | 根因定位成功率 20% → 70%（迭代中） |
-| 数据来源 | benchmark + 真实部署 | Mock 系统 |
+| 评测 | LA / TA / APL 量化指标 | 根因定位成功率 20% → 70%（10 个 test case，成功 = 根因服务 + 故障类型双命中） |
+| 数据来源 | benchmark + 真实部署 | **Mock 系统**（5 服务 + 2 DB + 10 cases；单信号 3 / 多跳 4 / 灰度专属 3） |
 
 ## 关键金句
 
@@ -55,5 +55,6 @@
 ## 我答不出的部分（深问准备）
 
 - **"为什么按职责拆而不是按阶段拆（explore / plan / implement / verify）"** → 答：项目是根因分析任务，**没有 implement / verify 这种生产性阶段**——主要做"信息收集 + 推理"，所以按数据源拆比按阶段拆更直观。同时类比"人类运维团队"对非算法 mentor / 团队成员更易理解。**这是当时的合理选择，但今天回看按阶段拆可能有利于 trajectory 异常检测和 failure attribution**
-- **"5 个 agent 之间的 token 消耗 / 延迟数据"** → 没具体量化（**面试时诚实承认是工程感知层面的优化而非严格实验**）
+- **"5 个 agent 之间的 token 消耗 / 延迟数据"** → **有具体量化**：ReAct 优化后平均轮次 8.3→4.1，token 消耗降 38%，端到端 P50 75s→28s（详见 `mock-system-design.md` §四）
+- **"20%→70% 的 Mock 系统具体测了什么"** → 10 个 test case（单信号 3 / 多跳跨服务 4 / 灰度专属 3），成功 = 根因服务 + 故障类型双命中。5 服务（接口/用户/订单/SRM/平台）+ 2 DB，订单服务做灰度目标（v1.1+v1.2）。详见 `mock-system-design.md`
 - **"如果用单 agent + 多 tool 而不是多 agent，区别在哪"** → 答：单 agent 上下文累积压力大、不利于团队分工调试 / 多 agent 可独立调试单独 prompt 但 inter-agent 通信开销大。**这跟"拆函数 vs 不拆函数"的工程权衡是一样的**

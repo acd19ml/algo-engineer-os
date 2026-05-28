@@ -45,7 +45,7 @@
 | 横向对比四个 repo 深读（重点：记忆机制 + 工具调用） | KB 4 个对比节点写完 + GitHub 公开仓库 markdown 报告 |
 | **横向对比报告 push 到 GitHub** | 公开 repo + README |
 | cv.md 加 GitHub 链接 + 二次投递 | 投递记录 |
-| 模拟面试自检：用 KB self-check decks 过一遍 | 找出还卡壳的题 |
+| 模拟面试自检：用 KB self-check decks + Agent Harness 边界图 + Neo router working draft 过一遍 | 找出还卡壳的题，尤其是 98% / 70% / Top10→Top5 / rerank 口径 |
 | 卡壳题 → 反向更新 KB 节点 / 派生新 KB 节点 | KB 增量 |
 
 **Week 2 结束验收**：

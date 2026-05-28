@@ -5,6 +5,9 @@
 ## 内容
 
 - `jd.md` — 多个目标岗位的 JD 原文（含腾讯游戏 RL / A202665 / 业务 Agent / 数据预训练等段）
+- `huawei-group-it-ai-engineer-intern.md` — 华为集团 IT（质量与流程 IT 部）AI 工程师 / 实习生完整 JD + CV 匹配信号
+- `bytedance-feishu-agent-backend-intern.md` — 字节跳动飞书 Agent 后端实习 JD + CV 匹配信号
+- `bytedance-feishu-agent-interview-xiaohongshu.md` — 字节 / 飞书 Agent 面经小红书分享结构化整理
 - `post.md` — HR 抱怨简历清单（避雷材料）
 - `shared-interview.md` — 学长 / 内推面经分享（含阿里淘宝闪购 / 阿里高德 / 字节相关公司）
 

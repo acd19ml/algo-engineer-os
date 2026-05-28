@@ -1,0 +1,26 @@
+id: rag-failure-diagnosis
+title: "RAG Failure Diagnosis"
+type: workflow
+status: learning
+created_at: 2026-05-17
+last_reviewed_at: 2026-05-17
+
+tags: [agent, rag, retrieval, diagnosis, evaluation]
+depends_on:
+  - agentic-rag-vs-long-context
+related_nodes:
+  - agentic-rag-vs-long-context
+  - rag-query-rewriting
+  - agent-failure-attribution
+related_problems: []
+
+evidence_level:
+  concept: self_reasoned
+  math: not_verified
+  code: not_verified
+
+checklist:
+  concept: true
+  math: false
+  code: false
+  reproduction: false

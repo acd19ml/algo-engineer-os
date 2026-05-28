@@ -1,0 +1,28 @@
+id: sft-training-strategy
+title: "SFT Training Strategy"
+type: methodology
+status: learning
+created_at: 2026-05-17
+last_reviewed_at: 2026-05-17
+
+tags: [training, sft, hyperparameters, lora, catastrophic-forgetting]
+depends_on:
+  - sft-data-size
+  - sft-loss-signal-allocation
+related_nodes:
+  - sft-data-size
+  - sft-loss-signal-allocation
+  - lora
+  - continue-pretrain-vs-finetune
+related_problems: []
+
+evidence_level:
+  concept: self_reasoned
+  math: not_verified
+  code: not_verified
+
+checklist:
+  concept: true
+  math: false
+  code: false
+  reproduction: false

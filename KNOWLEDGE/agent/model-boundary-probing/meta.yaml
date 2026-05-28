@@ -1,0 +1,29 @@
+id: model-boundary-probing
+title: "Model Boundary Probing"
+type: capability
+status: learning
+created_at: 2026-05-17
+last_reviewed_at: 2026-05-17
+
+tags: [agent, model-boundary, harness, long-horizon, evaluation]
+depends_on:
+  - agent-engineer-ability
+  - harness
+related_nodes:
+  - agent-engineer-ability
+  - harness
+  - context-engineering
+  - tool-call-repair-harness
+  - agent-evaluation-harness
+related_problems: []
+
+evidence_level:
+  concept: self_reasoned
+  math: not_verified
+  code: not_verified
+
+checklist:
+  concept: true
+  math: false
+  code: false
+  reproduction: false

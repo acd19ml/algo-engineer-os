@@ -17,7 +17,7 @@
 | **本页 `README.md`** | 4 子项目导航 / 决策复盘骨架 / 时代背景 / 复盘 / 简历素材 / 面试故事入口 / **挖掘 brief（Q1-Q20）** | ✅ 已建 |
 | **`interview-defense-matrix.md`** | 10 类×30+ 行 readiness 矩阵（多数 ⚠️/❌，作为起手 baseline）| ✅ 已建 |
 | `system-anatomy.md` | 4 子项目系统视图（架构 + 数据流 + 集成关系）| ⏳ 等 Block B+C 答完 |
-| `subsystem-react-router.md` | D2 ReAct + 语义路由深度解剖（CV 5 个硬指标的工程实现 + design rationale）—— **面试最值钱** | ⏳ 等 Block C2 答完 |
+| `subsystem-react-router.md` | D2 ReAct + 语义路由深度解剖（CV 5 个硬指标的工程实现 + design rationale）—— **面试最值钱** | ✅ 已建 working draft，等 Block C2 补齐 |
 
 ## 类型
 
@@ -155,7 +155,7 @@
 
 ## 当前状态
 
-`in-progress`（挖掘中——README + matrix 已建，subsystem 文档等 brief 答完后产出）
+`in-progress`（挖掘中——README + matrix + `subsystem-react-router.md` working draft 已建，`system-anatomy.md` 等 brief 答完后产出）
 
 ## 简历素材（CV 当前 4 条 bullet）
 
@@ -187,7 +187,7 @@
 每答完一个 block 通知我，我会立刻更新 README 对应段 + 升级 matrix 对应行 readiness。**预计动作链**：
 
 - Block A+B 答完 → README 80% 完成
-- Block C 答完 → `system-anatomy.md` + `subsystem-react-router.md` 可写
+- Block C 答完 → `system-anatomy.md` 可写，`subsystem-react-router.md` 从 working draft 升级为可防御版
 - Block D 答完 → 3 个 STAR 故事可派生
 - Block E 答完 → README 复盘段补齐 + technical bank 4 个单题深答可派生
 
@@ -254,7 +254,7 @@
 ## 不在本文档讨论的内容
 
 - 4 子项目的系统视图 / 数据流 / 集成关系 → `system-anatomy.md`（待建）
-- D2 ReAct + 语义路由的深度解剖（5 硬指标 + 设计细节）→ `subsystem-react-router.md`（待建）
+- D2 ReAct + 语义路由的深度解剖（5 硬指标 + 设计细节）→ `subsystem-react-router.md`（working draft，待 C2 补齐）
 - 60+ 挑战角度的 readiness 矩阵 + GAP 清单 → `interview-defense-matrix.md`
 - 单题深答（每篇 5-10 页）→ `CAREER/interview-bank/technical/neo-*.md`（待派生 4 篇）
 - 行为题 STAR 故事 → `CAREER/interview-bank/behavioral/neo-*.md`（待派生 3 篇）

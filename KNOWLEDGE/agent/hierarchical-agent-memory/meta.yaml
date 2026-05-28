@@ -1,0 +1,31 @@
+id: hierarchical-agent-memory
+title: "Hierarchical Agent Memory: 虚拟文件系统 + 三层按需加载"
+type: system
+status: learning
+created_at: 2026-05-27
+last_reviewed_at: 2026-05-27
+
+tags: [agent, memory, hierarchical, virtual-filesystem, three-tier-loading, openviking, retrieval, session-commit]
+depends_on:
+  - agent-memory-system
+  - context-engineering
+related_nodes:
+  - agent-memory-system
+  - agent-context-compaction
+  - agentic-rag-vs-long-context
+  - rag-failure-diagnosis
+  - agent-memory-cascading-update
+  - memory-architecture-thesis
+related_problems:
+  - agent-memory-architecture
+
+evidence_level:
+  concept: self_reasoned
+  math: not_verified
+  code: not_verified
+
+checklist:
+  concept: true
+  math: false
+  code: false
+  reproduction: false

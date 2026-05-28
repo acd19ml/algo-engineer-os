@@ -46,7 +46,7 @@
 |---|---|---|
 | RAG 流程？从哪些角度优化？ | `agent/context-engineering/`（Just-in-time Context） | (a) Chunking 策略；(b) Embedding 选型；(c) 检索（粗筛 + 精排）；(d) Re-ranker；(e) Query rewriting；(f) Citation tracking |
 | 为什么大窗口模型出现后 RAG 还有意义？ | `agent/context-engineering/` | "不是装不装得下，是该不该装进去"；窗口大反而稀释 attention；KV cache 成本随窗口爆炸 |
-| Procedural / Episodic / Semantic memory 区别？ | `training/long-context-rl/`（提到）+ 主项目（procedural）+ `agent/context-engineering/` | Procedural = "怎么做"（工作流模板）；Episodic = "什么时候发生了什么"（具体事件）；Semantic = "事实知识" |
+| Procedural / Episodic / Semantic memory 区别？ | `training/long-context-rl/`（提到）+ `CAREER/interview-bank/technical/main-project-and-research.md` + `agent/context-engineering/` | Procedural = "怎么做"（工作流模板）；Episodic = "什么时候发生了什么"（具体事件）；Semantic = "事实知识" |
 | Embedding 模型选型？为什么 OpenAI text-embedding-3-large？ | ⚠️ 准备具体对比 | 性能（MTEB benchmark）+ 维度（3072 与 1536 trade-off）+ 成本 |
 | 向量数据库怎么选？Pinecone vs FAISS vs Milvus？ | ⚠️ 准备 trade-off 表 | Pinecone 托管 / FAISS 本地内存 / Milvus 自部署可扩展；按部署模式 + 数据规模 + 团队偏好选 |
 
@@ -61,7 +61,7 @@
 | Harness Engineering 6 关键词？ | `agent/harness/` | 上下文架构 + 架构约束 + 自验证循环 + 上下文隔离 + 长治理 + 可拆卸性 |
 | Multi-Agent 什么时候用？什么时候不用？ | `agent/multi-agent/` | 该用：上下文污染 / 并行探索 / 工具过多；不该用：编码任务 / 简单查询 / 拟人化角色分工 |
 | Structured Output 6 层？ | `agent/structured-output/` | 约束解码 → 验证重试 → 工具调用 → logit mask → 多 agent schema → 模式锁定 |
-| Skill / Harness / OpenClaw / Hermes 各自优缺点？ | ⚠️ Week 1-2 横向对比报告后补 | 待 4 个项目源码读完——这正是横向对比报告的核心 |
+| Skill / Harness / OpenClaw / Hermes 各自优缺点？ | ⚠️ 后续横向对比报告后补 | 先用 `PROBLEMS/agent-harness-boundary-map/` 和 `PROBLEMS/agent-memory-architecture/` 扛住主线；源码级对比等专门补 |
 | AI 编程工具用过哪些？Cursor / Claude Code / 月度费用？ | 个人经验 | Claude Code（这个 OS 本身就是 daily 协作 ；KB 32 节点都是 Claude 协作出来的） |
 | 业务现象归因 / 数据挖掘怎么做？ | ⚠️ 弱项 | 用 Neo 70% 成本降的例子讲——baseline 是把 62 个工具描述全塞 prompt，归因 = token 成本占大头，所以做语义路由减少塞 prompt 的工具数 |
 
@@ -78,7 +78,10 @@
 | 长对话上下文记忆怎么保持？ | `agent/context-engineering/` + `training/long-context-rl/` |
 | 多轮对话微调怎么做？数据格式？ | ⚠️ 准备：messages 数组格式 + role 标注 + masking 策略（assistant token 才算 loss） |
 | Agentic RL 设计思路？ | `training/long-context-rl/` |
-| 如何评估 Agent 效果？ | `agent/harness-practice/`（评估器设计） + 主项目评测设计 |
+| 如何评估 Agent 效果？ | `agent/agent-evaluation-harness/` + `PROBLEMS/agent-harness-boundary-map/` + 飞书面经 |
+| MCP schema / API 工具封装怎么做？ | `agent/agent-tool-design/` + `agent/structured-output/`；需要准备七牛云 MCP Server 具体工具例子 |
+| LangGraph state 机制怎么讲？ | ⚠️ active 面试空白：准备 state object、node input/output、checkpoint key、thread/task id、分布式存储边界 |
+| RAG 非 Markdown 文档怎么 chunk？ | `agent/rag-failure-diagnosis/` + Neo router；需要补文档解析、metadata、表格/标题层级保留策略 |
 
 ---
 
@@ -106,7 +109,7 @@
 
 | 题目 | 准备 |
 |---|---|
-| 自我介绍（2 分钟） | 标准化版本：教育 → 两段实习 → 自主研究 → 主项目 → 未来方向 |
+| 自我介绍（2 分钟） | 标准化版本：教育 → 自主研究 → 七牛云 → Neo → 未来方向；根据岗位把七牛云 / Neo 顺序前置 |
 | 职业规划（3-5 年） | 与目标岗位的成长路径对齐——准备 1 个 generic + 3 个公司定制版 |
 | 选择本公司的理由 | 每家公司单独准备；不要套话 |
 | 实习期待 / 如何判断公司是否符合 | 准备 3 个具体标准：（1）项目类型；（2）mentor 风格；（3）团队氛围 |
@@ -117,20 +120,18 @@
 
 ## 优先级建议
 
-**Week 1（投递前）必须能答出**：
-- A 全部（主项目）
-- B1 + B2（自主研究——475-step 含义 / 6-18% / 8 类失败 / matched-mismatched 细节）
-- C1（七牛云组长 + 6 步法 + 三类文档——这是讲故事的支点）
-- D2（Neo 语义路由——98% 和 70% 怎么算的）
-- E1（Transformer 八股 KB 已支撑）
-- E2 中 PPO/GRPO/DPO/LoRA（KB 已支撑）
+**通用必答（所有 Agent 岗）**：
+- 自主研究：475 step-pair 含义 / 6-18% 影响窗口 / matched-mismatched / 可执行性边界
+- 七牛云：多智能体 RCA 架构 / MCP 工具封装 / 20% → 70% / 工作流 vs agent loop
+- Neo：DeepResearch LangGraph 节点 / RAG 语义路由 / 98% 和 70% 口径 / 260+ stars
+- Transformer：QKV / MHA / KV Cache / √dk / 位置编码
 
-**Week 2（横向对比报告完成后）需要能答出**：
-- A4 + E4 末尾的 Skill/Harness/OpenClaw/Hermes 对比
-
-**Week 3+（主项目 MVP 后）需要能答出**：
-- A2 的具体 trade-off（用真实做出来的数字代替"我打算这样"）
-- A3 的真实评测结果（用真实 pass@1 / 增益比值代替"我会算"）
+**飞书 / 华为等 active JD 优先补**：
+- MCP schema、参数校验、鉴权、失败处理
+- LangGraph state / checkpoint / key-value 设计
+- Agent evaluation：tool precision / recall、parameter accuracy、多调用 / 少调用
+- RAG 文档解析、chunk、embedding、rerank、检索 vs 生成诊断
+- NumPy 手写 multi-head attention
 
 ---
 
@@ -142,14 +143,18 @@
 |---|---|---|
 | `transformer/attention-scaling/`（√dk 缩放） | E1 八股 | P0（这题极高频）|
 | `transformer/positional-encoding/`（RoPE/ALiBi/YaRN）| E1 八股 | P0 |
+| `agent/langgraph-state/` | 飞书面经：LangGraph state / checkpoint / key-value | P0 |
+| `agent/mcp-tool-schema-and-auth/` | 飞书 / 华为：MCP schema、参数校验、鉴权、失败处理 | P0 |
+| `agent/agent-evaluation-metrics/` | 飞书：多调用 / 少调用 / 多参数 / 少参数指标 | P0 |
+| `agent/rag-document-processing/` | 飞书：非 Markdown 文档 chunk、表格、metadata | P0 |
 | `transformer/flash-attention/` | E1 八股 | P1 |
 | `transformer/mqa-gqa-mla/` | E1 八股 | P1 |
 | `ml/pre-norm-vs-post-norm/` | E1 八股 | P2 |
-| `agent/comparison-claude-code/` | E4 + A4 | P0（Week 1-2 横向对比时建）|
-| `agent/comparison-openclaw/` | 同上 | P0 |
-| `agent/comparison-hermes-agent/` | 同上 | P0 |
-| `agent/comparison-summary/` | 同上 | P0 |
+| `agent/comparison-claude-code/` | E4 + Agent Memory 横向 | P1 |
+| `agent/comparison-openclaw/` | 同上 | P1 |
+| `agent/comparison-hermes-agent/` | 同上 | P1 |
+| `agent/comparison-summary/` | 同上 | P1 |
 | `training/reward-hacking/` | E2 高频 | P1 |
 | `training/multi-turn-finetune/` | F 系统设计 | P1 |
 
-→ 这些节点会在 sprint Week 1-3 边做项目边补完。
+→ 新知识补充流程：先在 `CAREER/applications/active/<岗位>.md` 记录空白和面试来源；如果只是单岗位临时口径，留在 applications；如果是多个岗位都会问的稳定知识，再进入 `KNOWLEDGE/` 建节点，并同步 `_self_check`。

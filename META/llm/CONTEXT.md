@@ -20,6 +20,7 @@
 - `CAREER/cv.md`
 - `CAREER/skill-gap.md`
 - `CAREER/target-roles/*.md`（用户填，或对话长出但最终编辑权属于用户）
+- `CAREER/applications/` 中的投递状态、联系人、结果等事实字段（以用户确认为准）
 - `META/` 下所有规则文件（CONTEXT、policies、templates、triage、few_shots、README）
 
 ### 🤖 你的写入区（从对话 log / 用户 drop 的内容触发）
@@ -31,6 +32,7 @@
 - `RAW_SOURCES/*` — 当 INBOX 出现论文 / 完整文档时
 - `REPRO_INDEX/*` — 当 INBOX 出现外部 repo 信息时
 - `CAREER/interview-bank/*` — 用户丢面经到 INBOX，你 triage
+- `CAREER/applications/*` — 用户明确请求整理投递工作时，可辅助创建 / 更新投递记录
 - `WORK/playbooks/*` — 当用户和你对话明确说 "这个流程要沉淀成 SOP" 时
 - `PODCAST/*` — 用户明确请求 "做成播客脚本" 或 "intro 一下未学的 X" 时（**不自动触发**）
 - `META/REGISTRY.md` — 每次 triage 后同步

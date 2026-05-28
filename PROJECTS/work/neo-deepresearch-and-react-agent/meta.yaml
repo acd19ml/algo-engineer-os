@@ -70,9 +70,9 @@ star_candidates:
 project_docs:
   - README.md                    # 4 子项目导航 + 挖掘 brief（Q1-Q20）+ 决策复盘骨架 + 数据冲突核对
   - interview-defense-matrix.md  # 10 类×30+ 行 readiness + GAP-N1 ~ N12 清单
+  - subsystem-react-router.md    # D2 深度解剖 working draft，待 Block C2 补齐
   # 以下待 brief 答完后建：
   # - system-anatomy.md          # 4 子项目系统视图（等 Block B+C）
-  # - subsystem-react-router.md  # D2 深度解剖（等 Block C2）
 
 # 计划派生（按依赖顺序）
 derived_artifacts_planned:

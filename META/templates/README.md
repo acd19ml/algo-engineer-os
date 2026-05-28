@@ -11,6 +11,7 @@
 | [podcast_script.template.md](./podcast_script.template.md) | PODCAST/ 播客脚本 |
 | [problem_README.template.md](./problem_README.template.md) | PROBLEMS 问题页 |
 | [project_README.template.md](./project_README.template.md) | PROJECTS 项目页 |
+| [runbook_entry.template.md](./runbook_entry.template.md) | WORK/runbooks/`<domain>`/runbook.md 单条症状导向条目 |
 
 ## 使用原则
 

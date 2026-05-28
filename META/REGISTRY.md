@@ -58,15 +58,29 @@
 | agent-skills-closed-loop | `KNOWLEDGE/agent/agent-skills-closed-loop/` | system | learning |
 | agent-memory-cascading-update | `KNOWLEDGE/agent/agent-memory-cascading-update/` | research-direction | learning |
 | claude-md-rule-design | `KNOWLEDGE/agent/claude-md-rule-design/` | method | learning |
+| model-boundary-probing | `KNOWLEDGE/agent/model-boundary-probing/` | capability | learning |
+| agent-evaluation-harness | `KNOWLEDGE/agent/agent-evaluation-harness/` | system | learning |
+| tool-call-repair-harness | `KNOWLEDGE/agent/tool-call-repair-harness/` | system | learning |
+| agentic-rag-vs-long-context | `KNOWLEDGE/agent/agentic-rag-vs-long-context/` | system | learning |
+| rag-failure-diagnosis | `KNOWLEDGE/agent/rag-failure-diagnosis/` | workflow | learning |
+| rag-query-rewriting | `KNOWLEDGE/agent/rag-query-rewriting/` | method | learning |
+| agentic-rag-planning-cache | `KNOWLEDGE/agent/agentic-rag-planning-cache/` | method | learning |
 | architecture-design-six-steps | `KNOWLEDGE/methodology/architecture-design-six-steps/` | methodology | stable |
 | three-tier-decision-docs | `KNOWLEDGE/methodology/three-tier-decision-docs/` | methodology | stable |
 | ai-product-decision-four-questions | `KNOWLEDGE/methodology/ai-product-decision-four-questions/` | methodology | stable |
+| sft-loss-signal-allocation | `KNOWLEDGE/training/sft-loss-signal-allocation/` | methodology | learning |
+| sft-training-strategy | `KNOWLEDGE/training/sft-training-strategy/` | methodology | learning |
+| sft-data-sourcing | `KNOWLEDGE/training/sft-data-sourcing/` | methodology | learning |
+| sft-data-quality | `KNOWLEDGE/training/sft-data-quality/` | methodology | learning |
+| small-model-harness-engineering | `KNOWLEDGE/agent/small-model-harness-engineering/` | system | learning |
+| cache-aware-agent-loop | `KNOWLEDGE/agent/cache-aware-agent-loop/` | system | learning |
+| hierarchical-agent-memory | `KNOWLEDGE/agent/hierarchical-agent-memory/` | system | learning |
 
 ### 节点形态状态
 
 | 形态 | 节点数 | 说明 |
 |---|---|---|
-| ✅ 新形态（因果叙述 + 反事实） | 51（全部） | 所有节点都已按 `META/policies/node_form.md` 重写 |
+| ✅ 新形态（因果叙述 + 反事实） | 65（全部） | 所有节点都已按 `META/policies/node_form.md` 重写 |
 | ⚠️ 旧形态 | 0 | 已全部清零 |
 
 ---
@@ -82,8 +96,8 @@
 | vision | `KNOWLEDGE/_self_check/vision.md` | 完整（1 节点） |
 | methodology | `KNOWLEDGE/_self_check/methodology.md` | 完整（4 节点 + 跨节点） |
 | transformer | `KNOWLEDGE/_self_check/transformer.md` | 完整（3 节点 + 跨节点） |
-| agent | `KNOWLEDGE/_self_check/agent.md` | 完整（22 节点 + 跨节点：含 memory-architecture-thesis / heuristic-learning / agent-skills-closed-loop / agent-memory-cascading-update / claude-md-rule-design + procedural memory object shape 跨节点深题） |
-| training | `KNOWLEDGE/_self_check/training.md` | 完整（7 节点 + 跨节点） |
+| agent | `KNOWLEDGE/_self_check/agent.md` | 完整（32 节点 + 跨节点：含 memory-architecture-thesis / heuristic-learning / agent-skills-closed-loop / agent-memory-cascading-update / claude-md-rule-design / 模型边界探测 / Agent 评估 Harness / 工具调用修复 Harness / RAG 与 Agentic RAG + 小模型 Harness / 缓存感知 Agent 循环 / 层级 Agent 记忆 + procedural memory object shape 跨节点深题） |
+| training | `KNOWLEDGE/_self_check/training.md` | 完整（11 节点 + 跨节点：新增 SFT 数据来源 / 数据质量 / 训练策略 / loss 信号分配） |
 
 ---
 
@@ -102,8 +116,11 @@
 | id | 路径 | status |
 |---|---|---|
 | agent-memory-architecture | `PROBLEMS/agent-memory-architecture/` | active |
+| agent-harness-boundary-map | `PROBLEMS/agent-harness-boundary-map/` | active |
 
-> `agent-memory-architecture/`：Claude Code（6 层 + LLM 路由）vs OpenClaw（2 层 + SQLite 混合搜索）vs 学术轴（Ledger+Views+Policy 三件套 / AWM 程序性记忆）横向对比。保留两套系统的完整 mermaid + 代码 + 限制表 + Hybrid Fusion 公式，供面试 / CV 引用。
+> `agent-memory-architecture/`：Claude Code（6 层 + LLM 路由）vs OpenClaw（2 层 + SQLite 混合搜索）vs 学术轴（Ledger+Views+Policy 三件套 / AWM 程序性记忆）vs **OpenViking（虚拟 FS + 三层加载 + 层级检索，2026-05-27 新增）** 四路横向对比。保留两套系统的完整 mermaid + 代码 + 限制表 + Hybrid Fusion 公式，供面试 / CV 引用。
+>
+> `agent-harness-boundary-map/`：Context / Evaluation / Tool Call Repair / Memory-Skill / Boundary Probing 五类 Harness 的失败信号、干预点、确定性边界、观测指标与删除条件横向对比，供 Agent 面试与系统设计回答复用。
 
 ---
 
@@ -118,7 +135,7 @@
 
 > `qiniu-zeroops-rca-agent/` 含 4 份文档：`README.md`（决策复盘）+ `system-anatomy.md`（系统解剖）+ `agent-subsystem.md`（Agent 子系统解剖）+ `interview-defense-matrix.md`（挑战防御矩阵 · living）
 >
-> `neo-deepresearch-and-react-agent/` 起手 2 份文档：`README.md`（4 子项目导航 + 挖掘 brief Q1-Q20）+ `interview-defense-matrix.md`（30+ 行 readiness baseline + GAP-N1~N12 清单）。等挖掘 brief 答完后再 evolve 出 `system-anatomy.md` 和 `subsystem-react-router.md`
+> `neo-deepresearch-and-react-agent/` 已有 3 份文档：`README.md`（4 子项目导航 + 挖掘 brief Q1-Q20）+ `interview-defense-matrix.md`（30+ 行 readiness baseline + GAP-N1~N12 清单）+ `subsystem-react-router.md`（D2 ReAct + 语义路由 working draft，待 C2 补齐）。等挖掘 brief 答完后再 evolve 出 `system-anatomy.md`
 >
 > `awm-mechanism-audit/`（research）：AWM @ Mind2Web 复现+机制审计，4 个 finding（6-18% 影响窗口 / abstraction ≠ better execution / action-mode redirection / workflow-family mismatch）+ partial condition-dependent 结论。**支撑 CV "Agent Memory 自主研究项目" 第 1 条 bullet**。
 >
@@ -156,6 +173,7 @@
 | `CAREER/cv.md` | 简历（过时，待更新） | 你 |
 | `CAREER/skill-gap.md` | CV ↔ 目标岗位缺口表 | 你（LLM 建议 diff） |
 | `CAREER/target-roles/` | 目标岗位画像（待填：summer-intern-agent-engineer、newgrad-agent-engineer） | 你（或对话长出但你审）|
+| `CAREER/applications/` | 真实投递流水：pipeline + 单岗位投递记录 + 沟通话术 | 你确认事实；LLM 可按明确请求辅助维护 |
 | `CAREER/interview-bank/technical/` | 技术题（已派生 4 条来自 qiniu-zeroops-rca-agent：agent-loop-vs-workflow / multi-agent-decomposition / multimodal-fusion-paradigm / opsagent-vs-agentops）| LLM triage |
 | `CAREER/interview-bank/behavioral/` | 行为题 + STAR（已派生 3 条来自 qiniu-zeroops-rca-agent：ceo-pivot-decision / team-turbulence-handoff / roadshow-emergency-rescue）| LLM triage |
 
@@ -166,6 +184,25 @@
 | 路径 | 状态 |
 |---|---|
 | `WORK/` | 未来层。等 PROJECTS/work/ 复盘后从中提炼 SOP |
+
+---
+
+## WORK runbooks
+
+症状导向的 agent 故障排查手册。和 KNOWLEDGE 节点的区别：节点写"概念为什么是这样"，runbook 写"我看到了 X，下一步做什么"。条目编号 P-XXX 全局递增，不按 domain 重置。
+
+| id | 路径 | 条目数 | 状态 |
+|---|---|---|---|
+| agent-runbook | `WORK/runbooks/agent/` | 18（P-001 ~ P-018） | seed |
+
+> 当前 18 条来源：
+> - P-001 ~ P-008：`KNOWLEDGE/agent/small-model-harness-engineering/`（小模型工具调用故障域）
+> - P-009 ~ P-013：`KNOWLEDGE/agent/structured-output/`（结构化输出 6 层）
+> - P-014 ~ P-018：`KNOWLEDGE/agent/cache-aware-agent-loop/`（前缀缓存命中率作为成本杠杆）
+>
+> 验证状态全部为"未验证"——外部 claim，未在本地复现。⚠️ 已记录方案互冲：P-006（本地推理 OOM）vs P-014/P-015（云 API 缓存）在"上下文压缩"上做法相反，条目内互链警告。
+>
+> seed 阶段：跑两周看是否真的回来查。不回来查 = 症状字段没写到位，回来改。超过 30 条再按 agent 生命周期（perception/planning/tool-use/memory/execution/reliability）拆子目录。
 
 ---
 
@@ -206,8 +243,8 @@
 
 | 区域 | 维护方 |
 |---|---|
-| INBOX、TRACKS、CAREER 下用户私有文件、META | 你 |
-| KNOWLEDGE、KNOWLEDGE/_self_check、PROBLEMS、PROJECTS、RAW_SOURCES、REPRO_INDEX、CAREER/interview-bank、WORK/playbooks、PODCAST、REGISTRY | LLM 写入 |
+| INBOX、TRACKS、CAREER 下用户私有文件（cv / skill-gap / target-roles / applications 事实字段）、META | 你 |
+| KNOWLEDGE、KNOWLEDGE/_self_check、PROBLEMS、PROJECTS、RAW_SOURCES、REPRO_INDEX、CAREER/interview-bank、CAREER/applications（明确请求时）、WORK/playbooks、PODCAST、REGISTRY | LLM 写入 |
 | TRACKS 勾选 / skill-gap 更新 / 实习挖掘 / 横向对比 | LLM 在 Triage Report 建议，你执行 |
 | PODCAST 写入 | LLM 写入但**仅在用户明确请求时** |
 

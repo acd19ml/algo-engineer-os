@@ -1,13 +1,13 @@
 # 李勐霄
 
 **联系方式**：13212815337 | [acd19ml@gmail.com](mailto:acd19ml@gmail.com)
-**其他信息**：23 岁 | [Github](https://github.com/acd19ml?tab=repositories)
+**其他信息**：24 岁 | [Github](https://github.com/acd19ml?tab=repositories)
 
 ---
 
 ## 教育背景
 
-**香港城市大学**，人工智能，*硕士* | 2025.08 - 2026.08
+**香港城市大学**，人工智能，*硕士* | 2025.09 - 2027.06
 
 - **主修课程**：生成式人工智能、动态规划与强化学习、自然语言处理、机器学习算法与应用
 
@@ -21,11 +21,11 @@
 
 ## 项目经历
 
-**Agent Memory 自主研究项目** | 2026 春
+**Agent Memory 自主研究项目** | 2026.01 - 2026.05
 **硕士在读期间个人研究**
 
-- **主流 Web Agent Memory 框架的复现与审计**（AWM @ Mind2Web）：在 step-level 配对实验下做 baseline vs workflow 同步对照，**发现 workflow 实际影响窗口仅 6-18% 且正向 / 负向站点的干预模式反向**；归类 workflow 干预的正负机制（strategy redirection / domain misdirection / step skipping 等），并定位"抽象不等于更好执行"边界，输出可复用的 paired-case 评测方法学。
-- **记忆跨任务复用机制实验**（HotpotQA → 2WikiMultiHopQA 近迁移）：在固定经验预算 + 共享 prompt 框架下以 matched / mismatched 配对设计测试三种记忆形态（None / Episodic / Consolidated），**通过受控前后对比验证仅匹配路径在两次修复（源任务重路由 + 算子可执行化）后恢复、不匹配控制组始终保持不变**，定位"记忆抽象的可执行性"如何决定跨任务复用边界。
+- **主流 Web Agent Memory 框架的复现与审计**（AWM @ Mind2Web）：通过 step-level paired 配对实验对照 baseline vs workflow，**发现 workflow 影响窗口仅 6-18% 且正/负向站点的干预模式反向**；归类正负机制（strategy redirection / domain misdirection / step skipping 等），定位"抽象不等于更好执行"边界，建立 paired-case 评测方法学。
+- **记忆跨任务复用机制实验**（HotpotQA → 2WikiMultiHopQA 近迁移）：在固定经验预算 + matched/mismatched 配对下测试三种记忆形态（None / Episodic / Consolidated），**受控对比证明仅匹配路径在两次修复（源任务重路由 + 算子可执行化）后恢复、不匹配控制组保持不变**，定位"可执行性"是跨任务复用的关键边界。
 
 ---
 
@@ -34,18 +34,19 @@
 **七牛云** | 2025.07 - 2025.10
 **AI 算法工程师 / 项目组长** | 上海
 
-- 作为项目组长协调前后端、运维、算法 6 名同学，遵循"明确产品定位 → 定义产品原型与原型图 → 定义功能 API → 完成数据表设计 → 进行模块拆分 → 模块详细设计"的架构设计 6 步法，经历产品形态三次重大调整后由 CEO 拍板收敛 MVP 形态，区分技术提案 / 架构设计 / 实现设计三类决策层级文档，推动项目从立项到 CEO milestone 路演的全流程联调。
-- 设计并实现"指标下钻分析"AI 子系统：基于 Dify 工作流编排的三层多智能体架构——任务规划"运维专家" + 日志 / 指标 / 链路三个专门数据 agent + **不主动获取数据的分析决策"值班长"** + 最终输出"运营专家"5 个角色 agent，按角色选模型（规划 / 决策用 qwen-plus-latest，写查询语句的数据 agent 用 qwen3-coder-plus）；通过 MCP Server（部署在函数计算）标准化封装日志 / 指标 / 链路 / CMDB 拓扑工具，使大模型按需动态查询多源运维数据。
+- 作为项目组长协调前后端、运维、算法 6 名同学，负责 AI 运维项目从产品定位、原型设计、API / 数据表设计到模块拆分与联调推进；经历三次产品形态调整后收敛 MVP，并沉淀技术提案 / 架构设计 / 实现设计决策文档。
+- 设计并实现 “指标下钻分析” AI 子系统：基于 Langchain, Langgraph 的三层多智能体架构 — 任务规划 “运维专家” + 日志 / 指标 / 链路三个专门数据 agent + 不主动获取数据的分析决策 “值班长” + 最终输出 “运维专家” 5 个角色 agent，按角色选模型；通过 MCP Server 标准化封装日志 / 指标 / 链路 / CMDB 拓扑工具，使大模型按需动态查询多源运维数据。
 - 针对多智能体 ReAct 模式的延迟高 / token 爆炸 / 循环不终止三个痛点做工程优化（上下文压缩与精准引用 + 智能终止判断 + 显式总结工具 + 减少无效循环），**Mock 系统 demo 上根因定位成功率从 20% 迭代提升到约 70%**。
 - 设计**运行体检中心**：通过时序异常检测主动巡检全量指标，**把根因分析的触发入口从"告警驱动"扩展为"告警 + 主动巡检"双路径**；在多版本灰度发布场景下进一步设计数据中间层，实现"同一服务不同版本"动态阈值调整机制，使问题先于阈值告警被识别。
 
 **Neo 智能经济** | 2025.02 - 2025.07
 **AI Agent 开发工程师** | 上海
 
-- 构建基于 Python 的 LLM 多智能体工作流 DeepResearch 服务，集成意图识别、任务规划、网页搜索 / 数据抓取 / 代码执行工具。
-- 构建 ReAct 模式的 Agent 区块链问答系统：对话管理、短长期记忆（mem0）、本地文档搜索（FAISS）、Pinecone Serverless + OpenAI text-embedding-3-large 集成。**设计区块链 API 语义路由系统**：3072 维向量编码 62 种工具方法描述、延迟初始化动态构建索引、两阶段检索（Top10 初筛 → Top5 精排），达成 **98% 意图匹配准确率，降低 70% 调用成本**，支持实时批量索引更新。
-- 参与设计与开发开源 AI Agent 框架 SDK（**260+ stars**）及配套工具集 SDK：集成同步 / 异步执行工具、Graph 工具、链上对象存储工具、钱包加密工具，编写测试用例保障可用性。**维护项目海外全球技术社区**：处理 GitHub Issues、Review 海外开发者 PR、撰写并维护开发者文档，与海外开发者协作推进项目演进。
-- 实现 LLM 驱动的自动交易子账户系统：多重签名验证 + 资金配额，在用户托管账户与自动化交易账户之间实施逻辑隔离，通过 Turnkey 对钱包私钥加密存储。
+- 基于 LangChain / LangGraph 构建 LLM 多智能体 DeepResearch 服务，设计 coordinator / planner / researcher / coder / reporter / human feedback 等状态节点，将复杂研究任务拆解为背景调研、任务规划、网页搜索、数据抓取、代码执行分析与报告生成链路；通过图式编排隔离规划、执行、反馈与汇报职责，提升长链路 research workflow 的可控性与可调试性。
+- 设计 ReAct 区块链问答 Agent 的双路 RAG 路由：基于 FAISS 召回技术文档证据，基于 Pinecone + OpenAI
+text-embedding-3-large 索引 62 种 API / 工具 schema，形成 Top10 召回 → Top5 精排的候选上下文选择流程；相
+较全量文档 / 工具 prompt 注入，达成 98% 工具意图匹配准确率并降低 70% 调用成本。
+- 参与设计与开发开源 AI Agent 框架 SDK（**260+ stars**）及配套工具集 SDK：集成同步 / 异步执行、Graph、链上对象存储工具、钱包加密工具，编写测试用例保障可用性。**维护项目海外全球技术社区**：处理 GitHub Issues、Review 海外开发者 PR、撰写并维护开发者文档，与海外开发者协作推进项目演进。
 
 ---
 

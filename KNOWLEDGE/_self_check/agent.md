@@ -14,6 +14,13 @@
 - [中] OpenAI Codex 团队的"agent 出错时不应该让它再试一次"——为什么 retry 在传统开发是合理策略，在 agent 智能故障上是错的？ → `KNOWLEDGE/agent/agent-engineer-ability/`
 - [深] "模型越强就不需要 agent 工程"——这个论点为什么错？用 CPU/操作系统的类比说明。 → `KNOWLEDGE/agent/agent-engineer-ability/`
 
+## 模型边界探测
+
+- [浅] 为什么 benchmark 分数不能替代 agent 场景里的模型边界图？真实边界至少包含哪四个维度？ → `KNOWLEDGE/agent/model-boundary-probing/`
+- [中] 模型上下文更长、推理更快后，为什么 agent 反而更容易暴露长程失控问题？举上下文漂移、缺乏自验证、死循环三个例子。 → `KNOWLEDGE/agent/model-boundary-probing/` + `KNOWLEDGE/agent/context-engineering/`
+- [中] SpecLock、辩论机制、熔断器、Skill 提炼、压缩前写记忆分别在补哪类长程失败边界？ → `KNOWLEDGE/agent/model-boundary-probing/` + `KNOWLEDGE/agent/harness/`
+- [深] "模型会换，边界会变，但画边界地图的能力不会过时"——这句话和"补偿性工程 vs 系统性工程"是什么关系？ → `KNOWLEDGE/agent/model-boundary-probing/` + `KNOWLEDGE/agent/agent-engineer-ability/`
+
 ## 上下文工程
 
 - [浅] Context Engineering 和 Prompt Engineering 的根本区别是什么？为什么单轮问答两者差别不大、agent 场景差别巨大？ → `KNOWLEDGE/agent/context-engineering/`
@@ -31,6 +38,21 @@
 - [中] Vercel 移除 80% 的工具反而提升性能——这和"约束架构 vs 提示约束"有什么关系？ → `KNOWLEDGE/agent/harness/`
 - [中] "推理三明治"策略——为什么不是全程最高推理强度？规划/执行/验证三阶段各用什么强度？ → `KNOWLEDGE/agent/harness/`
 - [深] "Harness 投入是复利"和"避免过度工程化"听起来矛盾——什么时候该投入 Harness、什么时候该等模型变强自然解决？ → `KNOWLEDGE/agent/harness/#open-questions` (open)
+
+## Agent 评估 Harness
+
+- [浅] 为什么复杂 agent 不能只看最终输出评估？执行轨迹里有哪些最终答案看不到的失败信号？ → `KNOWLEDGE/agent/agent-evaluation-harness/`
+- [中] 直接让编码助手"帮我评估这个 agent"会出现哪三类失败？为什么这些失败本质上是缺领域评估知识？ → `KNOWLEDGE/agent/agent-evaluation-harness/`
+- [中] 过程性指令、评估模板、实时 API 文档检索三类技能分别解决什么问题？为什么实时文档能显著提高代码跑通率？ → `KNOWLEDGE/agent/agent-evaluation-harness/`
+- [深] "规划本身不是价值，有约束的规划才是价值"——这句话在 agent 评估代码生成里怎么体现？ → `KNOWLEDGE/agent/agent-evaluation-harness/` + `KNOWLEDGE/agent/harness/`
+
+## 工具调用修复 Harness
+
+- [浅] 当开源模型工具调用失败时，为什么要先问"它不会推理，还是没记住 schema 格式"？ → `KNOWLEDGE/agent/tool-call-repair-harness/`
+- [中] 四类常见工具输入形状错误是什么？为什么这些错误说明 Harness 可以在格式边界上补偿模型？ → `KNOWLEDGE/agent/tool-call-repair-harness/`
+- [中] 为什么工具输入修复必须"先校验再修复"，不能先预处理？写文件内容被静默篡改的反例说明什么？ → `KNOWLEDGE/agent/tool-call-repair-harness/`
+- [中] Markdown 链接泄露到文件路径这个例子，为什么不是普通幻觉，而是聊天分布污染工具边界？schema 类型该怎么改？ → `KNOWLEDGE/agent/tool-call-repair-harness/` + `KNOWLEDGE/agent/structured-output/`
+- [深] "能修复的修复，不能修复的扩展语义"——字段关系不变量（offset / limit）为什么不能靠单字段修复？ → `KNOWLEDGE/agent/tool-call-repair-harness/`
 
 ## Harness 实践（GAN-Inspired）
 
@@ -117,6 +139,16 @@
 - [中] 行动风险评估框架的两个维度（可逆性 × 影响范围）怎么用？"教模型怎么处理意外状态" 这条设计的价值在哪？ → `KNOWLEDGE/agent/agent-system-prompt/`
 - [中] "防说谎"为什么必须同时也"防过度谨慎"？只防一个方向会出什么问题？ → `KNOWLEDGE/agent/agent-system-prompt/`
 - [深] "30% 虚假声明率" 这个数字暗示了什么？模型默认的"讨好用户"倾向在哪些场景下危险？ → `KNOWLEDGE/agent/agent-system-prompt/#open-questions` (open)
+
+## RAG / Agentic RAG
+
+- [浅] 面试官问"长上下文会不会淘汰 RAG"时，为什么要先区分"能不能放进去"和"该不该放进去"？ → `KNOWLEDGE/agent/agentic-rag-vs-long-context/`
+- [中] 传统 RAG、长上下文、Agentic RAG 三者分别适合什么问题形态？为什么 Agentic RAG 里长上下文反而变成工作空间？ → `KNOWLEDGE/agent/agentic-rag-vs-long-context/` + `KNOWLEDGE/training/long-context-rl/`
+- [中] RAG 回答不准时，为什么排查顺序应该是数据源 → chunking → query 理解 → embedding → 排序？每一层分别怎么诊断？ → `KNOWLEDGE/agent/rag-failure-diagnosis/`
+- [中] Query rewrite 为什么可能让召回率下降？"怎么开白名单"被改成"访问许可列表"这个例子暴露了什么问题？ → `KNOWLEDGE/agent/rag-query-rewriting/`
+- [中] Query rewrite 的五类通用策略（基础改写 / multi-query / subquery / step-back / HyDE）分别解决什么检索问题？为什么必须先分类再改写？ → `KNOWLEDGE/agent/rag-query-rewriting/`
+- [中] Agentic RAG 延迟高时，为什么 planning cache 比简单限制迭代次数更接近根因优化？它缓存的到底是什么？ → `KNOWLEDGE/agent/agentic-rag-planning-cache/`
+- [深] Planning cache、procedural memory、skills 三者都在复用过去成功经验：它们的边界在哪里？什么时候模板缓存应该升级成显式 skill？ → `KNOWLEDGE/agent/agentic-rag-planning-cache/#open-questions` (open) + `KNOWLEDGE/agent/agent-skills-closed-loop/`
 
 ## OpsAgent vs AgentOps（两个方向的本质区分）
 
@@ -222,6 +254,39 @@
 - [中] LLM 预标注（DeepSeek v4 Pro 首轮 50 条）+ 人工复核——为什么 LLM 预标注**不能作为 ground truth**？预标注的价值在哪？ → `KNOWLEDGE/agent/agent-failure-trajectory-dataset/`
 - [深] 1570 样本 × 11 类 Taxonomy = 平均每类 140 样本——这个规模够用吗？什么样的 attribution 方法会过拟合到这个规模？ → `KNOWLEDGE/agent/agent-failure-trajectory-dataset/#open-questions` (open)
 
+## 小模型 Harness 工程（Forge 案例）
+
+- [浅] 单步准确率 90% 的模型，跑 5 步工作流通过率是多少？跑 10 步呢？为什么这叫"复合概率问题"而不是"模型能力问题"？ → `KNOWLEDGE/agent/small-model-harness-engineering/`
+- [浅] Forge 的合成 `respond` 工具解决什么问题？不加它，工作流完成率从 100% 降到多少？ → `KNOWLEDGE/agent/small-model-harness-engineering/`
+- [中] 五层防护各自针对什么失败模式？哪一层不是在修格式错误，而是在管"工具调用顺序"？ → `KNOWLEDGE/agent/small-model-harness-engineering/`
+- [中] Hard Error vs ToolResolutionError（HTTP 404 类比）——为什么必须区分？混淆两类会出什么问题？ → `KNOWLEDGE/agent/small-model-harness-engineering/`
+- [中] Step Enforcer 的升级式纠正消息（礼貌 → 直接 → 强硬）——这个设计在干什么？ → `KNOWLEDGE/agent/small-model-harness-engineering/`
+- [中] Tiered Compact 第二阶段删除工具返回结果但保留推理过程——为什么推理比原始数据更不能丢？第三阶段又删掉推理——两次决定的逻辑分别是什么？ → `KNOWLEDGE/agent/small-model-harness-engineering/`
+- [中] 同一套模型权重，llama.cpp 原生函数调用 7% vs llama-file 提示注入 83%——这对"这个模型工具调用不行"的结论有什么影响？ → `KNOWLEDGE/agent/small-model-harness-engineering/`
+- [深] 消融实验五层缺一不可——这说明复合概率问题里每类失败模式的独立性有多强？能否用"优先修哪一层成本效益最高"的思路来部分部署 Harness？ → `KNOWLEDGE/agent/small-model-harness-engineering/#open-questions` (open)
+
+## 缓存感知 Agent 循环（DeepSeek ReasonX 案例）
+
+- [浅] DeepSeek 缓存命中价格是 miss 的几分之一？把命中率从 30% 提到 99% 能降多少成本？ → `KNOWLEDGE/agent/cache-aware-agent-loop/`
+- [浅] 大多数 Agent 框架缓存命中率只有 2–30%——三个主要原因是什么？ → `KNOWLEDGE/agent/cache-aware-agent-loop/`
+- [中] 三区域设计（Immutable Prefix / Append-only Log / Volatile Scratch）各自的不变性约束是什么？哪个区域的内容不发送给 API？为什么？ → `KNOWLEDGE/agent/cache-aware-agent-loop/`
+- [中] 为什么 Append-only Log 加上"永不回滚"的策略能保证缓存永远命中？如果第 3 轮消息被修改，会发生什么？ → `KNOWLEDGE/agent/cache-aware-agent-loop/`
+- [中] Cache Line Fold 和普通压缩（删旧消息/替换旧消息）的根本区别是什么？摘要调用本身为什么也能命中缓存？ → `KNOWLEDGE/agent/cache-aware-agent-loop/`
+- [中] Storm 模块的滑动窗口里，写操作为什么要清空读操作记录？不做这个设计，哪种正常工作流会被错误拦截？ → `KNOWLEDGE/agent/cache-aware-agent-loop/`
+- [中] Flash-first + Need Pro 自升级——为什么是"模型自己决定"而不是"错误次数超阈值就切换"？ → `KNOWLEDGE/agent/cache-aware-agent-loop/`
+- [深] "缓存策略应该是架构约束，不是事后优化"——如果在已有 Agent 框架上事后改造缓存，会遇到哪些结构性阻力？ → `KNOWLEDGE/agent/cache-aware-agent-loop/#open-questions` (open)
+
+## 层级 Agent 记忆（OpenViking 案例）
+
+- [浅] 平面记忆系统（Cloud Code Active Recall 范式）的五个痛点是什么？哪个痛点是 Cloud Code 的设计里根本没有的能力？ → `KNOWLEDGE/agent/hierarchical-agent-memory/`
+- [浅] 三层力度（L0/L1/L2）各自大约多少 token？各自在决策链里的作用是什么？ → `KNOWLEDGE/agent/hierarchical-agent-memory/`
+- [中] 层级递归检索的四步（全局搜索 → 子节点搜索 → 分数传播 → 收敛检测）里，"分数传播"解决了平面向量搜索的哪个缺陷？ → `KNOWLEDGE/agent/hierarchical-agent-memory/`
+- [中] `agent/` 目录的四类（cases / patterns / tools / skills）和 Cloud Code 的四类记忆有什么本质区别？ → `KNOWLEDGE/agent/hierarchical-agent-memory/` + `KNOWLEDGE/agent/agent-memory-system/`
+- [中] Session Commit 和 Cloud Code 的 Extract Memories 后台 agent 都是"对话结束后自动提取"——设计理念的核心差异是什么？OpenViking 的八类 vs Cloud Code 的四类划分背后的思路不同在哪？ → `KNOWLEDGE/agent/hierarchical-agent-memory/` + `KNOWLEDGE/agent/agent-memory-system/`
+- [中] Working Memory 七段式文档为什么对每个段落做"保持/更新/追加"的决策而不是重写整个文档？ → `KNOWLEDGE/agent/hierarchical-agent-memory/`
+- [中] 级联更新问题：所有系统准确率 3%，OpenViking 的层级结构如何部分缓解但不从架构上解决？ → `KNOWLEDGE/agent/hierarchical-agent-memory/` + `KNOWLEDGE/agent/agent-memory-cascading-update/`
+- [深] L0 摘要质量是层级检索的关键瓶颈——如果 L0 写得不好，整条检索链会怎么失效？这跟 Cloud Code Active Recall 的"选择模型返回空列表"失败模式有什么结构上的相似和不同？ → `KNOWLEDGE/agent/hierarchical-agent-memory/#open-questions` (open)
+
 ---
 
 ## 跨节点综合
@@ -235,3 +300,6 @@
 - [深] **Heuristic Learning 和 Hermes Skills 闭环都在做"agent 积累经验"，但路线截然不同**——HL 强调代码 + tests + replays + memory 的软件系统、Skills 强调 SOP 文档 + 自动 patch。这两条路线的本质差异是什么？什么场景下 HL 更合适（环境 feedback 清晰可验证）、什么场景下 Skills 更合适（任务可流程化）？两条路线能否共存？ → `KNOWLEDGE/agent/heuristic-learning/` + `KNOWLEDGE/agent/agent-skills-closed-loop/`
 - [深] **Procedural Memory Object Shape 这条轴**：Skill（人写 / 偏散文）vs AWM workflow（task 反推 / context-conditioned templates with action slots）vs Hermes Skill（agent 自主 create / 7 步闭环带自动 patch）vs Gene（runtime control object with trigger/strategy/avoid/validation）。把这四种当作 design point 而不是线性进化——在 web agent / 运维 RCA / coding agent 三个场景下哪种最合适？为什么？ → `KNOWLEDGE/agent/agent-skills-closed-loop/` + `KNOWLEDGE/agent/heuristic-learning/` + `KNOWLEDGE/agent/agent-memory-system/` + `PROBLEMS/agent-memory-architecture/`
 - [深] **memory-architecture-thesis 的"追加更正事件"不变量 vs cascading-update 的"显式依赖图"方向**——这两个其实是**同一族问题的两个视角**还是两个独立机制？bi-temporal 闭合的是"什么时刻什么是真的"（**fact-level 时序**），cascading 解决的是"一个事实变了哪些事实需要重算"（**cross-fact 依赖传播**）。请论证：(1) 为什么 bi-temporal 是必要条件不是充分条件；(2) 为什么"显式依赖图"是 bi-temporal 不变量的天然延伸（从事件序列升级到事件 + 依赖图）；(3) 它失败的不是设计动机，而是什么——这跟 `memory-architecture-thesis` 的三类瓶颈框架（接口带宽 / views 近似误差 / policy 可学习性）哪个对应？ → `KNOWLEDGE/agent/memory-architecture-thesis/` + `KNOWLEDGE/agent/agent-memory-cascading-update/`
+- [深] **复合概率 vs 单模型性能**：Forge 用 5 层外部防护让 8B 模型逼近无防护 Sonnet，Anthropic GAN 三 agent 系统用评估器驱动迭代远超单 agent——两个案例的共同信号是什么？"Agent 性能上限不取决于模型能做什么，而是模型周围搭了什么"这句话对"什么时候该换更强模型 vs 什么时候该加 Harness"的决策怎么指导？ → `KNOWLEDGE/agent/small-model-harness-engineering/` + `KNOWLEDGE/agent/harness-practice/` + `KNOWLEDGE/agent/harness/`
+- [深] **Cloud Code Active Recall（平面） vs OpenViking 层级检索 vs memory-architecture-thesis（Ledger+Views+Policy）**——三个记忆系统在 "policy 显式化" 这条轴上怎么定位？OpenViking 的 Session Commit 8 类 + Working Memory 7 段最接近三件套的哪一层？layer 检索的"分数传播"相当于 policy 的什么？ → `KNOWLEDGE/agent/hierarchical-agent-memory/` + `KNOWLEDGE/agent/agent-memory-system/` + `KNOWLEDGE/agent/memory-architecture-thesis/`
+- [深] **缓存感知架构（ReasonX Append-only + Cache Line Fold）与 agent-context-compaction（Cloud Code 四层流水线）都在管"长上下文里的经济账"，但设计约束不同**——Cloud Code 对象是单次对话不超限，ReasonX 对象是多次请求间缓存命中率最大化。这两个目标冲突吗？如果用 Cloud Code 的"删旧消息"压缩策略，对 DeepSeek API 缓存命中率的影响是什么？如何设计一个同时满足两个目标的压缩策略？ → `KNOWLEDGE/agent/cache-aware-agent-loop/` + `KNOWLEDGE/agent/agent-context-compaction/`

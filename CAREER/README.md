@@ -8,6 +8,7 @@
 CAREER/
 ├── cv.md                       简历（你拥有，LLM 只读）
 ├── target-roles/               目标岗位画像（每个岗位一个 .md）
+├── applications/               真实投递流水（按明确请求由 LLM 辅助维护）
 ├── skill-gap.md                CV 现状 ↔ 目标岗位的缺口表（roadmap 的输入）
 └── interview-bank/             面笔试题库
     ├── technical/              技术题（每题链 KNOWLEDGE 节点）
@@ -23,6 +24,13 @@ CAREER/
 每个目标岗位一个 .md。包含：JD 关键词 / 典型面笔试题 / 技术栈 / 参考公司。
 - 你可以亲自填，也可以和 LLM 对话讨论后让 log 走 triage 流程长出来。
 - 至少要有：`summer-intern-agent-engineer.md` 和 `newgrad-agent-engineer.md`（暑期 + 秋招目标态）。
+
+### `applications/`
+真实投递流水。记录每一个具体岗位的状态、渠道、材料版本、沟通记录、面试准备和复盘。
+- `RAW_SOURCES/jd-and-interviews/` 保存 JD / 面经原始素材。
+- `target-roles/` 总结岗位类型画像。
+- `applications/` 只记录你真实准备投 / 已投 / 面试中的岗位。
+- 这个目录可由 LLM 在你明确请求时辅助创建和更新，但投递状态、联系人和结果以你确认的信息为准。
 
 ### `skill-gap.md`
 CV 现状 vs 目标岗位的差异表。
@@ -40,6 +48,7 @@ CV 现状 vs 目标岗位的差异表。
 |---|---|
 | `KNOWLEDGE/` 节点完成 | 可能填补 `skill-gap.md` 中的 gap |
 | `PROJECTS/work/<实习>/` 复盘 | 产出 `interview-bank/behavioral/` 的 STAR 故事 |
+| `RAW_SOURCES/jd-and-interviews/` 的具体 JD | 进入 `applications/active/` 成为单次投递记录 |
 | 实习中可复用 SOP | `WORK/playbooks/`（不在 CAREER） |
 
 ## 工作流

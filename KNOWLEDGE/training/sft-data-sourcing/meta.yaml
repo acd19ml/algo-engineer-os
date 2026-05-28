@@ -1,0 +1,26 @@
+id: sft-data-sourcing
+title: "SFT Data Sourcing"
+type: methodology
+status: learning
+created_at: 2026-05-17
+last_reviewed_at: 2026-05-17
+
+tags: [training, sft, data, distillation, self-instruct, data-flywheel]
+depends_on:
+  - sft-data-size
+related_nodes:
+  - sft-data-size
+  - sft-data-quality
+  - sft-training-strategy
+related_problems: []
+
+evidence_level:
+  concept: self_reasoned
+  math: not_verified
+  code: not_verified
+
+checklist:
+  concept: true
+  math: false
+  code: false
+  reproduction: false

@@ -133,7 +133,7 @@ Prometheus & 监控 Adapter 接收
 | 后端 Web 框架 | **fox**（七牛云内部对 gin 的包装） |
 | 日志库 | **zerolog** |
 | 前端 | **Vue** |
-| Agent 编排 | **Dify on K8s** |
+| Agent 编排 | **LangGraph StateGraph (Python service on K8s)** |
 | 工具集成 | **MCP Server** 部署在函数计算 |
 | 异常检测微服务 | **Python**（STL 分解 + 百分位数检测）|
 | 主流程 | **Go** |
@@ -542,7 +542,7 @@ flowchart LR
 - **修复方案库 = 历史沉淀**——参考过往故障的修复方案选取本次方案，反思方案是否合理
 - **人工介入的边界**：代码层面的问题超出运维范畴，必须人工介入
 
-这一步把控制权交给"指标下钻分析 AI"——具体的 Agent 子系统设计、Dify 工作流、MCP 工具集、5 个角色 agent 的 prompt + JSON schema，详见同目录 **`agent-subsystem.md`**。
+这一步把控制权交给"指标下钻分析 AI"——具体的 Agent 子系统设计、LangGraph StateGraph 工作流、MCP 工具集、5 个角色 agent 的 prompt + JSON schema，详见同目录 **`agent-subsystem.md`**。
 
 ---
 
@@ -568,5 +568,5 @@ flowchart LR
 ## 8. 不在本文档讨论的内容
 
 - **Agent 子系统的内部设计**（L1/L2/L3 工作流 / 5 个角色 agent / prompt / MCP 工具 schema / ReAct 优化）→ 见 `agent-subsystem.md`
-- **决策路径 / 选型理由 / 复盘**（为什么选 Dify / 为什么 Result Fusion / 缺 AgentOps 教训）→ 见 `README.md`
+- **决策路径 / 选型理由 / 复盘**（为什么选 LangGraph StateGraph / 为什么 Result Fusion / 缺 AgentOps 教训）→ 见 `README.md`
 - **学术坐标 + 对照 Flow-of-Action** → 见 `README.md` "学术坐标"段 + `KNOWLEDGE/agent/multi-agent-rca-paradigm/`

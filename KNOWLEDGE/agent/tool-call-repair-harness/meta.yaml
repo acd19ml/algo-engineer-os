@@ -1,0 +1,28 @@
+id: tool-call-repair-harness
+title: "Tool Call Repair Harness"
+type: system
+status: learning
+created_at: 2026-05-17
+last_reviewed_at: 2026-05-17
+
+tags: [agent, harness, tool-calling, schema-validation, repair]
+depends_on:
+  - harness
+  - structured-output
+related_nodes:
+  - harness
+  - structured-output
+  - agent-tool-design
+  - model-boundary-probing
+related_problems: []
+
+evidence_level:
+  concept: self_reasoned
+  math: not_verified
+  code: partially_verified
+
+checklist:
+  concept: true
+  math: false
+  code: false
+  reproduction: false

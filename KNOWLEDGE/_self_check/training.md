@@ -76,6 +76,40 @@
 - [中] Hugging Face 的 SmallTalk 不是随便凑的 100 万条——每个子集都有明确目的。10 万条 OpenHermes / 5 万条 MetaMath 各负责什么？为什么小模型用专门的精简版？ → `KNOWLEDGE/training/sft-data-size/`
 - [深] "SFT 不教新事实，只教新行为模式"——这条原则怎么影响数据集设计？什么时候应该用 RAG 或继续预训练，而不是 SFT？ → `KNOWLEDGE/training/sft-data-size/` + `KNOWLEDGE/training/continue-pretrain-vs-finetune/`
 
+## SFT 数据来源
+
+- [浅] SFT 数据的四条来源路径是什么？为什么这不是"人工标注 vs 大模型生成"的二选一？ → `KNOWLEDGE/training/sft-data-sourcing/`
+- [中] 人工标注为什么最适合做质量标杆，而不是无限铺量？成本、一致性、速度三个瓶颈分别是什么？ → `KNOWLEDGE/training/sft-data-sourcing/`
+- [中] 教师模型蒸馏的三类陷阱是什么？同质化、条款风险、能力坍缩分别怎么防？ → `KNOWLEDGE/training/sft-data-sourcing/`
+- [中] Self-Instruct / Evo-Instruct 的真正价值是什么？为什么它不能稳定生成超出模型能力边界的数据？ → `KNOWLEDGE/training/sft-data-sourcing/`
+- [深] "人工定标杆，蒸馏出主体，进化补难度，线上数据闭环"——这个 SFT 数据供应链怎么形成数据飞轮？ → `KNOWLEDGE/training/sft-data-sourcing/`
+
+## SFT 数据质量
+
+- [浅] SFT 数据质量为什么不是"每条数据都完美"，而是数据集作为系统是否健康？四个健康维度是什么？ → `KNOWLEDGE/training/sft-data-quality/`
+- [中] 困惑度过滤为什么要同时去掉过低和过高的样本？"模型能理解但还没掌握"为什么是高价值区间？ → `KNOWLEDGE/training/sft-data-quality/`
+- [中] 奖励模型、LLM-as-judge、交叉一致性检验各自适合筛什么？它们各自有什么偏见？ → `KNOWLEDGE/training/sft-data-quality/`
+- [中] 训练 loss 降但验证指标不涨时，怎么判断是数据多样性不足、某类任务缺失、格式风格漂移还是灾难性遗忘？ → `KNOWLEDGE/training/sft-data-quality/` + `KNOWLEDGE/training/sft-training-strategy/`
+- [深] 格式清洗、精确/模糊去重、异常值检测、安全过滤、分布审计各自防什么训练失败？ → `KNOWLEDGE/training/sft-data-quality/`
+
+## SFT 训练策略
+
+- [浅] SFT 训练策略的核心矛盾是什么？为什么它不是普通超参数调参问题？ → `KNOWLEDGE/training/sft-training-strategy/`
+- [中] 为什么 SFT 学习率通常比预训练低 1-2 个数量级？太高和太低分别会怎样？ → `KNOWLEDGE/training/sft-training-strategy/`
+- [中] 为什么判断训练量时要看总训练步数，而不是只背"2-3 个 epoch"？小数据和大数据各有什么坑？ → `KNOWLEDGE/training/sft-training-strategy/`
+- [中] Cosine / Linear / Constant with Warm-up 在 SFT 场景下怎么选？为什么 warm-up 基本必须有？ → `KNOWLEDGE/training/sft-training-strategy/`
+- [中] 小数据 SFT 为什么 batch size 可能比学习率更主导？大 batch 为什么可能抹掉细粒度行为信号？ → `KNOWLEDGE/training/sft-training-strategy/`
+- [深] 灾难性遗忘为什么工程上优先用 LoRA + 数据混合缓解，而不是 EWC？ → `KNOWLEDGE/training/sft-training-strategy/` + `KNOWLEDGE/training/lora/`
+
+## SFT Loss 信号分配
+
+- [浅] SFT 多轮数据里为什么通常把 system/user/prompt 部分 label 设成 `-100`，只训练 assistant 回复？ → `KNOWLEDGE/training/sft-loss-signal-allocation/`
+- [中] Prompt Loss Weight 把"prompt 算不算 loss"从二元选择变成连续参数；为什么短回复场景下很小的非零 PLW 可能有正则化作用？ → `KNOWLEDGE/training/sft-loss-signal-allocation/`
+- [中] Per-token / per-turn / per-sample 三种 loss 聚合方式，会如何改变一轮长回复和三轮短回复之间的有效权重？ → `KNOWLEDGE/training/sft-loss-signal-allocation/`
+- [中] 为什么 packing 不是纯吞吐优化？如果只处理 attention mask、不保持 loss 权重语义，会怎样悄悄改变训练分布？ → `KNOWLEDGE/training/sft-loss-signal-allocation/`
+- [深] "SFT 数据格式不是文件格式问题，而是训练信号路由问题"——从角色 mask、轮次加权、token 级加权三层展开说明。 → `KNOWLEDGE/training/sft-loss-signal-allocation/`
+- [深] Token 级加权方法（如 Profit / DFT）的共同趋势是什么？它和传统全 token SFT 的核心假设冲突在哪里？ → `KNOWLEDGE/training/sft-loss-signal-allocation/#open-questions` (open)
+
 ---
 
 ## 跨节点综合
@@ -83,3 +117,4 @@
 - [深] **训练范式的全景**：预训练（提供能力冰山）→ 继续预训练（补领域知识）→ SFT（激活合格起点）→ RL（扩展能力边界）。每一阶段在做什么、什么时候可以跳过哪一步？ → `KNOWLEDGE/training/posttrain-practice-roadmap/` + `KNOWLEDGE/training/continue-pretrain-vs-finetune/` + `KNOWLEDGE/training/sft-rl-relationship/`
 - [深] **微调路线的选择**：全参微调 vs LoRA vs RAG vs 继续预训练——根据"知识 vs 行为"和"任务规模 / 预算"两个维度，怎么决策？ → `KNOWLEDGE/training/lora/` + `KNOWLEDGE/training/continue-pretrain-vs-finetune/` + `KNOWLEDGE/training/sft-data-size/`
 - [深] **Lost in the Middle 的两条解决路径**：千问 LongRL 用 RL 训出"翻书"能力 vs Manus 用 to-do list 重写到末尾"偏置注意力"——两条路在解决同一个问题的不同层吗？哪条更根本？ → `KNOWLEDGE/training/long-context-rl/` + `KNOWLEDGE/agent/context-engineering/`
+- [深] **SFT 数据质量 vs loss 信号分配**：数据量、格式一致性、分布对齐解决的是"给模型什么样本"，PLW / turn weighting / token weighting 解决的是"样本内部哪些位置发出多大梯度"。这两层怎么配合？ → `KNOWLEDGE/training/sft-data-size/` + `KNOWLEDGE/training/sft-loss-signal-allocation/`
