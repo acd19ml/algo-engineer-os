@@ -1,6 +1,6 @@
 # PROBLEMS
 
-问题对比框架层。**不是开放问题跟进、不是面试题库、不是知识自检**——这三个分别由 `KNOWLEDGE/x/Open Questions`、`CAREER/interview-bank/`、`KNOWLEDGE/x/自检题` 承担。
+问题对比框架层。**不是开放问题跟进、不是面试题库、不是知识自检**——这三个分别由 `KNOWLEDGE/x/Open Questions`、项目本地 `interview-defense-matrix`、`KNOWLEDGE/x/自检题` 承担。
 
 ## 这一层的真实作用
 

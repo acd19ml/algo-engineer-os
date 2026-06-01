@@ -1,9 +1,7 @@
 id: claude-md-rule-design
 title: "CLAUDE.md 规则设计：用户侧行为合约，不是许愿清单"
 type: method
-status: learning
 created_at: 2026-05-15
-last_reviewed_at: 2026-05-15
 
 tags: [agent, claude-code, prompt-engineering, behavior-contract, mnilax-12-rules, karpathy-4-rules]
 depends_on:

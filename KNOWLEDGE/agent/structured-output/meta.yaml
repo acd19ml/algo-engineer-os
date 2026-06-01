@@ -1,9 +1,7 @@
 id: structured-output
 title: "Structured Output for Agents"
 type: capability
-status: stable
 created_at: 2026-05-09
-last_reviewed_at: 2026-05-09
 
 tags: [agent, structured-output, json-schema, constrained-decoding]
 depends_on: []

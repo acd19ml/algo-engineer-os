@@ -30,6 +30,6 @@ PROJECTS/
 |---|---|
 | PROJECTS → KNOWLEDGE | ✓ 项目用了哪些节点 |
 | PROJECTS → PROBLEMS | ✓ 项目涉及哪些问题 |
-| PROJECTS → CAREER/interview-bank/behavioral | ✓ 派生出的故事 |
+| PROJECTS → 项目本地 interview-defense-matrix / interview-answers | ✓ 派生出的故事 |
 | PROJECTS → WORK | ✓ 派生出的 playbook |
 | KNOWLEDGE → PROJECTS | ✓ 节点可以写"被哪些项目用过" |

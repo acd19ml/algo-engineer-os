@@ -1,9 +1,7 @@
 id: hierarchical-agent-memory
 title: "Hierarchical Agent Memory: 虚拟文件系统 + 三层按需加载"
 type: system
-status: learning
 created_at: 2026-05-27
-last_reviewed_at: 2026-05-27
 
 tags: [agent, memory, hierarchical, virtual-filesystem, three-tier-loading, openviking, retrieval, session-commit]
 depends_on:

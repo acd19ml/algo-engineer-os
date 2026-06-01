@@ -1,9 +1,7 @@
 id: sft-data-size
 title: "SFT Data Size: How Much is Enough"
 type: methodology
-status: stable
 created_at: 2026-05-09
-last_reviewed_at: 2026-05-09
 
 tags: [training, sft, data-engineering, finetune]
 depends_on: []

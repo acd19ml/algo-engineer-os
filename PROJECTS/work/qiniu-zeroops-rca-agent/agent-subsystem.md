@@ -793,4 +793,4 @@ flowchart LR
 - **为什么选 LangGraph StateGraph 而不是自由 agent loop / 时代背景 / 复盘**  → 见 `README.md` 真实选型路径 / 复盘段
 - **学术坐标 + Result Fusion 范式选型 + 对照 Flow-of-Action** → 见 `KNOWLEDGE/agent/multi-agent-rca-paradigm/`
 - **OpsAgent vs AgentOps 区分 + 项目缺失的能力** → 见 `KNOWLEDGE/agent/agentops-vs-opsagent/` + `KNOWLEDGE/agent/agent-failure-attribution/`
-- **面试讲法 / STAR / 技术深问金句** → 见 `CAREER/interview-bank/technical/qiniu-*.md` 4 篇
+- **面试讲法 / STAR / 技术深问金句** → 见项目本地 `interview-answers/` 各篇

@@ -1,9 +1,7 @@
 id: sft-rl-relationship
 title: "SFT and RL: Capability Activation Relationship"
 type: concept
-status: stable
 created_at: 2026-05-09
-last_reviewed_at: 2026-05-09
 
 tags: [training, sft, rl, post-training, capability]
 depends_on: []

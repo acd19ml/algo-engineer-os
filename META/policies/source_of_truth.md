@@ -9,7 +9,7 @@
 3. `KNOWLEDGE/*/meta.yaml` — 结构关系
 4. `KNOWLEDGE/*/README.md` — 节点解释
 5. `PROBLEMS/` — 问题框架
-6. 派生层（`CAREER/interview-bank/` 故事、`WORK/playbooks/` SOP 等）
+6. 派生层（`WORK/playbooks/` SOP、项目本地 interview-answers/defense-matrix 等）
 
 ## 每层意味着什么
 
@@ -29,7 +29,7 @@
 问题 framing 层。"我们在解决什么、有哪些方案"。
 
 ### 6. 派生层
-`CAREER/interview-bank/`、`WORK/playbooks/` 等都是从底层提炼出的。它们不是真值来源，是真值的二次表达。
+`WORK/playbooks/`、项目本地面试材料 等都是从底层提炼出的。它们不是真值来源，是真值的二次表达。
 
 ## 冲突处理规则
 

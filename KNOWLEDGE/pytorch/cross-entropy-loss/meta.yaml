@@ -1,9 +1,7 @@
 id: cross-entropy-loss
 title: "Cross Entropy Loss"
 type: concept
-status: learning
 created_at: 2026-05-08
-last_reviewed_at: 2026-05-08
 
 tags: [pytorch, loss, softmax, classification]
 depends_on:

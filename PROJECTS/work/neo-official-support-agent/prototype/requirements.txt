@@ -1,0 +1,6 @@
+# Deterministic eval runner deps.
+# Deterministic (mocked) mode needs only pyyaml + pydantic.
+# The optional --router llm mode additionally needs openai.
+pyyaml>=6.0
+pydantic>=2.0
+openai>=1.40   # optional: only for `--router llm`

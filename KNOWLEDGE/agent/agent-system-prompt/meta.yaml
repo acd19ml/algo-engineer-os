@@ -1,9 +1,7 @@
 id: agent-system-prompt
 title: "Agent System Prompt: 模块化 + 具体化"
 type: capability
-status: stable
 created_at: 2026-05-11
-last_reviewed_at: 2026-05-11
 
 tags: [agent, system-prompt, claude-code, prompt-engineering, cache-friendly]
 depends_on:

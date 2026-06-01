@@ -1,9 +1,7 @@
 id: agent-tool-design
 title: "Agent Tool Design: 三原则"
 type: capability
-status: stable
 created_at: 2026-05-11
-last_reviewed_at: 2026-05-11
 
 tags: [agent, tool-design, context-engineering, claude-code, just-in-time]
 depends_on:

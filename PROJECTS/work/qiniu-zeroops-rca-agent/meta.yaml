@@ -46,16 +46,14 @@ related_knowledge:
   - KNOWLEDGE/agent/agent-tool-design
   - KNOWLEDGE/agent/structured-output
 
-derived_behavioral_stories:
-  - CAREER/interview-bank/behavioral/qiniu-ceo-pivot-decision.md
-  - CAREER/interview-bank/behavioral/qiniu-team-turbulence-handoff.md
-  - CAREER/interview-bank/behavioral/qiniu-roadshow-emergency-rescue.md
-
-derived_technical_questions:
-  - CAREER/interview-bank/technical/qiniu-agent-loop-vs-workflow.md
-  - CAREER/interview-bank/technical/qiniu-multi-agent-decomposition.md
-  - CAREER/interview-bank/technical/qiniu-multimodal-fusion-paradigm.md
-  - CAREER/interview-bank/technical/qiniu-opsagent-vs-agentops.md
+interview_defense_matrix: interview-defense-matrix.md
+interview_answers:
+  - interview-answers/qiniu-agent-loop-vs-workflow.md
+  - interview-answers/qiniu-multi-agent-decomposition.md
+  - interview-answers/qiniu-multimodal-fusion-paradigm.md
+  - interview-answers/qiniu-opsagent-vs-agentops.md
+  - interview-answers/qiniu-react-context-management.md
+  - interview-answers/prompt-caching-agent-loop.md
 
 academic_anchor:
   paradigm: OpsAgent / AgenticOps（用 agent 做传统运维）

@@ -1,9 +1,7 @@
 id: depthwise-separable-convolution
 title: "Depthwise Separable Convolution"
 type: method
-status: learning
 created_at: 2026-05-08
-last_reviewed_at: 2026-05-08
 
 tags: [cnn, mobilenet, efficient-networks]
 depends_on: []

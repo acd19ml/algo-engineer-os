@@ -1,9 +1,7 @@
 id: residual-connections
 title: "Residual Connections"
 type: mechanism
-status: learning
 created_at: 2026-05-08
-last_reviewed_at: 2026-05-08
 
 tags: [resnet, residual-learning, gradient-flow]
 depends_on:

@@ -1,9 +1,7 @@
 id: kv-cache
 title: "KV Cache"
 type: mechanism
-status: stable
 created_at: 2026-05-08
-last_reviewed_at: 2026-05-08
 
 tags: [transformer, attention, kv-cache, inference, memory-bound]
 depends_on:

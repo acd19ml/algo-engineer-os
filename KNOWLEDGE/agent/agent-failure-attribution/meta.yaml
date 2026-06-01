@@ -1,9 +1,7 @@
 id: agent-failure-attribution
 title: "Agent Failure Attribution: 谁、什么时候、为什么错"
 type: research-direction
-status: stable
 created_at: 2026-05-12
-last_reviewed_at: 2026-05-12
 
 tags: [agent, agentops, failure-attribution, debugging, trajectory-analysis, vae, benchmark]
 depends_on:

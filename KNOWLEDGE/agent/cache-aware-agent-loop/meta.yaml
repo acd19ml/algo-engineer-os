@@ -1,9 +1,7 @@
 id: cache-aware-agent-loop
 title: "Cache-Aware Agent Loop: 前缀缓存命中率作为成本杠杆"
 type: system
-status: learning
 created_at: 2026-05-27
-last_reviewed_at: 2026-05-27
 
 tags: [agent, cache, deepseek, prefix-cache, append-only, context-compression, cost-optimization, tool-call-repair]
 depends_on:

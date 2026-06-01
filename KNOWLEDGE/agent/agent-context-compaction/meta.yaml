@@ -1,9 +1,7 @@
 id: agent-context-compaction
 title: "Agent Context Compaction: 四层压缩流水线"
 type: system
-status: stable
 created_at: 2026-05-11
-last_reviewed_at: 2026-05-11
 
 tags: [agent, context-engineering, compaction, claude-code, production-engineering]
 depends_on:

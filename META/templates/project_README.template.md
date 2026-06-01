@@ -51,4 +51,4 @@
 
 ## 面试故事
 
-- 链 `CAREER/interview-bank/behavioral/{question-id}.md`
+- 链项目本地 `interview-defense-matrix.md` / `interview-answers/`

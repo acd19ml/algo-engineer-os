@@ -1,9 +1,7 @@
 id: agent-failure-trajectory-dataset
 title: "Agent Failure Trajectory Dataset: 评测 AgentOps 方法的基础设施"
 type: infrastructure
-status: stable
 created_at: 2026-05-13
-last_reviewed_at: 2026-05-13
 
 tags: [agent, agentops, dataset, schema, failure-attribution, benchmark]
 depends_on:

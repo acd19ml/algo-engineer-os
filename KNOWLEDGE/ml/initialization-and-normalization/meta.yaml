@@ -1,9 +1,7 @@
 id: initialization-and-normalization
 title: "Initialization and Normalization"
 type: method
-status: learning
 created_at: 2026-05-08
-last_reviewed_at: 2026-05-08
 
 tags: [initialization, normalization, batchnorm, layernorm]
 depends_on:

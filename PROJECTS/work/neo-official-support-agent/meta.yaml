@@ -1,0 +1,88 @@
+id: neo-official-support-agent
+title: "Neo 官网智能客服 · 可验证链上支持 Agent"
+type: work
+status: in-progress
+
+company: Neo 智能经济
+domain: "Neo official website support"
+
+business_problem: >
+  Neo 官网原来没有独立客服入口，用户支持主要依赖 Discord 社区和全球开发者维护。
+  官网入口需要产品化承接重复问题、官方资源导航、Neo N3 / Neo X 只读链上诊断、
+  安全拦截和人工升级摘要，同时避免对官方地址、合约、bridge、交易状态和投资建议
+  做错误背书。
+
+product_scope:
+  primary: "Neo 官网智能客服"
+  included:
+    - "Neo / Neo N3 / Neo X / NEO / GAS 官方解释"
+    - "官方链接导航与安全链接校验"
+    - "Neo N3 只读交易 / 地址查询"
+    - "Neo X 只读交易 / 地址查询与 EVM 失败交易解释"
+    - "安全拦截、投资建议拒答、人工升级摘要"
+  excluded:
+    - "交易所客服"
+    - "第三方钱包内部问题"
+    - "第三方 dApp 损失承担或资产追回承诺"
+    - "任何写链、签名、授权、转账操作"
+    - "价格预测、买卖建议、收益建议"
+
+solution_thesis: >
+  针对上述业务问题，技术方案不是泛 RAG bot，而是 policy-constrained support orchestrator。
+  高风险、快变、可验证事实必须来自 Neo 官方 registry、Neo N3 / Neo X 链上只读工具、
+  官方文档与公告；LLM 只负责意图理解、路由、证据解释与自然语言表达。
+
+main_artifacts:
+  - README.md
+  - docs/README.md
+  - docs/product/PRD.md
+  - docs/decision/TECH_PROPOSAL.md
+  - docs/architecture/ARCHITECTURE.md
+  - docs/implementation/IMPLEMENTATION_DESIGN.md
+  - docs/implementation/implementation-plan.md
+  - docs/operations/registry-ops-plan.md
+  - docs/design/commitments.md
+  - eval/README.md
+  - eval/eval-prototype.md
+  - eval/eval-cases.yaml
+  - eval/eval-fixtures.yaml
+  - eval/eval-runner-spec.md
+  - eval/eval-cases-heldout-t1.yaml
+  - eval/harness-kb-alignment.md
+  - eval/decision-trail-full.md
+  - eval/decision-trail-d5-hardening.md
+  - prototype/README.md
+  - prototype/requirements.txt
+  - prototype/eval_runner/models.py
+  - prototype/eval_runner/fixtures.py
+  - prototype/eval_runner/router.py
+  - prototype/eval_runner/sut.py
+  - prototype/eval_runner/metrics.py
+  - prototype/eval_runner/run_eval.py
+  - prototype/eval_runner/sweep.py
+  - eval/results/run_mocked_20260601T172114.json
+  - interview/README.md
+  - interview/interview-defense-matrix.md
+  - interview/answers/project-star.md
+  - interview/answers/similar-tool-routing.md
+  - interview/answers/eval-under-nondeterministic-llm.md
+
+legacy_context:
+  note: >
+    早期同名目录下的 working drafts（tmp/）已删除。
+    本项目事实以 README.md、meta.yaml 与 docs/product/PRD.md 为准；
+    policy-constrained orchestrator 是技术方案结论，不是业务问题本身。
+
+source_of_truth_priority:
+  - "Neo N3 / Neo X 链上只读 RPC、explorer、indexer"
+  - "Neo 官方 registry：network、token、official link、contract、wallet、bridge、migration"
+  - "Neo 官方 docs / developer docs / Neo X docs"
+  - "Neo 官方公告、status、changelog"
+  - "Evidence Bundle（运行时事实聚合；不创造新事实）"
+
+non_source_layers:
+  - "LLM answer compiler：只负责把 evidence 渲染成用户可读回答，不是事实源"
+  - "interview/answers/*：只负责面试表达，不覆盖 source docs"
+
+created_at: 2026-05-31
+last_reviewed_at: 2026-06-01

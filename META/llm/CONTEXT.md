@@ -13,14 +13,13 @@
 
 ## 1. Ownership Matrix（最重要 —— 必须严格遵守）
 
+> **本节是 ownership 的单一权威定义。** 根 README 与 REGISTRY 的 ownership 段为镜像；任何 ownership 改动只改这里。
+
 ### 🧑 用户纯私有 surface（你只读，绝不写）
 
 - `INBOX/` 下所有内容
 - `TRACKS/active/*` 和 `TRACKS/roadmap/*`（结构 + 勾选都用户来）
-- `CAREER/cv.md`
-- `CAREER/skill-gap.md`
-- `CAREER/target-roles/*.md`（用户填，或对话长出但最终编辑权属于用户）
-- `CAREER/applications/` 中的投递状态、联系人、结果等事实字段（以用户确认为准）
+- `CAREER/cv.md`（简历，从 PROJECTS 派生的证据汇）
 - `META/` 下所有规则文件（CONTEXT、policies、templates、triage、few_shots、README）
 
 ### 🤖 你的写入区（从对话 log / 用户 drop 的内容触发）
@@ -31,18 +30,19 @@
 - `PROJECTS/*` — 当 log 是项目复盘 / 实习挖掘 / 论文复现时触发
 - `RAW_SOURCES/*` — 当 INBOX 出现论文 / 完整文档时
 - `REPRO_INDEX/*` — 当 INBOX 出现外部 repo 信息时
-- `CAREER/interview-bank/*` — 用户丢面经到 INBOX，你 triage
-- `CAREER/applications/*` — 用户明确请求整理投递工作时，可辅助创建 / 更新投递记录
+- `WORK/runbooks/*` — 从 KNOWLEDGE 节点或真实 debug 经验投影出的症状导向排查条目；写前必须读 `META/templates/runbook_entry.template.md`
+- `WORK/design-commitment-patterns/*` — 从 runbook 症状簇抽出的可复用结构性不变量；写前必须读 `WORK/design-commitment-patterns/README.md` 和 `META/templates/design_commitment_pattern.template.md`
 - `WORK/playbooks/*` — 当用户和你对话明确说 "这个流程要沉淀成 SOP" 时
+- `PROJECTS/<project>/design/commitments.md` — 用户确认某个项目要采纳 / 起草 design commitment 时；写前必须读 `META/templates/design_commitment.template.md`
 - `PODCAST/*` — 用户明确请求 "做成播客脚本" 或 "intro 一下未学的 X" 时（**不自动触发**）
 - `META/REGISTRY.md` — 每次 triage 后同步
 
 ### 🔔 你只建议、用户执行（写进 Triage Report，不直接动文件）
 
 - TRACKS 里 "建议勾掉" 的 checkbox
-- `CAREER/skill-gap.md` 的更新建议（diff 形式）
 - 实习挖掘 nudge
 - 横向对比触发
+- 项目 design commitment 采纳（pattern 已存在时，只报告候选不变量、校验、代价 / 范围；是否落入项目由用户确认）
 
 ### 用户编辑 = ground truth
 
@@ -86,7 +86,7 @@ LLM 在 triage 时仍然只从 INBOX 用户参与过的内容（`dialogue_logs/`
 3. `KNOWLEDGE/*/meta.yaml` —— 结构关系
 4. `KNOWLEDGE/*/README.md` —— 节点解释
 5. `PROBLEMS/` —— 问题框架
-6. 派生层（CAREER stories、WORK playbooks、PODCAST reviews、_self_check）
+6. 派生层（项目本地面试材料、WORK runbooks / design commitment patterns / playbooks、项目内 design commitments、PODCAST reviews、_self_check）
 
 不能发明 INBOX / RAW_SOURCES 中不存在的事实。不确定标 `[待确认]`。
 
@@ -101,6 +101,9 @@ LLM 在 triage 时仍然只从 INBOX 用户参与过的内容（`dialogue_logs/`
 - 把 INBOX 内容整理到正确目录（在你的写入区内）
 - 创建 / 更新 KNOWLEDGE 节点（按 `META/policies/node_form.md` + few-shot）
 - 起草 PROBLEMS / PROJECTS 页（按触发条件）
+- 创建 / 更新 WORK runbooks（按症状投影规则；不能复述 KNOWLEDGE 机制）
+- 创建 / 更新 WORK design commitment patterns（只抽结构性不变量，不抽运行时恢复过程）
+- 在 Triage Report 里建议项目 design commitment 采纳；只有用户确认并指定项目后，才创建 / 更新项目内 `design/commitments.md`
 - 暴露 open questions（按 node_form 规则——必须从正文自然引出）
 - 更新 `_self_check/<domain>.md`（按 `META/policies/self_check.md`）
 - 写 PODCAST 脚本（仅当用户请求）
@@ -111,10 +114,10 @@ LLM 在 triage 时仍然只从 INBOX 用户参与过的内容（`dialogue_logs/`
 
 - 写入用户私有 surface（看 §1）
 - **在 KNOWLEDGE artifact 里引用 INBOX 路径**（看 §2）
+- **把项目事实（公司 / 产品 / 场景 / 占位值）当内容写进 `WORK/`**——WORK 整层跨项目复用，项目事实只进 `PROJECTS/<project>/`，WORK 只能 `[[link]]` 引用来源项目（完整边界看 `triage.md`「WORK↔PROJECT 硬边界」；即使标「示例」也不行）
 - 发明 INBOX / RAW_SOURCES 中不存在的事实
 - 拍脑袋生成自检题或面试题
 - 自动勾掉 TRACKS 的 checkbox
-- 自动改 `CAREER/skill-gap.md`
 - 自动建 PODCAST 脚本（必须用户明确请求）
 - 删除已有内容（除非用户明确要求）
 - 跳过 REGISTRY 更新
@@ -141,9 +144,7 @@ KNOWLEDGE/{domain}/{node}/
 id: {node-id}
 title: "{Node Title}"
 type: concept | method | mechanism | system | capability | tool
-status: learning | stable | review | stale
 created_at: YYYY-MM-DD
-last_reviewed_at: YYYY-MM-DD
 
 tags: []
 depends_on: []
@@ -166,6 +167,7 @@ checklist:
 
 - 不再有 `source_dialogue_logs` 字段（节点是自含 artifact，不引用 INBOX）
 - 不再有 `self_check_questions` checklist 项（自检题在 `_self_check/`，不属于节点完成度）
+- 不再有 `status` / `last_reviewed_at` 字段（节点生命周期 / decay 状态取消——用户随时翻阅，无需记录复看状态）
 
 ---
 
@@ -207,4 +209,4 @@ checklist:
 - [ ] Open Questions 从正文自然引出、可行动、高质量？
 - [ ] 没发明 INBOX 中不存在的事实？
 - [ ] REGISTRY 已更新？
-- [ ] Triage Report 输出了 4 类联动建议？
+- [ ] Triage Report 输出了 TRACKS / 实习挖掘 / 横向对比 / runbook-design 联动建议？

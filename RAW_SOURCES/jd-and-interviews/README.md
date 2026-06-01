@@ -1,6 +1,6 @@
 # JD 和面经原始资料
 
-求职阶段从外部渠道收集到的 JD / 面经 / HR 抱怨等第一手材料。被 `CAREER/target-roles/*.md` 引用。
+求职阶段从外部渠道收集到的 JD / 面经 / HR 抱怨等第一手材料。（target-roles 已退场，留作素材）。
 
 ## 内容
 
@@ -13,8 +13,8 @@
 
 ## 内容更新
 
-外部材料更新（JD / 面经 / HR 抱怨等）时直接覆盖这里的对应文件。`CAREER/target-roles/` 引用这里的路径，更新无需改 target-role 文件。
+外部材料更新（JD / 面经 / HR 抱怨等）时直接覆盖这里的对应文件。
 
 ## 引用规则
 
-`CAREER/target-roles/*.md` 引用 `RAW_SOURCES/jd-and-interviews/jd.md` 是合法引用（target-role → RAW_SOURCES 单向，符合 `META/policies/source_of_truth.md`）。
+（target-roles 已退场）

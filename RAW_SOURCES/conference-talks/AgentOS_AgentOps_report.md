@@ -1,4 +1,4 @@
-<!-- PROCESSED: 2026-05-12 ｜ 完整内化到 KNOWLEDGE/agent/agentops-vs-opsagent/ + KNOWLEDGE/agent/multi-agent-rca-paradigm/ + KNOWLEDGE/agent/agent-failure-attribution/，以及 CAREER/interview-bank/technical/qiniu-opsagent-vs-agentops.md 等 4 道技术深问。INBOX 副本可随时删除。 -->
+<!-- PROCESSED: 2026-05-12 ｜ 完整内化到 KNOWLEDGE/agent/agentops-vs-opsagent/ + KNOWLEDGE/agent/multi-agent-rca-paradigm/ + KNOWLEDGE/agent/agent-failure-attribution/，以及 PROJECTS/work/qiniu-zeroops-rca-agent/interview-answers/qiniu-opsagent-vs-agentops.md 等 4 道技术深问。INBOX 副本可随时删除。 -->
 # AgentOps：多智能体系统智能运维新方向
 
 ## 1. 报告主线

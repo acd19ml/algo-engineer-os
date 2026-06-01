@@ -1,9 +1,7 @@
 id: bpe-tokenization
 title: "BPE Tokenization"
 type: method
-status: learning
 created_at: 2026-05-08
-last_reviewed_at: 2026-05-08
 
 tags: [nlp, tokenization, bpe, subword]
 depends_on:

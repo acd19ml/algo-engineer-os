@@ -4,21 +4,14 @@
 
 ## 目录结构
 
-```
-META/
-├── REGISTRY.md         全局索引（已有节点、问题、项目清单）
-├── llm/                LLM 维护上下文包
-│   ├── CONTEXT.md      系统全貌、ownership matrix、规则
-│   └── triage.md       INBOX 处理流程 + Triage Report 模板
-├── templates/          最小页面模板
-│   ├── node_README.template.md
-│   ├── problem_README.template.md
-│   └── project_README.template.md
-└── policies/           稳定规则
-    ├── source_of_truth.md
-    ├── naming_convention.md
-    └── node_granularity.md
-```
+> 完整、最新的文件清单见 `META/REGISTRY.md` 的「META（规则层）」段（LLM 每次 triage 同步）。此处只给定位，不手抄文件列表——旧版就因手抄而漏列了 node_form / self_check / podcast_script policies 和全部 design_commitment 模板。
+
+- `REGISTRY.md` — 全局索引（节点 / 问题 / 项目 / pattern 清单）
+- `llm/triage.md` — Stage-0 启动必读（两条入口纪律 + INBOX 流程 + 分阶段加载表 + Report 模板）
+- `llm/CONTEXT.md` — Stage-1（ownership matrix、引用方向、节点自含）
+- `llm/few_shots/` — 形态范例（node_form / podcast_script）
+- `policies/` — 稳定规则（node_form / self_check / podcast_script / source_of_truth / naming_convention / node_granularity）
+- `templates/` — 页面与 design commitment 模板（node / problem / project / runbook_entry / self_check / podcast_script / design_commitment / design_commitment_pattern）
 
 ## 使用
 

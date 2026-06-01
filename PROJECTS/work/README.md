@@ -8,7 +8,7 @@
 
 ## 挖掘中（⏳ in-progress）
 
-- ⏳ `neo-deepresearch-and-react-agent/` — Neo 智能经济 4 子项目（DeepResearch / ReAct + 语义路由 / 开源 SDK / 子账户系统）。**起手骨架已建**（README + interview-defense-matrix），含 20 题挖掘 brief；`system-anatomy.md` 和 `subsystem-react-router.md` 等 brief 答完后 evolve
+- ⏳ `neo-official-support-agent/` — Neo 官网智能客服：2025.02-2025.07 一人负责产品方案，从“官网无独立客服、依赖 Discord 社区和全球开发者维护”的业务问题出发，收敛为官网安全支持入口：官方资源导航、Neo N3 / Neo X 只读链上诊断、安全拦截和人工升级摘要。当前已按目录分层：根入口 `README.md` + `meta.yaml`，`docs/` 放 PRD / 技术提案 / 架构 / 实现 / 运维 / 设计承诺，`eval/` 放 100 cases / fixtures / runner spec，`prototype/` 承接未来可运行代码，`interview/` 放面试派生表达。
 
 ## 当前待挖掘
 
@@ -19,7 +19,7 @@
 1. 开 Claude session，说"我想挖掘 X 实习"
 2. 顺序对话：项目背景 → 你的具体职责 → 关键技术决策 → 遇到了什么问题 → 怎么解的 → 量化结果 → 如果重做你会怎么改
 3. 对话存到对应的 INBOX dialogue_logs 目录
-4. LLM triage：建 `PROJECTS/work/{公司}-{项目}/` 项目页 + 提炼可复用 SOP 到 `WORK/playbooks/` + 提炼面试故事到 `CAREER/interview-bank/behavioral/`
+4. LLM triage：建 `PROJECTS/work/{公司}-{项目}/` 项目页 + 提炼可复用 SOP 到 `WORK/playbooks/` + 提炼面试材料到项目本地 `interview-defense-matrix.md`
 
 ## 项目页结构
 

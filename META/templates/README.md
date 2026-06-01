@@ -12,6 +12,8 @@
 | [problem_README.template.md](./problem_README.template.md) | PROBLEMS 问题页 |
 | [project_README.template.md](./project_README.template.md) | PROJECTS 项目页 |
 | [runbook_entry.template.md](./runbook_entry.template.md) | WORK/runbooks/`<domain>`/runbook.md 单条症状导向条目 |
+| [design_commitment_pattern.template.md](./design_commitment_pattern.template.md) | WORK/design-commitment-patterns/`<domain>`/`<slug>`.md 设计前候选不变量 |
+| [design_commitment.template.md](./design_commitment.template.md) | PROJECTS/`<project>`/design/commitments.md 项目内设计承诺 |
 
 ## 使用原则
 
@@ -26,3 +28,6 @@
 | KNOWLEDGE 节点 | `META/policies/node_form.md` + few-shot |
 | _self_check deck | `META/policies/self_check.md` |
 | PODCAST 脚本 | `META/policies/podcast_script.md` + few-shot |
+| runbook 条目 | `WORK/runbooks/<domain>/README.md` + `META/templates/runbook_entry.template.md` |
+| design commitment pattern | `WORK/design-commitment-patterns/README.md` + `META/templates/design_commitment_pattern.template.md` |
+| 项目 design commitment | 项目 README / design 文档 + `META/templates/design_commitment.template.md` |

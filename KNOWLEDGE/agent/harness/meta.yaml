@@ -1,9 +1,7 @@
 id: harness
 title: "Harness Engineering"
 type: capability
-status: stable
 created_at: 2026-05-09
-last_reviewed_at: 2026-05-09
 
 tags: [agent, harness, methodology, architecture]
 depends_on: []

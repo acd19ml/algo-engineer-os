@@ -42,12 +42,6 @@
 **Neo 智能经济** | 2025.02 - 2025.07
 **AI Agent 开发工程师** | 上海
 
-- 基于 LangChain / LangGraph 构建 LLM 多智能体 DeepResearch 服务，设计 coordinator / planner / researcher / coder / reporter / human feedback 等状态节点，将复杂研究任务拆解为背景调研、任务规划、网页搜索、数据抓取、代码执行分析与报告生成链路；通过图式编排隔离规划、执行、反馈与汇报职责，提升长链路 research workflow 的可控性与可调试性。
-- 设计 ReAct 区块链问答 Agent 的双路 RAG 路由：基于 FAISS 召回技术文档证据，基于 Pinecone + OpenAI
-text-embedding-3-large 索引 62 种 API / 工具 schema，形成 Top10 召回 → Top5 精排的候选上下文选择流程；相
-较全量文档 / 工具 prompt 注入，达成 98% 工具意图匹配准确率并降低 70% 调用成本。
-- 参与设计与开发开源 AI Agent 框架 SDK（**260+ stars**）及配套工具集 SDK：集成同步 / 异步执行、Graph、链上对象存储工具、钱包加密工具，编写测试用例保障可用性。**维护项目海外全球技术社区**：处理 GitHub Issues、Review 海外开发者 PR、撰写并维护开发者文档，与海外开发者协作推进项目演进。
-
 ---
 
 ## 技能

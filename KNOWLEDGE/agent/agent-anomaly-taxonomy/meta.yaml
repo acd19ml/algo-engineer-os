@@ -1,9 +1,7 @@
 id: agent-anomaly-taxonomy
 title: "Agent Anomaly Taxonomy: 11 类异常的边界"
 type: framework
-status: stable
 created_at: 2026-05-13
-last_reviewed_at: 2026-05-13
 
 tags: [agent, agentops, anomaly, taxonomy, failure-modes]
 depends_on:

@@ -1,9 +1,7 @@
 id: heuristic-learning
 title: "Heuristic Learning：coding agent 接管 rule-based system 的维护曲线"
 type: concept
-status: learning
 created_at: 2026-05-13
-last_reviewed_at: 2026-05-13
 
 tags: [agent, continual-learning, expert-system, coding-agent, rl-alternative]
 depends_on:

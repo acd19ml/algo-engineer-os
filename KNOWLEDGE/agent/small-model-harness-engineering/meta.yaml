@@ -1,9 +1,7 @@
 id: small-model-harness-engineering
 title: "Small Model Harness Engineering: 复合概率问题与五层防护"
 type: system
-status: learning
 created_at: 2026-05-27
-last_reviewed_at: 2026-05-27
 
 tags: [agent, harness, small-model, compound-probability, step-enforcement, context-compression, forge]
 depends_on:

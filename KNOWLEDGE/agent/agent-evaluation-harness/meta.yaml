@@ -1,9 +1,7 @@
 id: agent-evaluation-harness
 title: "Agent Evaluation Harness"
 type: system
-status: learning
 created_at: 2026-05-17
-last_reviewed_at: 2026-05-17
 
 tags: [agent, harness, evaluation, trajectory, eval-code]
 depends_on:

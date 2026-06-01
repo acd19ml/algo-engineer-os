@@ -265,7 +265,7 @@
 - [中] 同一套模型权重，llama.cpp 原生函数调用 7% vs llama-file 提示注入 83%——这对"这个模型工具调用不行"的结论有什么影响？ → `KNOWLEDGE/agent/small-model-harness-engineering/`
 - [深] 消融实验五层缺一不可——这说明复合概率问题里每类失败模式的独立性有多强？能否用"优先修哪一层成本效益最高"的思路来部分部署 Harness？ → `KNOWLEDGE/agent/small-model-harness-engineering/#open-questions` (open)
 
-## 缓存感知 Agent 循环（DeepSeek ReasonX 案例）
+## 缓存感知 Agent 循环（DeepSeek Reasonix 案例）
 
 - [浅] DeepSeek 缓存命中价格是 miss 的几分之一？把命中率从 30% 提到 99% 能降多少成本？ → `KNOWLEDGE/agent/cache-aware-agent-loop/`
 - [浅] 大多数 Agent 框架缓存命中率只有 2–30%——三个主要原因是什么？ → `KNOWLEDGE/agent/cache-aware-agent-loop/`
@@ -302,4 +302,4 @@
 - [深] **memory-architecture-thesis 的"追加更正事件"不变量 vs cascading-update 的"显式依赖图"方向**——这两个其实是**同一族问题的两个视角**还是两个独立机制？bi-temporal 闭合的是"什么时刻什么是真的"（**fact-level 时序**），cascading 解决的是"一个事实变了哪些事实需要重算"（**cross-fact 依赖传播**）。请论证：(1) 为什么 bi-temporal 是必要条件不是充分条件；(2) 为什么"显式依赖图"是 bi-temporal 不变量的天然延伸（从事件序列升级到事件 + 依赖图）；(3) 它失败的不是设计动机，而是什么——这跟 `memory-architecture-thesis` 的三类瓶颈框架（接口带宽 / views 近似误差 / policy 可学习性）哪个对应？ → `KNOWLEDGE/agent/memory-architecture-thesis/` + `KNOWLEDGE/agent/agent-memory-cascading-update/`
 - [深] **复合概率 vs 单模型性能**：Forge 用 5 层外部防护让 8B 模型逼近无防护 Sonnet，Anthropic GAN 三 agent 系统用评估器驱动迭代远超单 agent——两个案例的共同信号是什么？"Agent 性能上限不取决于模型能做什么，而是模型周围搭了什么"这句话对"什么时候该换更强模型 vs 什么时候该加 Harness"的决策怎么指导？ → `KNOWLEDGE/agent/small-model-harness-engineering/` + `KNOWLEDGE/agent/harness-practice/` + `KNOWLEDGE/agent/harness/`
 - [深] **Cloud Code Active Recall（平面） vs OpenViking 层级检索 vs memory-architecture-thesis（Ledger+Views+Policy）**——三个记忆系统在 "policy 显式化" 这条轴上怎么定位？OpenViking 的 Session Commit 8 类 + Working Memory 7 段最接近三件套的哪一层？layer 检索的"分数传播"相当于 policy 的什么？ → `KNOWLEDGE/agent/hierarchical-agent-memory/` + `KNOWLEDGE/agent/agent-memory-system/` + `KNOWLEDGE/agent/memory-architecture-thesis/`
-- [深] **缓存感知架构（ReasonX Append-only + Cache Line Fold）与 agent-context-compaction（Cloud Code 四层流水线）都在管"长上下文里的经济账"，但设计约束不同**——Cloud Code 对象是单次对话不超限，ReasonX 对象是多次请求间缓存命中率最大化。这两个目标冲突吗？如果用 Cloud Code 的"删旧消息"压缩策略，对 DeepSeek API 缓存命中率的影响是什么？如何设计一个同时满足两个目标的压缩策略？ → `KNOWLEDGE/agent/cache-aware-agent-loop/` + `KNOWLEDGE/agent/agent-context-compaction/`
+- [深] **缓存感知架构（Reasonix Append-only + Cache Line Fold）与 agent-context-compaction（Cloud Code 四层流水线）都在管"长上下文里的经济账"，但设计约束不同**——Cloud Code 对象是单次对话不超限，Reasonix 对象是多次请求间缓存命中率最大化。这两个目标冲突吗？如果用 Cloud Code 的"删旧消息"压缩策略，对 DeepSeek API 缓存命中率的影响是什么？如何设计一个同时满足两个目标的压缩策略？ → `KNOWLEDGE/agent/cache-aware-agent-loop/` + `KNOWLEDGE/agent/agent-context-compaction/`

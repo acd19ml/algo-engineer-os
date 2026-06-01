@@ -1,9 +1,7 @@
 id: rag-query-rewriting
 title: "RAG Query Rewriting"
 type: method
-status: learning
 created_at: 2026-05-17
-last_reviewed_at: 2026-05-17
 
 tags: [agent, rag, retrieval, query-rewrite, hyde, business-context]
 depends_on:

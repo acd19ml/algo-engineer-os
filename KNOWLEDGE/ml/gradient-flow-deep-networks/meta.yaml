@@ -1,9 +1,7 @@
 id: gradient-flow-deep-networks
 title: "Gradient Flow in Deep Networks"
 type: mechanism
-status: learning
 created_at: 2026-05-08
-last_reviewed_at: 2026-05-08
 
 tags: [gradient, backpropagation, deep-learning]
 depends_on:

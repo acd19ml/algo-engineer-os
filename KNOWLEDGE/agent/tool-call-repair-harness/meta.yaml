@@ -1,9 +1,7 @@
 id: tool-call-repair-harness
 title: "Tool Call Repair Harness"
 type: system
-status: learning
 created_at: 2026-05-17
-last_reviewed_at: 2026-05-17
 
 tags: [agent, harness, tool-calling, schema-validation, repair]
 depends_on:

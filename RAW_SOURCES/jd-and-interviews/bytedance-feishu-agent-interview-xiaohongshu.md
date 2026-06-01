@@ -2,7 +2,7 @@
 
 > 来源：用户粘贴的小红书面经摘录。
 > 时间：2026-05-17。
-> 用途：支撑 `CAREER/applications/active/2026-05-17_bytedance-feishu_agent-backend-intern.md` 的面试准备。
+> 用途：求职阶段素材（applications 已退场）。
 > 说明：本文做结构化整理，不直接作为事实预测；不同部门 / 面试官会有差异。
 
 ## 来源 A：飞书质量效能工程部 Agent 面经

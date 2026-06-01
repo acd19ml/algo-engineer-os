@@ -1,9 +1,7 @@
 id: padding-and-attention-mask
 title: "Padding and Attention Mask"
 type: mechanism
-status: learning
 created_at: 2026-05-08
-last_reviewed_at: 2026-05-08
 
 tags: [nlp, transformer, bert, padding, attention-mask]
 depends_on:

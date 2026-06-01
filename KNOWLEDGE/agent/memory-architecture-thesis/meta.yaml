@@ -1,9 +1,7 @@
 id: memory-architecture-thesis
 title: "Memory 架构本质：(Ledger, Views, Policy) 三件套 + System 1/2 + 三个上限瓶颈"
 type: concept
-status: learning
 created_at: 2026-05-13
-last_reviewed_at: 2026-05-13
 
 tags: [agent, memory, agentic-memory, system-design, provenance, temporal-knowledge-graph]
 depends_on:

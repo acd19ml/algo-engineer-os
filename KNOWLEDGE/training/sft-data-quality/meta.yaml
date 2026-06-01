@@ -1,9 +1,7 @@
 id: sft-data-quality
 title: "SFT Data Quality"
 type: methodology
-status: learning
 created_at: 2026-05-17
-last_reviewed_at: 2026-05-17
 
 tags: [training, sft, data-quality, filtering, deduplication, evaluation]
 depends_on:

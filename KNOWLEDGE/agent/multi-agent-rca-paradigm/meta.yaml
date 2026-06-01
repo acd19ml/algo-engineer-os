@@ -1,9 +1,7 @@
 id: multi-agent-rca-paradigm
 title: "Multi-Agent RCA Paradigm: 工业实现的三件套"
 type: system
-status: stable
 created_at: 2026-05-12
-last_reviewed_at: 2026-05-12
 
 tags: [agent, multi-agent, rca, aiops, opsagent, result-fusion, sop, react, industrial-practice]
 depends_on:

@@ -1,9 +1,7 @@
 id: ai-product-decision-four-questions
 title: "AI 产品决策四问: 面试官真正在追问什么"
 type: methodology
-status: stable
 created_at: 2026-05-12
-last_reviewed_at: 2026-05-12
 
 tags: [methodology, interview, ai-product, decision-making, four-questions, scenario-judgment, risk, standard, boundary]
 depends_on: []

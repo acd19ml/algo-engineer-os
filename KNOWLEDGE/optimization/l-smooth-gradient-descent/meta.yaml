@@ -1,9 +1,7 @@
 id: l-smooth-gradient-descent
 title: "L-Smooth Gradient Descent"
 type: concept
-status: learning
 created_at: 2026-05-08
-last_reviewed_at: 2026-05-08
 
 tags: [optimization, gradient-descent, smoothness]
 depends_on: []

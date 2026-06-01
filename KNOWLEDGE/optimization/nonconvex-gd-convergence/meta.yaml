@@ -1,9 +1,7 @@
 id: nonconvex-gd-convergence
 title: "Nonconvex GD Convergence"
 type: concept
-status: learning
 created_at: 2026-05-08
-last_reviewed_at: 2026-05-08
 
 tags: [optimization, nonconvex, convergence]
 depends_on:

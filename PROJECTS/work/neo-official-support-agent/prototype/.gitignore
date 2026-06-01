@@ -1,0 +1,4 @@
+.venv/
+__pycache__/
+*.pyc
+# eval/results/*.json are intentionally committed as run artifacts.

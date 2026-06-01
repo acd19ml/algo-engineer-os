@@ -5,10 +5,10 @@
 > **跟谁不同**：
 > - `README.md` 是**叙事**（决策复盘）
 > - `system-anatomy.md` / `agent-subsystem.md` 是**系统是什么**
-> - `interview-bank/technical/qiniu-*.md`（4 篇）是**单题深答**（5-10 页/篇）
-> - **本文档是 catalog**——只索引 + 追缺口，深答仍然进 technical bank
+> - `interview-answers/*.md`（项目本地深答，5-10 页/篇）是**单题深答**
+> - **本文档是 catalog**——只索引 + 追缺口，深答进项目本地 `interview-answers/`
 >
-> **下游链路**：识别 GAP → 按 P0/P1/P2 排产 → P0/P1 GAP 落地为新的 technical bank 条目或 `PROBLEMS/` 横向页 → 更新本表 readiness。
+> **下游链路（闭环）**：识别 GAP → 按 P0/P1/P2 排产 → ① 落地为 `interview-answers/` 深答或 `PROBLEMS/` 横向页；② **若暴露项目本身的不足 → 回写改进项目设计 / 复盘；若是方法论问题 → 回 `KNOWLEDGE/methodology/` 节点** → 更新本表 readiness。
 
 ## Readiness 图例
 
@@ -50,10 +50,10 @@
 | **双路径（告警 + 体检中心）的具体业务价值？** | 架构创新论证 / 技 | ⚠️ | **GAP-3（P0）**：体检中心 vs 告警的覆盖差异、命中率差异——需量化或至少给定性论证 |
 | 体检中心多久巡检一次？过载怎么办？ | 工程深度 / 技 | ❌ | **GAP-4**：未量化巡检频率 vs 系统负担 trade-off |
 | 体检中心调用 AI 的成本怎么估？ | 工程深度 / 技 | ❌ | **GAP-5**：每次 RCA 的 token 成本未沉淀 |
-| 三次产品形态调整的具体过程？ | 协作 / HR + 行 | ✅ | `interview-bank/behavioral/qiniu-ceo-pivot-decision.md` |
+| 三次产品形态调整的具体过程？ | 协作 / HR + 行 | ✅ | README.md（决策复盘） |
 | 如果再做你会怎么定产品形态？ | 反思深度 / 总 | ✅ | `README.md` "复盘 §1" |
 | 你怎么知道变更场景方向是对的？ | 验证意识 / 技 | ⚠️ | 基于 CEO 拍板 + mentor 业务判断，**缺数据驱动验证**——GAP-6 |
-| 一开始想做"对话辅助 SRE"为什么不做？ | 决策回溯 / 行 | ✅ | `interview-bank/behavioral/qiniu-ceo-pivot-decision.md` |
+| 一开始想做"对话辅助 SRE"为什么不做？ | 决策回溯 / 行 | ✅ | README.md（决策复盘） |
 | 一开始想做"无人替代 SRE"为什么不做？ | 决策回溯 / 行 | ✅ | 同上 |
 | 谁是用户？运维工程师 vs 业务方？ | 用户定位 / 技 + 总 | ✅ | `README.md` "动机" |
 
@@ -63,7 +63,7 @@
 
 | 挑战角度 | 测什么 / 谁问 | Readiness | 深答位置 / 行动 |
 |---|---|---|---|
-| 为什么选 LangGraph StateGraph 而不是自由 Agent Loop？ | 横向调研 / 技 + 总 | ✅ | `README.md` "真实选型路径" + `interview-bank/technical/qiniu-agent-loop-vs-workflow.md` |
+| 为什么选 LangGraph StateGraph 而不是自由 Agent Loop？ | 横向调研 / 技 + 总 | ✅ | `README.md` "真实选型路径" + `interview-answers/qiniu-agent-loop-vs-workflow.md` |
 | 为什么选 LangGraph 不选 Dify 可视化方案？ | ROI 取舍 / 技 | ✅ | 同上；核心：ops safety + HITL interrupt 是代码层需要，Dify 可视化是 SaaS 约束 |
 | 为什么不用 coding agent 范式？ | 时代背景 / 技 + 总 | ✅ | 同上 |
 | **为什么 MCP 不是直接 Function Calling？** | 协议选型 / 技 | ⚠️ | **GAP-8（P1）**：MCP vs FC 取舍未沉淀 |
@@ -73,7 +73,7 @@
 | 为什么 Vue 不是 React？ | 前端栈 / 技 | ✅ | 团队栈，弱化即可 |
 | ReAct 模式具体是 Original 还是 PDL-based？ | 范式细节 / 技 | ✅ | `agent-subsystem.md` §3 |
 | 如果今天重做你会选什么？ | 时代意识 / 总 | ✅ | `README.md` "复盘 §2" |
-| 工作流 vs Agent Loop 各自适用场景？ | 范式认知 / 技 | ✅ | `interview-bank/technical/qiniu-agent-loop-vs-workflow.md` |
+| 工作流 vs Agent Loop 各自适用场景？ | 范式认知 / 技 | ✅ | `interview-answers/qiniu-agent-loop-vs-workflow.md` |
 | 函数计算 vs K8s Job 部署 MCP Server 的取舍？ | 部署选型 / 技 | ❌ | **GAP-10（P2）** |
 | 灰度发布编排自己写还是用 Argo Rollouts / Flagger？ | 工具调研 / 技 | ⚠️ | **GAP-11（P1）**：项目自实现，缺横向对比 |
 
@@ -83,7 +83,7 @@
 
 | 挑战角度 | 测什么 / 谁问 | Readiness | 深答位置 / 行动 |
 |---|---|---|---|
-| 5 个 agent 为什么这么拆？ | 拆分理由 / 技 | ✅ | `interview-bank/technical/qiniu-multi-agent-decomposition.md` |
+| 5 个 agent 为什么这么拆？ | 拆分理由 / 技 | ✅ | `interview-answers/qiniu-multi-agent-decomposition.md` |
 | 按职责拆 vs 按阶段拆（Claude Code 式）？ | 多智能体范式 / 技 + 研 | ✅ | 同上 + `KNOWLEDGE/agent/multi-agent/` |
 | 值班长为什么不主动取数据？ | 设计哲学 / 技 | ✅ | `agent-subsystem.md` §5.5 |
 | **5 个 prompt 是怎么演进的？v1→v2→v3 改了什么？** | 迭代历史 / 技 | ❌ | **GAP-12（P1）**：prompt 演进案例缺位，是工程深度铁证 |
@@ -96,7 +96,7 @@
 | qwen 系列模型对比 / 为什么不用 GPT-4？ | 选型 / 技 | ⚠️ | **GAP-17**：内网 / 合规 / 成本理由可加固 |
 | 多个 agent 怎么避免无限循环？ | 终止判断 / 技 | ✅ | `agent-subsystem.md` §3.3 #3（智能终止判断）|
 | 值班长 + 运营专家是不是角色冗余？ | 角色合理性 / 技 | ⚠️ | **GAP-18**：值班长 = 决策仲裁，运营专家 = 报告生成；独立的工程理由（输出结构差异）需补 |
-| Result Fusion vs Model Fusion vs Feature Fusion？ | 多模态范式 / 技 + 研 | ✅ | `interview-bank/technical/qiniu-multimodal-fusion-paradigm.md` |
+| Result Fusion vs Model Fusion vs Feature Fusion？ | 多模态范式 / 技 + 研 | ✅ | `interview-answers/qiniu-multimodal-fusion-paradigm.md` |
 | Trace agent 为什么严禁截断 stack trace？ | 数据完整性 / 技 | ✅ | `agent-subsystem.md` §5.3（5 条行动铁律 #2）|
 | 知识库怎么切片？ chunk size 选多少？ | RAG 工程 / 技 | ⚠️ | `agent-subsystem.md` §6 提到"切片优化"但缺具体参数——GAP-19 |
 | Embedding 模型为什么选 text-embedding-v3？ | 选型 / 技 | ⚠️ | `agent-subsystem.md` §2.1 仅列出未给理由——GAP-20 |
@@ -170,10 +170,10 @@
 | 如果重做你会换什么？ | 时代意识 / 总 | ✅ | `README.md` "复盘 §2" |
 | 你学到的最重要的事？ | 顿悟 / 任何面 | ✅ | `README.md` "复盘" |
 | 端到端没跑通根本原因？ | 诚实 + 技术深度 / 技 | ✅ | `README.md` "复盘 §7"（缺 AgentOps 视角）|
-| 协作上遇到的最大挑战？ | 协作 / HR + 行 | ✅ | `interview-bank/behavioral/qiniu-team-turbulence-handoff.md` |
-| 压力大的时刻？ | 韧性 / HR + 行 | ✅ | `interview-bank/behavioral/qiniu-roadshow-emergency-rescue.md` |
+| 协作上遇到的最大挑战？ | 协作 / HR + 行 | ✅ | README.md（决策复盘） |
+| 压力大的时刻？ | 韧性 / HR + 行 | ✅ | README.md（决策复盘） |
 | 算法 / 产品 / 团队冲突怎么处理？ | 多元 / 行 | ✅ | 三 STAR 故事综合 |
-| 跟 CEO 直接共事是什么感受？ | 高 stake 协作 / 总 | ✅ | `interview-bank/behavioral/qiniu-ceo-pivot-decision.md` |
+| 跟 CEO 直接共事是什么感受？ | 高 stake 协作 / 总 | ✅ | README.md（决策复盘） |
 | 跟 mentor 之间最大分歧？怎么解决？ | 师徒协作 / 行 | ⚠️ | **GAP-43**：mentor 分歧场景未沉淀（可能是设计时讨论 vs 拍板）|
 
 ---
@@ -219,10 +219,10 @@
 
 | GAP # | 内容 | 落地位置 |
 |---|---|---|
-| GAP-3 | 双路径（告警 + 体检）业务价值的定性 / 定量论证 | 加到 `interview-bank/technical/qiniu-dual-trigger-rca.md`（新建）|
+| GAP-3 | 双路径（告警 + 体检）业务价值的定性 / 定量论证 | 加到 `interview-answers/qiniu-dual-trigger-rca.md`（新建）|
 | ~~GAP-7 / GAP-47~~（已解决）| 已采用 LangGraph；原"vs Dify"问题不再成立；转为补充 **Agent Loop vs LangGraph StateGraph vs Claude Code 三方对比**（已在 `agent-subsystem.md` §8 落地）| —— |
-| GAP-21 | 时序异常检测算法对比表（STL / Z-score / 孤立森林 / RPCA / Group-wise VAE / 季节性分解）| `interview-bank/technical/qiniu-anomaly-detection-algos.md`（新建）|
-| GAP-23 / GAP-24 | 20%→70% 评测设计细节（标注 / 匹配标准 / Precision-Recall / baseline） | `interview-bank/technical/qiniu-rca-evaluation.md`（新建）|
+| GAP-21 | 时序异常检测算法对比表（STL / Z-score / 孤立森林 / RPCA / Group-wise VAE / 季节性分解）| `interview-answers/qiniu-anomaly-detection-algos.md`（新建）|
+| GAP-23 / GAP-24 | 20%→70% 评测设计细节（标注 / 匹配标准 / Precision-Recall / baseline） | `interview-answers/qiniu-rca-evaluation.md`（新建）|
 | GAP-45 | 商业 AIOps 产品对比（Datadog / Splunk / New Relic / Dynatrace / Honeycomb）| `PROBLEMS/aiops-product-landscape/`（新建）|
 | GAP-46 | 开源 OpsAgent 项目横向（OpenAIOps / robusta / Kepler / OpsMind）| 同上 |
 
@@ -280,6 +280,6 @@
 - 决策叙事 / 时代背景 / 复盘 → `README.md`
 - 系统 6 层架构 / API / DB / 流程图 → `system-anatomy.md`
 - Agent 5 角色 prompt / MCP / 工作流 / 20%→70% 路径 → `agent-subsystem.md`
-- 单题深答（每篇 5-10 页）→ `CAREER/interview-bank/technical/qiniu-*.md`
-- 行为题 STAR 故事 → `CAREER/interview-bank/behavioral/qiniu-*.md`
+- 单题深答（每篇 5-10 页）→ `CAREER/interview-answers/qiniu-*.md`
+- 行为题 STAR 故事 → README.md 决策复盘（STAR 卡已退场）
 - 学术坐标 / 工业范式 / Failure Attribution → `KNOWLEDGE/agent/agentops-vs-opsagent/` + `multi-agent-rca-paradigm/` + `agent-failure-attribution/`
